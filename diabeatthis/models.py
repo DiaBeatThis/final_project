@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 
 class Profile(models.Model):
@@ -22,6 +23,8 @@ class Profile(models.Model):
     dob = models.DateField(max_length=8)
     race = models.CharField(max_length=2, choices=RACE_CHOICES)
 
+    def __str__(self):
+        return self.user.username
 
 class Nutrition(models.Model):
     calories = models.DecimalField(max_digits=3, decimal_places=2)
@@ -36,7 +39,7 @@ class Meals(models.Model):
     food_name = models.CharField(max_length=50)
     food_portion = models.IntegerField(default=0)
     nutritional_facts = models.ForeignKey(Nutrition)
-    time_eaten = models.DateTimeField(auto_now_add=True)
+    time_eaten = models.DateTimeField(auto_now_add=False)
     profile_id = models.ForeignKey(Profile)
 
 

@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from diabeatthis import views
 from rest_framework import routers
-# from django.contrib.auth import views as auth_views
+from django.contrib.auth import views as auth_views
 
 router = routers.DefaultRouter()
 router.register(r'api/profile', views.ProfileViewSet)
@@ -16,6 +16,9 @@ router.register(r'api/water', views.WaterViewSet)
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index, name='index'),
+    url(r'^index/$', views.index, name='index'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^register/$', views.register, name='register'),
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, {'next_page': '/login'}, name='logout'),
 ]
