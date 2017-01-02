@@ -1,0 +1,16 @@
+.dashboard{
+  background-color: $gray;
+  margin: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  .row{
+    margin: 0 auto;
+    width: 85%;
+    .columns{
+      box-sizing: border-box;
+      background: white;
+      height: 200px;
+      margin: .75%;
+    }
+  }
+}
