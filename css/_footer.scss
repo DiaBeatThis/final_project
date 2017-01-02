@@ -1,0 +1,23 @@
+.footer{
+  height: 50px;
+  padding-top: 15px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: $grayblue;
+  font-size: 24px;
+  color: $gray;
+  .center{
+    line-height: 18px;
+  }
+  span{
+    font-size: 14px;
+  }
+  a{
+    text-decoration: none;
+    color: $gray;
+  }
+  a:hover{
+    text-decoration: underline;
+    color: $lightblue;
+  }
+}
