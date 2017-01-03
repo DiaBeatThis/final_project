@@ -28,17 +28,27 @@
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+<<<<<<< HEAD
 .container {
+=======
+/*.container {
+>>>>>>> 1cf7c6335a4060d11cb1a58900d373f16e269143
   position: relative;
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
+<<<<<<< HEAD
   padding: 0 20px;
   box-sizing: border-box; }
+=======
+  padding: 15px;
+  box-sizing: border-box; }*/
+>>>>>>> 1cf7c6335a4060d11cb1a58900d373f16e269143
 .column,
 .columns {
   width: 100%;
   float: left;
+<<<<<<< HEAD
   box-sizing: border-box; }
 
 /* For devices larger than 400px */
@@ -55,11 +65,37 @@
   .column,
   .columns {
     margin-left: 4%; }
+=======
+  box-sizing: border-box;
+}
+
+  .row{
+    box-sizing: border-box;
+  }
+
+/* For devices larger than 400px */
+/*@media (min-width: 400px) {
+  .container {
+    width: 85%;
+    padding: 0; }
+}*/
+
+/* For devices larger than 550px */
+@media (min-width: 550px) {
+  /*.container {
+    width: 80%; }*/
+  .column,
+  .columns {
+    box-sizing: border-box;
+    /*margin-left: 4%; */
+  }
+>>>>>>> 1cf7c6335a4060d11cb1a58900d373f16e269143
   .column:first-child,
   .columns:first-child {
     margin-left: 0; }
 
   .one.column,
+<<<<<<< HEAD
   .one.columns                    { width: 4.66666666667%; }
   .two.columns                    { width: 13.3333333333%; }
   .three.columns                  { width: 22%;            }
@@ -71,6 +107,30 @@
   .nine.columns                   { width: 74.0%;          }
   .ten.columns                    { width: 82.6666666667%; }
   .eleven.columns                 { width: 91.3333333333%; }
+=======
+  .one.columns                   { width: 8.3333333333%; }
+
+  .two.columns                    { width: 16.6666666667%; }
+
+  .three.columns                  { width: 25%;}
+
+  .four.columns                   { width: 33.3333333333%; }
+
+  .five.columns                   { width: 39.3333333333%; }
+
+  .six.columns                    { width: 45.5%;}
+
+  .seven.columns                  { width: 56.6666666667%; }
+
+  .eight.columns                  { width: 66.6666666667%; }
+
+  .nine.columns                   { width: 72%;}
+
+  .ten.columns                    { width: 83.3333333333%; }
+
+  .eleven.columns                 { width: 91.6666666667%; }
+
+>>>>>>> 1cf7c6335a4060d11cb1a58900d373f16e269143
   .twelve.columns                 { width: 100%; margin-left: 0; }
 
   .one-third.column               { width: 30.6666666667%; }
@@ -124,7 +184,11 @@ body {
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
   font-weight: 400;
+<<<<<<< HEAD
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+=======
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, sans-serif;
+>>>>>>> 1cf7c6335a4060d11cb1a58900d373f16e269143
   color: #222; }
 
 

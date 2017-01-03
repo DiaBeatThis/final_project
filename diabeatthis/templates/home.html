@@ -16,26 +16,67 @@
 <body>
 
   <!-- header nav -->
-  <section>
+<section>
   <div id="header"></div>
-  </section>
+</section>
 
+<!-- body content -->
+<section class="dashboard">
+  <div class="row">
+    <div class="three columns">
+      <img src="{% static '/images/placeholder.png' %}" alt="profile photo" class="profilephoto">
+    </div>
+    <div class="nine columns">
+x
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="three columns lognav">
+      <ul>
+        <li><a href="#">Log Glucose</a></li>
+        <li><a href="#">Log Insulin</a></li>
+        <li><a href="#">Log Water</a></li>
+        <li><a href="#">Log Steps</a></li>
+      </ul>
+    </div>
+    <div class="nine columns">
+x
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="three columns">
+x
+    </div>
+    <div class="three columns">
+    x
+      </div>
+      <div class="six columns">
+    x
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- footer nav -->
   <section>
   <div id="footer"></div>
   </section>
+
   <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="{% static '/js/script.js' %}"></script>
 
-  <!-- header & footer calls -->
+<!-- header & footer calls -->
   <script>$(document).ready(function(){
      $('#header').load('../header_loggedin');
    });</script>
    <script>$(document).ready(function(){
      $('#footer').load('../footer');
    });</script>
+
 </body>
 
 </html>

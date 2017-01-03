@@ -1,0 +1,36 @@
+a{
+  text-decoration: none;
+  color: $gray;
+}
+a:hover{
+  text-decoration: underline;
+  color: $lightblue;
+}
+
+.header{
+  margin: 0 auto;
+  padding: 25px;
+  padding-left: 4%;
+  padding-right: 4%;
+  background-color: $grayblue;
+  font-size: 24px;
+  color: $gray;
+  .left img{
+    width: 250px;
+    object-fit: contain;
+  }
+  .right{
+    text-align: right;
+    ul{
+      margin: 0px;
+      li{
+        display: inline;
+        padding-left: 40px;
+      }
+    }
+  }
+}
+
+.menuimg{
+  display: none;
+}

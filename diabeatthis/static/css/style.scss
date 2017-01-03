@@ -1,0 +1,23 @@
+@import "variables.scss";
+@import "mixins.scss";
+@import "home.scss";
+@import "header.scss";
+@import "footer.scss";
+@import "profile.scss";
+@import "faq.scss";
+@import "register.scss";
+
+body{
+  font-family: 'hevetica neue', helvetica, sans-serif;
+}
+
+p{
+  margin: 0px;
+}
+
+
+
+
+
+
+@import "mediaqueries.scss";

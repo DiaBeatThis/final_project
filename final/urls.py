@@ -3,6 +3,7 @@ from django.contrib import admin
 from diabeatthis import views
 from rest_framework import routers
 from django.contrib.auth import views as auth_views
+from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
 router.register(r'api/profile', views.ProfileViewSet)
@@ -21,4 +22,11 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/login'}, name='logout'),
-]
+    url(r'^faq/$', TemplateView.as_view(template_name="faq.html")),
+    url(r'^footer/$', TemplateView.as_view(template_name="footer.html")),
+    url(r'^header_loggedin/$', TemplateView.as_view(template_name="header_loggedin.html")),
+    url(r'^header_loggedout/$', TemplateView.as_view(template_name="header_loggedout.html")),
+    url(r'^home/$', TemplateView.as_view(template_name="home.html")),
+    url(r'^profile/$', TemplateView.as_view(template_name="profile.html")),
+    url(r'^settings/$', TemplateView.as_view(template_name="settings.html")),
+    ]
