@@ -12,6 +12,21 @@
       height: 200px;
       margin: .75%; }
 
+.profilephoto {
+  height: 200px;
+  width: 200px;
+  object-fit: contain; }
+
+.lognav ul li {
+  list-style: none; }
+  .lognav ul li a {
+    text-decoration: none;
+    color: #091019;
+    font-size: 20px; }
+  .lognav ul li a:hover {
+    text-decoration: underline;
+    color: #248C96; }
+
 a {
   text-decoration: none;
   color: #F2F2F2; }
