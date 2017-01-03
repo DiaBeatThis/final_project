@@ -41,6 +41,7 @@ function enterWater(){
         })
 }
 
+
 function enterMeal(){
         food_name = 'rice'
         getNutrition()
@@ -50,6 +51,7 @@ function enterMeal(){
             location = location
         })
 }
+
 
 function getNutrition(){
     food_name = 'rice'
