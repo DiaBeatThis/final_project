@@ -1,6 +1,24 @@
 // $(document).ready(function(event){
 //   // jQuery code
 // });
+
+
+// photo upload JS
+$(function(){
+    $(":file").change(function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = imageIsLoaded;
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+function imageIsLoaded(e) {
+    $('.profilephoto').attr('src', e.target.result);
+};
+});
+
+// Maks charting code
 var insulin = []
 var bloodSugar = []
 var insulinTimestamp = []
