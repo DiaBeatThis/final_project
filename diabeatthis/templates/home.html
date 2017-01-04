@@ -24,10 +24,12 @@
 <section class="dashboard">
   <div class="row">
     <div class="three columns">
-      <img src="{% static '/images/placeholder.png' %}" alt="profile photo" class="profilephoto">
+      <img src="{% static user.profile.avatar %}" class="profilephoto">
     </div>
     <div class="nine columns">
 x
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    
     </div>
   </div>
 
@@ -48,7 +50,9 @@ x
   <div class="row">
     <div class="three columns">
 x
+
     </div>
+
     <div class="three columns">
     x
       </div>
@@ -60,12 +64,17 @@ x
 
 </section>
 
+<input type="hidden" id="userId" value={{user.profile.id}}>
+
 <!-- footer nav -->
   <section>
   <div id="footer"></div>
   </section>
 
   <!-- standard jQuery calls -->
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="{% static '/js/script.js' %}"></script>
 
@@ -75,7 +84,7 @@ x
    });</script>
    <script>$(document).ready(function(){
      $('#footer').load('../footer');
-   });</script>
+ });</script>
 
 </body>
 

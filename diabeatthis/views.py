@@ -61,10 +61,10 @@ def register(request):
     if request.method == 'POST':
         print("trying post")
         user_form = UserForm(data=request.POST)
-        profile_form = ProfileForm(data=request.POST)
+        profile_form = ProfileForm(request.POST, request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
-            print("valid form")
             user = user_form.save()
+            user.username = user.email
             user.set_password(user.password)
             user.save()
             profile = profile_form.save(commit=False)

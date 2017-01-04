@@ -73,5 +73,6 @@ function getNutrition(){
 }
 
 
+
 $("#enterMeal").click(getNutrition)
 $("#water").click(enterWater)
