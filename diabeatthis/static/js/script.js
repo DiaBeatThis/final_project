@@ -1,6 +1,3 @@
-// $(document).ready(function(event){
-//   // jQuery code
-// });
 var insulin = []
 var bloodSugar = []
 var insulinTimestamp = []
@@ -9,6 +6,7 @@ var currentUser = $('#userId').val()
 
 getInsulin()
 setTimeout(charts, 1000)
+
 
 function getInsulin (){
     $.ajax('/api/insulin/').done(function (stuff){
