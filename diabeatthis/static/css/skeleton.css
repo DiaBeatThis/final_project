@@ -62,19 +62,19 @@
   .columns:first-child {
     margin-left: 0; }
 
-  .one.column,
-
-  .one.columns                   { width: 8.3333333333%; }
+  .one.column, .one.columns   { width: 8.3333333333%; }
 
   .two.columns                    { width: 16.6666666667%; }
 
   .three.columns                  { width: 25%;}
 
   .four.columns                   { width: 33.3333333333%; }
+  .four2.columns                   { width: 31.5%; }
 
   .five.columns                   { width: 39.3333333333%; }
 
   .six.columns                    { width: 45.5%;}
+  .six2.columns                    { width: 48%;}
 
   .seven.columns                  { width: 56.6666666667%; }
 
@@ -87,6 +87,7 @@
   .eleven.columns                 { width: 91.6666666667%; }
 
   .twelve.columns                 { width: 100%; margin-left: 0; }
+  .twelve2.columns                 { width: 97.5%; margin-left: 0; }
 
   .one-third.column               { width: 30.6666666667%; }
   .two-thirds.column              { width: 65.3333333333%; }
@@ -190,16 +191,16 @@ input[type="button"] {
   padding: 0 30px;
   color: #555;
   text-align: center;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 500;
   line-height: 38px;
   letter-spacing: .1rem;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   text-decoration: none;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
   background-color: transparent;
   border-radius: 4px;
-  border: 1px solid #bbb;
+  border: 1.5px solid #091019;
   cursor: pointer;
   box-sizing: border-box; }
 .button:hover,

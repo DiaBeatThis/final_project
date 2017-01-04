@@ -1,0 +1,40 @@
+.profilesettings{
+  background-color: $gray;
+  margin: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  .row{
+    margin: 0 auto;
+    width: 85%;
+    .columns{
+      box-sizing: border-box;
+      margin: .75%;
+    }
+  }
+}
+
+.profilephoto{
+  height: 200px;
+  width: 200px;
+  object-fit: contain;
+}
+
+// form{
+//   input, select{
+//     display: none;
+//   }
+// }
+
+.breakline{
+  border-top: 1px dotted $navy;
+}
+
+.fitbitlogo{
+  height: 60px;
+  padding-top: 15px;
+}
+
+.connectapi{
+  margin-left: 50px;
+  margin-bottom: 0px;
+}
