@@ -1,28 +1,57 @@
 // $(document).ready(function(event){
 //   // jQuery code
 // });
+var insulin = []
+var bloodSugar = []
+var insulinTimestamp = []
+var currentUser = $('#userId').val()
 
 
-$(function () {
+getInsulin()
+setTimeout(charts, 1000)
+
+function getInsulin (){
+    $.ajax('/api/insulin/').done(function (stuff){
+        res = stuff.results
+        for (var i = 0; i < res.length; i++){
+            if(res[i]['profile_id'] == currentUser){
+                insulin.push(parseFloat(res[i]['mcU_ml']))
+                insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
+            }
+        }
+    })
+    $.ajax('/api/blood_sugar/').done(function (stuff){
+        res = stuff.results
+        for (var i = 0; i < res.length; i++){
+            if(res[i]['profile_id'] == currentUser){
+                bloodSugar.push(parseFloat(res[i]['mg_dL']))
+            }
+        }
+    })
+}
+
+
+function charts(){
+    console.log(insulin),
+    console.log(bloodSugar),
     Highcharts.chart('container', {
-
         chart: {
             type: 'column'
         },
 
         title: {
-            text: 'Total fruit consumtion, grouped by gender'
+            text: 'Insulin/blood sugar'
         },
 
         xAxis: {
-            categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+            categories: insulinTimestamp
         },
 
         yAxis: {
             allowDecimals: false,
             min: 0,
             title: {
-                text: 'Number of fruits'
+                text: 'Amount of insulin/blood sugar'
             }
         },
 
@@ -33,29 +62,17 @@ $(function () {
                     'Total: ' + this.point.stackTotal;
             }
         },
-
         plotOptions: {
             column: {
                 stacking: 'normal'
             }
         },
-
         series: [{
-            name: 'John',
-            data: [5, 3, 4, 7, 2],
-            stack: 'male'
+            name: 'Insulin',
+            data: insulin,
         }, {
-            name: 'Joe',
-            data: [3, 4, 4, 2, 5],
-            stack: 'male'
-        }, {
-            name: 'Jane',
-            data: [2, 5, 6, 2, 1],
-            stack: 'female'
-        }, {
-            name: 'Janet',
-            data: [3, 0, 4, 4, 3],
-            stack: 'female'
+            name: 'Blood sugar',
+            data: bloodSugar,
         }]
     });
-});
+}
