@@ -2,7 +2,7 @@ from .models import Profile
 from django.contrib.auth.models import User
 from django import forms
 from django.forms import extras
-
+from django.core.files.images import get_image_dimensions
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -11,10 +11,54 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('email', 'password')
 
+    def __init__(self, *args, **kwargs):
+         super(UserForm, self).__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        user = super(UserForm, self).save(commit=False)
+        user.email = self.cleaned_data["email"]
+        user.username = user.email
+        if commit:
+            user.save()
+        return user
+
 
 class ProfileForm(forms.ModelForm):
     dob = forms.DateField(widget=extras.SelectDateWidget(years=range(1920, 2017)))
 
     class Meta:
         model = Profile
-        fields = ('height', 'weight', 'sex', 'dob', 'race')
+        fields = ('height', 'weight', 'sex', 'dob', 'race', 'avatar')
+
+    def clean_avatar(self):
+        avatar = self.cleaned_data['avatar']
+
+        try:
+            # w, h = get_image_dimensions(avatar)
+            #
+            # #validate dimensions
+            # max_width = max_height = 100
+            # if w > max_width or h > max_height:
+            #     raise forms.ValidationError(
+            #         u'Please use an image that is '
+            #          '%s x %s pixels or smaller.' % (max_width, max_height))
+            #
+            # #validate content type
+            main, sub = avatar.content_type.split('/')
+            if not (main == 'image' and sub in ['jpeg', 'pjpeg', 'gif', 'png']):
+                raise forms.ValidationError(u'Please use a JPEG, '
+                    'GIF or PNG image.')
+            #
+            # #validate file size
+            # if len(avatar) > (20 * 1024):
+            #     raise forms.ValidationError(
+            #         u'Avatar file size may not exceed 20k.')
+
+        except AttributeError:
+            """
+            Handles case when we are updating the user profile
+            and do not supply a new avatar
+            """
+            pass
+
+        return avatar

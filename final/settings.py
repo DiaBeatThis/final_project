@@ -105,10 +105,10 @@ db_from_env = dj_database_url.config(conn_max_age=500)
 
 DATABASES['default'].update(db_from_env)
 
-LOGIN_REDIRECT_URL = '/index/'
+LOGIN_REDIRECT_URL = '/home/'
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
+PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
@@ -119,3 +119,6 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+MEDIA_URL = '/images/'
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'diabeatthis/static/')
