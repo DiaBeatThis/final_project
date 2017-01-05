@@ -1,5 +1,5 @@
 import os
-# from .secrets import SECRET_KEY, DATABASES
+from .secrets import SECRET_KEY, DATABASES
 import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -9,19 +9,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'vast-caverns-94150.herokuapp.com']
-
-SECRET_KEY = 'a8hcm!t+$c+6s(7)x85d7e%002kp3l4#^u5is+x5xpvomp5d4y'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'diabeatthis',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
 
 # Application definition
 
