@@ -32,12 +32,12 @@
 
     <!-- profile photo -->
     <div class="three columns">
-      <img src="{% static 'user.profile.avatar' %}" class="profilephoto">
+      <img src="{% static user.profile.avatar %}" class="profilephoto">
     </div>
 
     <!-- glucose chart -->
-    <div class="nine columns" id="glucoseChart">
-        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div class="nine columns" id="insulinChart">
+        <div id="containerInsulin" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
     </div>
   </div>
 
@@ -162,7 +162,9 @@ x
 
     <!-- empty column -->
     <div class="three columns">
-x
+x       <div class="nine columns" id="waterChart">
+            <div id="containerWater" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        </div>
     </div>
 
     <!-- water chart -->
