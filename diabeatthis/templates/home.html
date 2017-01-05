@@ -10,11 +10,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- remodal -->
-  <link rel="stylesheet" href="../static/css/remodal.css">
-  <link rel="stylesheet" href="../static/css/remodal-default-theme.css">
-
-  <!-- highcharts -->
-  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <link rel="stylesheet" href="{% static '/css/remodal.css' %}">
+  <link rel="stylesheet" href="{% static 'css/remodal-default-theme.css' %}">
 
   <!-- normal css -->
   <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
@@ -40,6 +37,7 @@
 
     <!-- glucose chart -->
     <div class="nine columns" id="glucoseChart">
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
       <script src="../static/js/glucose.js"></script>
     </div>
   </div>
@@ -49,22 +47,27 @@
     <div class="three columns lognav">
       <ul>
         <li><a href="#modalGlucose">Log Glucose</a></li>
-        <li><a href="#">Log Insulin</a></li>
-        <li><a href="#">Log Water</a></li>
-        <li><a href="#">Log Steps</a></li>
+        <li><a href="#modalInsulin">Log Insulin</a></li>
+        <li><a href="#waterIntake">Log Water</a></li>
+        <li><a href="#stepsTaken">Log Steps</a></li>
       </ul>
       <!-- glucose modal -->
       <div class="remodal-bg">
         <div class="remodal" data-remodal-id="modalGlucose">
-          <h3>Log Glucose Level</h3>
+          <h3>What is your Glucose Level?</h3>
           <form>
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="glucoseLevel">mg/dL</label>
-                <input class="u-full-width" type="number" placeholder="0" id="glucoseLevel">
+                <input class="u-full-width" type="number" placeholder="0" id="glucoseLevel" name="glucoseLevel">
               </div>
             </div>
-          </form>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="glucoseDateTime">Date/Time (e.g. 01/01/2017, 08:00 AM)</label>
+                <input class="u-full-width" type="datetime-local" id="glucoseDateTime" name="glucoseDateTime">
+              </div>
+            </div>
           <br>
           <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
           <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
@@ -72,10 +75,75 @@
       </div>
 
       <!-- insulin modal -->
+      <div class="remodal-bg">
+        <div class="remodal" data-remodal-id="modalInsulin">
+          <h3>How much Insulin did you take?</h3>
+          <form>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="insulinLevel">units</label>
+                <input class="u-full-width" type="number" placeholder="0" id="insulinLevel" name="insulinLevel">
+              </div>
+            </div>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="insulinDateTime">Date/Time (e.g. 01/01/2017, 08:00 AM)</label>
+                <input class="u-full-width" type="datetime-local" id="insulinDateTime" name="insulinDateTime">
+              </div>
+            </div>
+          <br>
+          <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+          <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
+        </div>
+      </div>
 
       <!-- water modal -->
+      <div class="remodal-bg">
+        <div class="remodal" data-remodal-id="waterIntake">
+          <h3>How water have you had to drink?</h3>
+          <p>Daily Goal: 12 cups</p>
+          <br>
+          <form>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="waterIntake">cups</label>
+                <input class="u-full-width" type="number" placeholder="0" id="waterIntake" name="waterIntake">
+              </div>
+            </div>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="waterIntake">Quick add cups</label>
+                <select class="u-full-width" id="waterIntake" name="waterIntake">
+                  <option value="1">1 glass (8 fl oz/1 cup)</option>
+                  <option value="2">1 bottle (16 fl oz/2 cups)</option>
+                  <option value="3">1 lg bottle (24 fl oz/3 cups)</option>
+                </select>
+              </div>
+            </div>
+          <br>
+          <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+          <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
+        </div>
+      </div>
 
       <!-- steps modal -->
+      <div class="remodal-bg">
+        <div class="remodal" data-remodal-id="stepsTaken">
+          <h3>How many steps have you taken today?</h3>
+          <p>Daily Goal: 10,000 steps</p>
+          <br>
+          <form>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="stepsTaken">Total Steps</label>
+                <input class="u-full-width" type="number" placeholder="0" id="stepsTaken" name="stepsTaken">
+              </div>
+            </div>
+          <br>
+          <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+          <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
+        </div>
+      </div>
 
     </div>
 
@@ -121,7 +189,7 @@ x
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
   <!-- remodal -->
-  <script src="../static/js/remodal.min.js"></script>
+  <script src="{% static '/js/remodal.min.js' %}"></script>
 
 <!-- header & footer calls -->
   <script>$(document).ready(function(){
