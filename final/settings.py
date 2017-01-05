@@ -110,7 +110,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, '../diabeatthis/static/')
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
