@@ -5,3 +5,6 @@ __pycache__
 .direnv
 *.pyc
 secrets.py
+db.sqlite3
+.sass-cache
+styles/.sass-cache
