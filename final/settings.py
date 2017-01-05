@@ -8,8 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
-
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'vast-caverns-94150.herokuapp.com']
 
 # Application definition
 
@@ -59,15 +58,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'final.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
-
-
-# Password validation
-# https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -83,10 +73,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -98,10 +84,9 @@ USE_L10N = False
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-
 db_from_env = dj_database_url.config(conn_max_age=500)
+
+# DATABASES['default'] =  dj_database_url.config()
 
 DATABASES['default'].update(db_from_env)
 
@@ -111,7 +96,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, '/staticfiles/')
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (

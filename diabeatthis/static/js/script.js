@@ -1,3 +1,35 @@
+// cookie csrf function
+function getCookie(name) {
+   var cookieValue = null;
+   if (document.cookie && document.cookie !== '') {
+       var cookies = document.cookie.split(';');
+       for (var i = 0; i < cookies.length; i++) {
+           var cookie = jQuery.trim(cookies[i]);
+           if (cookie.substring(0, name.length + 1) === (name + '=')) {
+               cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+               break;
+           }
+       }
+   }
+   return cookieValue;
+}
+
+
+var csrftoken = getCookie('csrftoken');
+function csrfSafeMethod(method) {
+   return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+
 // photo upload JS
 $(function(){
     $(":file").change(function () {
@@ -17,11 +49,14 @@ function imageIsLoaded(e) {
 var insulin = []
 var bloodSugar = []
 var insulinTimestamp = []
+var water = []
+var waterTimestamp = []
 var currentUser = $('#userId').val()
 
 
 getInsulin()
-setTimeout(charts, 1000)
+setTimeout(insulinCharts, 1000)
+setTimeout(waterCharts, 1000)
 
 
 function getInsulin (){
@@ -42,13 +77,21 @@ function getInsulin (){
             }
         }
     })
+    $.ajax('/api/water/').done(function (stuff){
+        res = stuff.results
+        console.log(res)
+        for (var i = 0; i < res.length; i++){
+            if(res[i]['profile_id'] == currentUser){
+                water.push(parseFloat(res[i]['ounces']))
+                waterTimestamp.push(res[i]['time_stamp'].slice(11, 16))
+            }
+        }
+    })
 }
 
 
-function charts(){
-    console.log(insulin),
-    console.log(bloodSugar),
-    Highcharts.chart('container', {
+function insulinCharts(){
+    Highcharts.chart('containerInsulin', {
         chart: {
             type: 'column'
         },
@@ -90,3 +133,77 @@ function charts(){
         }]
     });
 }
+
+
+function waterCharts(){
+    Highcharts.chart('containerWater', {
+        chart: {
+            type: 'column'
+        },
+
+        title: {
+            text: 'Water'
+        },
+
+        xAxis: {
+            categories: waterTimestamp
+        },
+
+        yAxis: {
+            allowDecimals: false,
+            min: 0,
+            title: {
+                text: 'Amount of water'
+            }
+        },
+
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.x + '</b><br/>' +
+                    this.series.name + ': ' + this.y + '<br/>' +
+                    'Total: ' + this.point.stackTotal;
+            }
+        },
+        plotOptions: {
+            column: {
+                stacking: 'normal'
+            }
+        },
+        series: [{
+            name: 'Water',
+            data: water,
+        },]
+    });
+}
+
+
+$(document).on('confirmation', '[data-remodal-id=modalGlucose]', function () {
+    var glucose = $("#glucoseLevel").val()
+    var time_stamp = $("#glucoseDateTime").val()
+    var postdata = {'mg_dL':glucose, 'time_stamp':time_stamp, 'profile_id':currentUser}
+    $.ajax({url:'/api/blood_sugar/', data:postdata, type:'POST'}).done(function(){
+        location = location
+    })
+});
+
+
+$(document).on('confirmation', '[data-remodal-id=modalInsulin]', function () {
+  var insulin = $("#insulinLevel").val()
+  var time_stamp = $("#insulinDateTime").val()
+  var postdata = {'mcU_ml':insulin, 'time_stamp':time_stamp, 'profile_id':currentUser}
+  $.ajax({url:'/api/insulin/', data:postdata, type:'POST'}).done(function(){
+      location = location
+  })
+});
+
+
+$(document).on('confirmation', '[data-remodal-id=waterIntake]', function () {
+    size = $("#waterSize").val()
+    cups = $("#waterIntake").val()
+    var water = parseFloat(size) * parseFloat(cups)
+    var time_stamp = $("#waterDateTime").val()
+    var postdata = {'ounces':water, 'time_stamp':time_stamp, 'profile_id':currentUser}
+    $.ajax({url:'/api/water/', data:postdata, type:'POST'}).done(function(){
+        location = location
+    })
+});

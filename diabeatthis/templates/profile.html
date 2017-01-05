@@ -31,7 +31,7 @@
 
     <!-- profile photo -->
     <div class="three columns">
-      <img name="avatar" src="{% static '/images/placeholder.png' %}" alt="profile photo" class="profilephoto">
+      <img name="avatar" src="{% static user.profile.avatar %}" alt="profile photo" class="profilephoto">
       <div class>
         <input type="file"></input>
       </div>
@@ -141,10 +141,13 @@
 
     <!-- api connections -->
     <div class="nine columns">
-      <img src="../static/images/Google_2015_logo.png" alt="Google Logo" class="thirdpartylogo">
+
+      <!-- <img src="{% static  '/images/Fitbit_logo_RGB.png' %}" alt="Fitbit" class="fitbitlogo"> -->
+
+      <img src="{% static  '/images/Google_2015_logo.png' %}" alt="Google Logo" class="thirdpartylogo">
       <button type="button" class="connectapi">Set Up Reminders</button>
       <br><br>
-      <img src="../static/images/Fitbit_logo_RGB.png" alt="Fitbit" class="thirdpartylogo">
+      <img src="{% static  '/images/Fitbit_logo_RGB.png' %}" alt="Fitbit" class="thirdpartylogo">
       <button type="button" class="connectapi">Connect Your Fitbit</button>
     </div>
   </div>

@@ -32,13 +32,12 @@
 
     <!-- profile photo -->
     <div class="three columns">
-      <img src="{% static 'user.profile.avatar' %}" class="profilephoto">
+      <img src="{% static user.profile.avatar %}" class="profilephoto">
     </div>
 
     <!-- glucose chart -->
-    <div class="nine columns" id="glucoseChart">
-        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-      <script src="../static/js/glucose.js"></script>
+    <div class="nine columns" id="insulinChart">
+        <div id="containerInsulin" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
     </div>
   </div>
 
@@ -113,11 +112,17 @@
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="waterIntake">Quick add cups</label>
-                <select class="u-full-width" id="waterIntake" name="waterIntake">
+                <select class="u-full-width" id="waterSize" name="waterIntake">
                   <option value="1">1 glass (8 fl oz/1 cup)</option>
                   <option value="2">1 bottle (16 fl oz/2 cups)</option>
                   <option value="3">1 lg bottle (24 fl oz/3 cups)</option>
                 </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="waterDateTime">Date/Time (e.g. 01/01/2017, 08:00 AM)</label>
+                <input class="u-full-width" type="datetime-local" id="waterDateTime" name="waterDateTime">
               </div>
             </div>
           <br>
@@ -157,7 +162,9 @@ x
 
     <!-- empty column -->
     <div class="three columns">
-x
+x       <div class="nine columns" id="waterChart">
+            <div id="containerWater" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        </div>
     </div>
 
     <!-- water chart -->
@@ -182,7 +189,7 @@ x
 
   <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="{% static '/js/script.js' %}"></script>
+  <script type="text/javascript" src="{%  static '/js/script.js' %}"></script>
 
   <!-- high charts calls -->
   <script src="https://code.highcharts.com/highcharts.js"></script>
