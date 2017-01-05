@@ -1,3 +1,35 @@
+// cookie csrf function
+function getCookie(name) {
+   var cookieValue = null;
+   if (document.cookie && document.cookie !== '') {
+       var cookies = document.cookie.split(';');
+       for (var i = 0; i < cookies.length; i++) {
+           var cookie = jQuery.trim(cookies[i]);
+           if (cookie.substring(0, name.length + 1) === (name + '=')) {
+               cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+               break;
+           }
+       }
+   }
+   return cookieValue;
+}
+
+
+var csrftoken = getCookie('csrftoken');
+function csrfSafeMethod(method) {
+   return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+
 // photo upload JS
 $(function(){
     $(":file").change(function () {
@@ -92,27 +124,13 @@ function charts(){
 }
 
 
-function addGlucose(){
-    console.log("here")
-    var glucose = $("#glucoseLevel").val()
-    var time_stamp = $("#glucoseDateTime").val()
-    var postdata = {'mg_dL':glucose, 'time_stamp':text, 'time_stamp':tag, 'profile_id':currentUser}
-    $.ajax({url:'/api/question/', data:postdata, type:'POST'}).done(function(){
-        location = location
-    })
-}
-
-
-$(document).on('closed', '.remodal', function (e) {
-
-  // Reason: 'confirmation', 'cancellation'
-  console.log('Modal is closed' + (e.reason ? ', reason: ' + e.reason : ''));
-});
 
 $(document).on('confirmation', '.remodal', function () {
-  console.log('Confirmation button is clicked');
+    var glucose = $("#glucoseLevel").val()
+    var time_stamp = $("#glucoseDateTime").val()
+    var postdata = {'mg_dL':glucose, 'time_stamp':time_stamp, 'profile_id':currentUser}
+    console.log(postdata)
+    $.ajax({url:'/api/blood_sugar/', data:postdata, type:'POST'}).done(function(){
+        location = location
+    })
 });
-
-
-
-$("#saveGlucose").click(addGlucose)

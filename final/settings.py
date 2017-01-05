@@ -1,5 +1,5 @@
 import os
-from .secrets import SECRET_KEY, DATABASES
+# from .secrets import SECRET_KEY, DATABASES
 import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -8,8 +8,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'vast-caverns-94150.git']
 
+SECRET_KEY = 'a8hcm!t+$c+6s(7)x85d7e%002kp3l4#^u5is+x5xpvomp5d4y'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'diabeatthis',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
 
 # Application definition
 
@@ -59,15 +71,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'final.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
-
-
-# Password validation
-# https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -83,10 +86,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -97,11 +96,11 @@ USE_L10N = False
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
+SECRET_KEY = os.environ['SECRET_KEY']
 
 db_from_env = dj_database_url.config(conn_max_age=500)
+
+DATABASES['default'] =  dj_database_url.config()
 
 DATABASES['default'].update(db_from_env)
 
