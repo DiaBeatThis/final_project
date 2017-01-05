@@ -37,19 +37,20 @@ a:hover {
 
 .header {
   margin: 0 auto;
-  padding: 25px;
+  padding: 10px;
   padding-left: 4%;
   padding-right: 4%;
-  background-color: #415E6F;
+  background-color: rgba(65, 94, 111, 0.7);
   font-size: 24px;
   color: #F2F2F2; }
   .header .left img {
-    width: 250px;
+    width: 200px;
     object-fit: contain; }
   .header .right {
     text-align: right; }
     .header .right ul {
-      margin: 0px; }
+      margin: 0px;
+      padding-top: 8%; }
       .header .right ul li {
         display: inline;
         padding-left: 40px; }
@@ -62,7 +63,7 @@ a:hover {
   padding-top: 15px;
   margin: 0 auto;
   text-align: center;
-  background-color: #415E6F;
+  background-color: rgba(65, 94, 111, 0.7);
   font-size: 24px;
   color: #F2F2F2; }
   .footer .center {
