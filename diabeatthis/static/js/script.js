@@ -124,8 +124,7 @@ function charts(){
 }
 
 
-
-$(document).on('confirmation', '.remodal', function () {
+$(document).on('confirmation', '[data-remodal-id=modalGlucose]', function () {
     var glucose = $("#glucoseLevel").val()
     var time_stamp = $("#glucoseDateTime").val()
     var postdata = {'mg_dL':glucose, 'time_stamp':time_stamp, 'profile_id':currentUser}
@@ -133,4 +132,27 @@ $(document).on('confirmation', '.remodal', function () {
     $.ajax({url:'/api/blood_sugar/', data:postdata, type:'POST'}).done(function(){
         location = location
     })
+});
+
+
+$(document).on('confirmation', '[data-remodal-id=modalInsulin]', function () {
+  var insulin = $("#insulinLevel").val()
+  var time_stamp = $("#insulinDateTime").val()
+  var postdata = {'mcU_ml':insulin, 'time_stamp':time_stamp, 'profile_id':currentUser}
+  console.log(postdata)
+  $.ajax({url:'/api/insulin/', data:postdata, type:'POST'}).done(function(){
+      location = location
+  })
+});
+
+$(document).on('confirmation', '[data-remodal-id=waterIntake]', function () {
+    size = $("#waterSize").val()
+    cups = $("#waterIntake").val()
+  var water = parseFloat(size) * parseFloat(cups)
+  var time_stamp = $("#waterDateTime").val()
+  var postdata = {'ounces':water, 'time_stamp':time_stamp, 'profile_id':currentUser}
+  console.log(postdata)
+  $.ajax({url:'/api/water/', data:postdata, type:'POST'}).done(function(){
+      location = location
+  })
 });
