@@ -90,3 +90,29 @@ function charts(){
         }]
     });
 }
+
+
+function addGlucose(){
+    console.log("here")
+    var glucose = $("#glucoseLevel").val()
+    var time_stamp = $("#glucoseDateTime").val()
+    var postdata = {'mg_dL':glucose, 'time_stamp':text, 'time_stamp':tag, 'profile_id':currentUser}
+    $.ajax({url:'/api/question/', data:postdata, type:'POST'}).done(function(){
+        location = location
+    })
+}
+
+
+$(document).on('closed', '.remodal', function (e) {
+
+  // Reason: 'confirmation', 'cancellation'
+  console.log('Modal is closed' + (e.reason ? ', reason: ' + e.reason : ''));
+});
+
+$(document).on('confirmation', '.remodal', function () {
+  console.log('Confirmation button is clicked');
+});
+
+
+
+$("#saveGlucose").click(addGlucose)
