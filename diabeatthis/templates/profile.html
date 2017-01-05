@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>diaBEATthis</title>
@@ -10,65 +11,79 @@
   <!-- remodal -->
   <link rel="stylesheet" href="{% static '/css/remodal.css' %}">
   <link rel="stylesheet" href="{% static '/css/remodal-default-theme.css' %}">
+
   <!-- normal css -->
   <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
   <link rel="stylesheet" href="{% static '/css/skeleton.css' %}">
   <link rel="stylesheet" href="{% static '/css/style.css' %}">
 </head>
+
 <body>
+
   <!-- header nav -->
 <section>
   <div id="header"></div>
 </section>
+
 <!-- body content -->
 <section class="profilesettings">
   <div class="row">
+
     <!-- profile photo -->
     <div class="three columns">
       <img name="avatar" src="{% static '/images/placeholder.png' %}" alt="profile photo" class="profilephoto">
       <div class>
         <input type="file"></input>
       </div>
+
       <!-- reset password -->
       <div>
         <label for="password">Change your password</label>
         <input class="u-half-width" type="text" placeholder="********" id="password" name="password">
       </div>
     </div>
+
     <!--  profile form -->
     <div class="nine columns">
       <h5>This is what you've told us about yourself:</h5>
       <form>
+
         <!-- first name -->
           <div class="six2 columns">
             <label for="firstName">Your first name</label>
             <input name="firstName" class="u-full-width" type="text" placeholder="First Name" id="firstName">
           </div>
+
           <!-- last name -->
           <div class="six2 columns">
             <label for="lastName">Your last name</label>
             <input class="u-full-width" type="text" placeholder="Last Name" id="lastName" name="lastName">
           </div>
+
           <!-- email -->
           <div class="twelve2 columns">
             <label for="email">Your email address (this is your user id also)</label>
             <input class="u-full-width" type="text" placeholder="Email Address" id="email" name="email">
           </div>
+
           <!-- age -->
           <div class="four2 columns">
             <label for="birthday">Your birthday</label>
             <input class="u-full-width" type="date" placeholder="Age" id="birthday" name="birthday">
           </div>
+
           <!-- height -->
           <div class="four2 columns">
             <label for="height">How tall you are</label>
             <input name="height" class="u-full-width" type="number" placeholder="Height (in)" id="height">
           </div>
+
           <!-- weight -->
           <div class="four2 columns">
             <label for="weight">How much you weigh</label>
             <input class="u-full-width" type="number" placeholder="Weight (lbs)" id="weight" name="weight">
           </div>
+
           <!-- sex -->
           <div class="four2 columns">
            <label for="sex">What your biological sex is</label>
@@ -81,14 +96,17 @@
       </form>
     </div>
   </div>
+
 <!-- section divider line -->
 <div class="row">
   <div class="three columns"></div>
   <div class="nine columns breakline"></div>
 </div>
+
 <!-- blank div -->
 <div class="row">
   <div class="three columns"></div>
+
   <!-- settings -->
   <!-- steps goal -->
   <div class="three columns">
@@ -99,6 +117,7 @@
       <option value="10000">10,000</option>
     </select>
   </div>
+
   <!-- water goal -->
   <div class="three columns">
     <label for="waterGoal">Select a daily goal for drinking water</label>
@@ -109,14 +128,17 @@
     </select>
   </div>
 </div>
+
 <!-- section divider line -->
 <div class="row">
   <div class="three columns"></div>
   <div class="nine columns breakline"></div>
 </div>
+
   <!-- blank div -->
   <div class="row">
     <div class="three columns"></div>
+
     <!-- api connections -->
     <div class="nine columns">
       <img src="../static/images/Google_2015_logo.png" alt="Google Logo" class="thirdpartylogo">
@@ -127,13 +149,16 @@
     </div>
   </div>
 </section>
+
 <!-- footer nav -->
   <section>
   <div id="footer"></div>
   </section>
+
   <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="{% static '/js/script.js' %}"></script>
+
   <!-- header & footer calls -->
   <script>$(document).ready(function(){
      $('#header').load('../header_loggedin');
@@ -141,6 +166,9 @@
    <script>$(document).ready(function(){
      $('#footer').load('../footer');
  });</script>
+
 </body>
+
 <!-- Uses of Fitbit trademarks require agreement to the Fitbit Web API Terms of Service <https://dev.fitbit.com/terms> and trademark guidelines <https://dev.fitbit.com/trademark>. diaBEATthis agrees to the Fitbit Terms of Service. -->
+
 </html>
