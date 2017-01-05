@@ -9,7 +9,7 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'password')
+        fields = ('email', 'password', 'first_name', 'last_name')
 
     def __init__(self, *args, **kwargs):
          super(UserForm, self).__init__(*args, **kwargs)
@@ -24,7 +24,7 @@ class UserForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
-    dob = forms.DateField(widget=extras.SelectDateWidget(years=range(1920, 2017)))
+    # dob = forms.DateField(widget=extras.SelectDateWidget(years=range(1920, 2017)))
 
     class Meta:
         model = Profile

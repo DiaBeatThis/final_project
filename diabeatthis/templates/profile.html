@@ -11,8 +11,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- remodal -->
-  <link rel="stylesheet" href="../static/css/remodal.css">
-  <link rel="stylesheet" href="../static/css/remodal-default-theme.css">
+  <link rel="stylesheet" href="{% static '/css/remodal.css %}">
+  <link rel="stylesheet" href="{% static '/css/remodal-default-theme.css %}">
 
   <!-- normal css -->
   <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
@@ -32,7 +32,7 @@
   <div class="row">
     <!-- profile photo -->
     <div class="three columns">
-      <img src="../static/images/placeholder.png" alt="profile photo" class="profilephoto">
+      <img name="avatar" src="{% static '/images/placeholder.png' %}" alt="profile photo" class="profilephoto">
       <div class>
         <input type="file"></input>
       </div>
@@ -48,16 +48,19 @@
     <div class="nine columns">
       <h5>This is what you've told us about yourself:</h5>
       <form>
+
         <!-- first name -->
           <div class="six2 columns">
             <label for="firstName">Your first name</label>
-            <input class="u-full-width" type="text" placeholder="First Name" id="firstName" name="firstName">
+            <input name="firstName" class="u-full-width" type="text" placeholder="First Name" id="firstName">
           </div>
+
           <!-- last name -->
           <div class="six2 columns">
             <label for="lastName">Your last name</label>
             <input class="u-full-width" type="text" placeholder="Last Name" id="lastName" name="lastName">
           </div>
+
           <!-- email -->
           <div class="twelve2 columns">
             <label for="email">Your email address (this is your user id also)</label>
@@ -68,16 +71,19 @@
             <label for="birthday">Your birthday</label>
             <input class="u-full-width" type="date" placeholder="Age" id="birthday" name="birthday">
           </div>
+
           <!-- height -->
           <div class="four2 columns">
             <label for="height">How tall you are</label>
-            <input class="u-full-width" type="number" placeholder="Height (in)" id="height" name="height">
+            <input name="height" class="u-full-width" type="number" placeholder="Height (in)" id="height">
           </div>
+
           <!-- weight -->
           <div class="four2 columns">
             <label for="weight">How much you weigh</label>
             <input class="u-full-width" type="number" placeholder="Weight (lbs)" id="weight" name="weight">
           </div>
+
           <!-- sex -->
           <div class="four2 columns">
            <label for="sex">What your biological sex is</label>
@@ -161,6 +167,7 @@
    <script>$(document).ready(function(){
      $('#footer').load('../footer');
  });</script>
+
 
 </body>
 

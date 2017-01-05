@@ -10,11 +10,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- remodal -->
-  <link rel="stylesheet" href="../static/css/remodal.css">
-  <link rel="stylesheet" href="../static/css/remodal-default-theme.css">
-
-  <!-- highcharts -->
-  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <link rel="stylesheet" href="{% static '/css/remodal.css' %}">
+  <link rel="stylesheet" href="{% static 'css/remodal-default-theme.css' %}">
 
   <!-- normal css -->
   <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
@@ -40,6 +37,7 @@
 
     <!-- glucose chart -->
     <div class="nine columns" id="glucoseChart">
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
       <script src="../static/js/glucose.js"></script>
     </div>
   </div>
@@ -191,7 +189,7 @@ x
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
   <!-- remodal -->
-  <script src="../static/js/remodal.min.js"></script>
+  <script src="{% static '/js/remodal.min.js' %}"></script>
 
 <!-- header & footer calls -->
   <script>$(document).ready(function(){

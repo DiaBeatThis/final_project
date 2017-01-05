@@ -6,6 +6,7 @@ class Profile(models.Model):
     SEX_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
+        ('O', 'Other'),
     )
 
     RACE_CHOICES = (
@@ -20,7 +21,7 @@ class Profile(models.Model):
     weight = models.IntegerField(default=0)
     sex = models.CharField(max_length=1, choices=SEX_CHOICES)
     dob = models.DateField(max_length=8)
-    race = models.CharField(max_length=2, choices=RACE_CHOICES)
+    race = models.CharField(max_length=2, choices=RACE_CHOICES, blank=True, null=True)
     avatar = models.ImageField(upload_to='images', blank=True, null=True)
 
     def __str__(self):
