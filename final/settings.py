@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'vast-caverns-94150.git']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'vast-caverns-94150.herokuapp.com']
 
 SECRET_KEY = 'a8hcm!t+$c+6s(7)x85d7e%002kp3l4#^u5is+x5xpvomp5d4y'
 
