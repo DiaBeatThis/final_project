@@ -33,10 +33,16 @@
     <!-- profile photo -->
     <div class="three columns">
       <img src="../static/images/placeholder.png" alt="profile photo" class="profilephoto">
-      <div class=>
+      <div class>
         <input type="file"></input>
       </div>
+      <!-- reset password -->
+      <div>
+        <label for="password">Change your password</label>
+        <input class="u-half-width" type="text" placeholder="********" id="password" name="password">
+      </div>
     </div>
+
 
     <!--  profile form -->
     <div class="nine columns">
@@ -45,59 +51,94 @@
         <!-- first name -->
           <div class="six2 columns">
             <label for="firstName">Your first name</label>
-            <input class="u-full-width" type="text" placeholder="First Name" id="firstName">
+            <input class="u-full-width" type="text" placeholder="First Name" id="firstName" name="firstName">
           </div>
           <!-- last name -->
           <div class="six2 columns">
             <label for="lastName">Your last name</label>
-            <input class="u-full-width" type="text" placeholder="Last Name" id="lastName">
+            <input class="u-full-width" type="text" placeholder="Last Name" id="lastName" name="lastName">
           </div>
           <!-- email -->
           <div class="twelve2 columns">
             <label for="email">Your email address (this is your user id also)</label>
-            <input class="u-full-width" type="text" placeholder="Email Address" id="email">
+            <input class="u-full-width" type="text" placeholder="Email Address" id="email" name="email">
           </div>
           <!-- age -->
           <div class="four2 columns">
-            <label for="age">Your age</label>
-            <input class="u-full-width" type="number" placeholder="Age" id="age">
+            <label for="birthday">Your birthday</label>
+            <input class="u-full-width" type="date" placeholder="Age" id="birthday" name="birthday">
           </div>
           <!-- height -->
           <div class="four2 columns">
             <label for="height">How tall you are</label>
-            <input class="u-full-width" type="number" placeholder="Height (in)" id="height">
+            <input class="u-full-width" type="number" placeholder="Height (in)" id="height" name="height">
           </div>
           <!-- weight -->
           <div class="four2 columns">
             <label for="weight">How much you weigh</label>
-            <input class="u-full-width" type="number" placeholder="Weight (lbs)" id="weight">
+            <input class="u-full-width" type="number" placeholder="Weight (lbs)" id="weight" name="weight">
           </div>
           <!-- sex -->
           <div class="four2 columns">
-           <label for="sex">What sex you identify as</label>
-           <select class="u-full-width" id="sex">
-             <option value="Option 1">Male</option>
-             <option value="Option 2">Female</option>
-             <option value="Option 3">Other</option>
+           <label for="sex">What your biological sex is</label>
+           <select class="u-full-width" id="sex" name="sex">
+             <option value="Male">Male</option>
+             <option value="Female">Female</option>
+             <option value="Other">Other</option>
            </select>
          </div>
       </form>
     </div>
   </div>
 
+<!-- section divider line -->
 <div class="row">
   <div class="three columns"></div>
-  <div class="nine columns breakline"><!-- section divider line --></div>
+  <div class="nine columns breakline"></div>
 </div>
 
+<!-- blank div -->
+<div class="row">
+  <div class="three columns"></div>
+
+  <!-- settings -->
+  <!-- steps goal -->
+  <div class="three columns">
+    <label for="stepsGoal">Select a daily goal for steps walked/run</label>
+    <select class="u-full-width" id="stepsGoal" name="stepsGoal">
+      <option value="5000">5,000</option>
+      <option value="7000">7,500</option>
+      <option value="10000">10,000</option>
+    </select>
+  </div>
+
+  <!-- water goal -->
+  <div class="three columns">
+    <label for="waterGoal">Select a daily goal for drinking water</label>
+    <select class="u-full-width" id="waterGoal" name="waterGoal">
+      <option value="8">8 cups</option>
+      <option value="10">10 cups</option>
+      <option value="12">12 cups</option>
+    </select>
+  </div>
+</div>
+
+<!-- section divider line -->
+<div class="row">
+  <div class="three columns"></div>
+  <div class="nine columns breakline"></div>
+</div>
+
+  <!-- blank div -->
   <div class="row">
-    <div class="three columns">
-      <!-- blank div -->
-    </div>
+    <div class="three columns"></div>
 
     <!-- api connections -->
     <div class="nine columns">
-      <img src="../static/images/Fitbit_logo_RGB.png" alt="Fitbit" class="fitbitlogo">
+      <img src="../static/images/Google_2015_logo.png" alt="Google Logo" class="thirdpartylogo">
+      <button type="button" class="connectapi">Set Up Reminders</button>
+      <br><br>
+      <img src="../static/images/Fitbit_logo_RGB.png" alt="Fitbit" class="thirdpartylogo">
       <button type="button" class="connectapi">Connect Your Fitbit</button>
     </div>
   </div>
@@ -115,11 +156,11 @@
 
   <!-- header & footer calls -->
   <script>$(document).ready(function(){
-     $('#header').load('header_loggedin.html');
+     $('#header').load('../header_loggedin');
    });</script>
    <script>$(document).ready(function(){
-     $('#footer').load('footer.html');
-   });</script>
+     $('#footer').load('../footer');
+ });</script>
 
 </body>
 
