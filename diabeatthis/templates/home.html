@@ -8,6 +8,12 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- remodal -->
+  <link rel="stylesheet" href="{% static '/css/remodal.css' %}">
+  <link rel="stylesheet" href="{% static 'css/remodal-default-theme.css' %}">
+
+  <!-- normal css -->
   <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
   <link rel="stylesheet" href="{% static '/css/skeleton.css' %}">
   <link rel="stylesheet" href="{% static '/css/style.css' %}">
@@ -23,42 +29,75 @@
 <!-- body content -->
 <section class="dashboard">
   <div class="row">
+
+    <!-- profile photo -->
     <div class="three columns">
       <img src="{% static user.profile.avatar %}" class="profilephoto">
     </div>
-    <div class="nine columns">
-x
-    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-    
+
+    <!-- glucose chart -->
+    <div class="nine columns" id="glucoseChart">
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+      <script src="../static/js/glucose.js"></script>
     </div>
   </div>
 
   <div class="row">
+    <!-- log navigation -->
     <div class="three columns lognav">
       <ul>
-        <li><a href="#">Log Glucose</a></li>
+        <li><a href="#modalGlucose">Log Glucose</a></li>
         <li><a href="#">Log Insulin</a></li>
         <li><a href="#">Log Water</a></li>
         <li><a href="#">Log Steps</a></li>
       </ul>
+      <!-- glucose modal -->
+      <div class="remodal-bg">
+        <div class="remodal" data-remodal-id="modalGlucose">
+          <h3>Log Glucose Level</h3>
+          <form>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="glucoseLevel">mg/dL</label>
+                <input class="u-full-width" type="number" placeholder="0" id="glucoseLevel">
+              </div>
+            </div>
+          </form>
+          <br>
+          <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+          <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
+        </div>
+      </div>
+
+      <!-- insulin modal -->
+
+      <!-- water modal -->
+
+      <!-- steps modal -->
+
     </div>
+
+    <!-- insulin chart -->
     <div class="nine columns">
 x
     </div>
   </div>
 
   <div class="row">
+
+    <!-- empty column -->
     <div class="three columns">
 x
-
     </div>
 
+    <!-- water chart -->
     <div class="three columns">
     x
-      </div>
-      <div class="six columns">
+    </div>
+
+      <!-- activity chart -->
+    <div class="six columns">
     x
-      </div>
     </div>
   </div>
 
@@ -72,11 +111,15 @@ x
   </section>
 
   <!-- standard jQuery calls -->
-
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="{% static '/js/script.js' %}"></script>
+
+  <!-- high charts calls -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+  <!-- remodal -->
+  <script src="{% static '/js/remodal.min.js' %}"></script>
 
 <!-- header & footer calls -->
   <script>$(document).ready(function(){

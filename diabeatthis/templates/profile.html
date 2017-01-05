@@ -9,6 +9,12 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- remodal -->
+  <link rel="stylesheet" href="{% static '/css/remodal.css %}">
+  <link rel="stylesheet" href="{% static '/css/remodal-default-theme.css %}">
+
+  <!-- normal css -->
   <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
   <link rel="stylesheet" href="{% static '/css/skeleton.css' %}">
   <link rel="stylesheet" href="{% static '/css/style.css' %}">
@@ -16,10 +22,107 @@
 
 <body>
 
+  <!-- header nav -->
+<section>
+  <div id="header"></div>
+</section>
 
+<!-- body content -->
+<section class="profilesettings">
+  <div class="row">
+    <!-- profile photo -->
+    <div class="three columns">
+      <img name="avatar" src="{% static '/images/placeholder.png' %}" alt="profile photo" class="profilephoto">
+      <div class=>
+        <input type="file"></input>
+      </div>
+    </div>
 
+    <!--  profile form -->
+    <div class="nine columns">
+      <h5>This is what you've told us about yourself:</h5>
+      <form>
+        <!-- first name -->
+          <div class="six2 columns">
+            <label for="firstName">Your first name</label>
+            <input name="firstName" class="u-full-width" type="text" placeholder="First Name" id="firstName">
+          </div>
+          <!-- last name -->
+          <div class="six2 columns">
+            <label for="lastName">Your last name</label>
+            <input name="lastName" class="u-full-width" type="text" placeholder="Last Name" id="lastName">
+          </div>
+          <!-- email -->
+          <div class="twelve2 columns">
+            <label for="email">Your email address (this is your user id also)</label>
+            <input name="email" class="u-full-width" type="text" placeholder="Email Address" id="email">
+          </div>
+          <!-- age -->
+          <div class="four2 columns">
+            <label for="age">Your age</label>
+            <input name="dob" class="u-full-width" type="number" placeholder="Age" id="age">
+          </div>
+          <!-- height -->
+          <div class="four2 columns">
+            <label for="height">How tall you are</label>
+            <input name="height" class="u-full-width" type="number" placeholder="Height (in)" id="height">
+          </div>
+          <!-- weight -->
+          <div class="four2 columns">
+            <label for="weight">How much you weigh</label>
+            <input name="weight" class="u-full-width" type="number" placeholder="Weight (lbs)" id="weight">
+          </div>
+          <!-- sex -->
+          <div class="four2 columns">
+           <label for="sex">What sex you identify as</label>
+           <select name="sex" class="u-full-width" id="sex">
+             <option value="Option 1">Male</option>
+             <option value="Option 2">Female</option>
+             <option value="Option 3">Other</option>
+           </select>
+         </div>
+      </form>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="three columns"></div>
+  <div class="nine columns breakline"><!-- section divider line --></div>
+</div>
+
+  <div class="row">
+    <div class="three columns">
+      <!-- blank div -->
+    </div>
+
+    <!-- api connections -->
+    <div class="nine columns">
+      <img src="../static/images/Fitbit_logo_RGB.png" alt="Fitbit" class="fitbitlogo">
+      <button type="button" class="connectapi">Connect Your Fitbit</button>
+    </div>
+  </div>
+
+</section>
+
+<!-- footer nav -->
+  <section>
+  <div id="footer"></div>
+  </section>
+
+  <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="{% static '/js/script.js' %}"></script>
+
+  <!-- header & footer calls -->
+  <script>$(document).ready(function(){
+     $('#header').load('../header_loggedin');
+   });</script>
+   <script>$(document).ready(function(){
+     $('#footer').load('../footer');
+   });</script>
+
 </body>
+
+<!-- Uses of Fitbit trademarks require agreement to the Fitbit Web API Terms of Service <https://dev.fitbit.com/terms> and trademark guidelines <https://dev.fitbit.com/trademark>. diaBEATthis agrees to the Fitbit Terms of Service. -->
 
 </html>
