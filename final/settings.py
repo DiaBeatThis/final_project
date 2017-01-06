@@ -1,5 +1,5 @@
 import os
-from .secrets import SECRET_KEY, DATABASES
+# from .secrets import SECRET_KEY, DATABASES
 import dj_database_url
 
 SECRET_KEY = os.environ['SECRET_KEY']
