@@ -84,10 +84,15 @@ USE_L10N = False
 
 USE_TZ = True
 
-DATABASES['default'].update(db_from_env)
+
+DATABASES = {
+    'default': {
+    }
+}
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 
+DATABASES['default'].update(db_from_env)
 # DATABASES['default'] =  dj_database_url.config()
 
 LOGIN_REDIRECT_URL = '/home/'
@@ -100,7 +105,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, '/staticfiles/')
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'diabeatthis/static/'),
+    os.path.join(PROJECT_ROOT, '../diabeatthis/static/'),
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
