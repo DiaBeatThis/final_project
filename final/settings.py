@@ -1,5 +1,5 @@
 import os
-from .secrets import SECRET_KEY, DATABASES
+# from .secrets import SECRET_KEY, DATABASES
 import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -101,7 +101,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, '/staticfiles/')
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, '../diabeatthis/static/'),
+    os.path.join(PROJECT_ROOT, 'diabeatthis/static/'),
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
