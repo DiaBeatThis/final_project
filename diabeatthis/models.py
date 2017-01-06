@@ -52,16 +52,17 @@ class PhysicalActivity(models.Model):
     distance = models.DecimalField(max_digits=6, decimal_places=2)
     notes = models.CharField(max_length=255)
     profile_id = models.ForeignKey(Profile)
+    steps_goal = models.IntegerField(default=0)
 
 
 class Insulin(models.Model):
-    mcU_ml = models.DecimalField(max_digits=3, decimal_places=2)
+    mcU_ml = models.DecimalField(max_digits=8, decimal_places=2)
     time_stamp = models.DateTimeField(auto_now_add=False)
     profile_id = models.ForeignKey(Profile)
 
 
 class BloodSugar(models.Model):
-    mg_dL = models.DecimalField(max_digits=3, decimal_places=2)
+    mg_dL = models.DecimalField(max_digits=8, decimal_places=2)
     time_stamp = models.DateTimeField(auto_now_add=False)
     profile_id = models.ForeignKey(Profile)
 
@@ -70,3 +71,4 @@ class Water(models.Model):
     ounces = models.IntegerField(default=0)
     time_stamp = models.DateTimeField(auto_now_add=False)
     profile_id = models.ForeignKey(Profile)
+    water_goal = models.IntegerField(default=0)
