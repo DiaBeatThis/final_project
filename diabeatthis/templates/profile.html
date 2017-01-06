@@ -51,7 +51,7 @@
         <!-- first name -->
           <div class="six2 columns">
             <label for="firstName">Your first name</label>
-            <input name="firstName" class="u-full-width" type="text" placeholder="First Name" id="firstName">
+            <input name="firstName" value="{{ user.first_name }}" class="u-full-width" type="text" placeholder="First Name" id="firstName">
           </div>
 
           <!-- last name -->
@@ -63,25 +63,25 @@
           <!-- email -->
           <div class="twelve2 columns">
             <label for="email">Your email address (this is your user id also)</label>
-            <input class="u-full-width" type="text" placeholder="Email Address" id="email" name="email">
+            <input class="u-full-width" value="{{ user.email }}" type="text" placeholder="Email Address" id="email" name="email">
           </div>
 
           <!-- age -->
           <div class="four2 columns">
             <label for="birthday">Your birthday</label>
-            <input class="u-full-width" type="date" placeholder="Age" id="birthday" name="birthday">
+            <input class="u-full-width" value="{{ user.profile.dob }}" type="date" placeholder="Age" id="birthday" name="birthday">
           </div>
 
           <!-- height -->
           <div class="four2 columns">
             <label for="height">How tall you are</label>
-            <input name="height" class="u-full-width" type="number" placeholder="Height (in)" id="height">
+            <input name="height" class="u-full-width" value="{{ user.profile.height }}" type="number" placeholder="Height (in)" id="height">
           </div>
 
           <!-- weight -->
           <div class="four2 columns">
             <label for="weight">How much you weigh</label>
-            <input class="u-full-width" type="number" placeholder="Weight (lbs)" id="weight" name="weight">
+            <input class="u-full-width" value="{{ user.profile.weight }}" type="number" placeholder="Weight (lbs)" id="weight" name="weight">
           </div>
 
           <!-- sex -->
