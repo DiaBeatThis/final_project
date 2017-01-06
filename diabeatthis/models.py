@@ -22,7 +22,8 @@ class Profile(models.Model):
     sex = models.CharField(max_length=1, choices=SEX_CHOICES)
     dob = models.DateField(max_length=8)
     race = models.CharField(max_length=2, choices=RACE_CHOICES, blank=True, null=True)
-    avatar = models.ImageField(upload_to='images', blank=True, null=True)
+    avatar = models.ImageField(upload_to='images', blank=True, null=True,
+                                default='images/placeholder.png')
     steps_goal = models.IntegerField(default=0)
     water_goal = models.IntegerField(default=0)
 

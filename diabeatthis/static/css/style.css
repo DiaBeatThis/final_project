@@ -8,8 +8,6 @@
     width: 85%; }
     .dashboard .row .columns {
       box-sizing: border-box;
-      background: white;
-      height: 200px;
       margin: .75%; }
 
 .profilephoto {
@@ -17,15 +15,17 @@
   width: 200px;
   object-fit: contain; }
 
-.lognav ul li {
-  list-style: none; }
-  .lognav ul li a {
-    text-decoration: none;
-    color: #091019;
-    font-size: 20px; }
-  .lognav ul li a:hover {
-    text-decoration: underline;
-    color: #248C96; }
+.lognav {
+  padding-top: 10px; }
+  .lognav li {
+    list-style: none; }
+    .lognav li a {
+      text-decoration: none;
+      color: #091019;
+      font-size: 20px; }
+    .lognav li a:hover {
+      text-decoration: underline;
+      color: #248C96; }
 
 a {
   text-decoration: none;
@@ -37,20 +37,20 @@ a:hover {
 
 .header {
   margin: 0 auto;
-  padding: 10px;
+  padding-top: 15px;
   padding-left: 4%;
   padding-right: 4%;
   background-color: rgba(65, 94, 111, 0.7);
   font-size: 24px;
   color: #F2F2F2; }
   .header .left img {
-    width: 200px;
+    height: 70px;
     object-fit: contain; }
   .header .right {
     text-align: right; }
     .header .right ul {
       margin: 0px;
-      padding-top: 8%; }
+      padding-top: 3%; }
       .header .right ul li {
         display: inline;
         padding-left: 40px; }

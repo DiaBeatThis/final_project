@@ -9,21 +9,21 @@ a:hover{
 
 .header{
   margin: 0 auto;
-  padding: 10px;
+  padding-top: 15px;
   padding-left: 4%;
   padding-right: 4%;
   background-color: $graybluetrans;
   font-size: 24px;
   color: $gray;
   .left img{
-    width: 200px;
+    height: 70px;
     object-fit: contain;
   }
   .right{
     text-align: right;
     ul{
       margin: 0px;
-      padding-top: 8%;
+      padding-top: 3%;
       li{
         display: inline;
         padding-left: 40px;
