@@ -33,23 +33,25 @@
     <!-- profile photo -->
     <div class="three columns">
       <img src="{% static user.profile.avatar %}" class="profilephoto">
-    </div>
-
-    <!-- glucose chart -->
-    <div class="nine columns" id="insulinChart">
-        <div id="containerInsulin" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-    </div>
-  </div>
-
-  <div class="row">
-    <!-- log navigation -->
-    <div class="three columns lognav">
-      <ul>
+      <!-- log navigation -->
+      <ul class="lognav">
         <li><a href="#modalGlucose">Log Glucose</a></li>
         <li><a href="#modalInsulin">Log Insulin</a></li>
         <li><a href="#waterIntake">Log Water</a></li>
         <li><a href="#stepsTaken">Log Steps</a></li>
       </ul>
+    </div>
+
+    <!-- glucose chart -->
+    <div class="nine columns" id="insulinChart">
+        <div id="containerInsulin" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="three columns">
+
       <!-- glucose modal -->
       <div class="remodal-bg">
         <div class="remodal" data-remodal-id="modalGlucose">
@@ -154,27 +156,26 @@
 
     <!-- insulin chart -->
     <div class="nine columns">
-x
+insulin chart goes here
     </div>
   </div>
 
   <div class="row">
 
     <!-- empty column -->
-    <div class="three columns">
-x       <div class="nine columns" id="waterChart">
-            <div id="containerWater" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-        </div>
-    </div>
+    <div class="three columns"></div>
 
     <!-- water chart -->
     <div class="three columns">
-    x
+      <div class="nine columns" id="waterChart">
+        <div id="containerWater" style="min-width: 310px; height: 300px; margin: 0 auto">
+        </div>
+      </div>
     </div>
 
       <!-- activity chart -->
     <div class="six columns">
-    x
+    activity chart goes here
     </div>
   </div>
 
@@ -189,7 +190,7 @@ x       <div class="nine columns" id="waterChart">
 
   <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script type="text/javascript" src="{%  static '/js/script.js' %}"></script>
+  <script  src="{%  static '/js/script.js' %}"></script>
 
   <!-- high charts calls -->
   <script src="https://code.highcharts.com/highcharts.js"></script>

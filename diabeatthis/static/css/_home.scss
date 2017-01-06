@@ -8,8 +8,8 @@
     width: 85%;
     .columns{
       box-sizing: border-box;
-      background: white;         //don't forget to erase this!!
-      height: 200px;
+      // background: white;         //don't forget to erase this!!
+      // height: 200px;
       margin: .75%;
     }
   }
@@ -22,18 +22,17 @@
 }
 
 .lognav{
-  ul{
-    li{
-      list-style: none;
-      a{
-        text-decoration: none;
-        color: $navy;
-        font-size: 20px;
-      }
-      a:hover{
-        text-decoration: underline;
-        color: $teal;
-      }
+  padding-top: 10px;
+  li{
+    list-style: none;
+    a{
+      text-decoration: none;
+      color: $navy;
+      font-size: 20px;
+    }
+    a:hover{
+      text-decoration: underline;
+      color: $teal;
     }
   }
 }
