@@ -1,3 +1,5 @@
+console.log("hi mom")
+
 // cookie csrf function
 function getCookie(name) {
    var cookieValue = null;
@@ -44,7 +46,6 @@ function imageIsLoaded(e) {
     $('.profilephoto').attr('src', e.target.result);
 };
 });
-
 
 var insulin = []
 var bloodSugar = []
