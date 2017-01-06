@@ -23,6 +23,8 @@ class Profile(models.Model):
     dob = models.DateField(max_length=8)
     race = models.CharField(max_length=2, choices=RACE_CHOICES, blank=True, null=True)
     avatar = models.ImageField(upload_to='images', blank=True, null=True)
+    steps_goal = models.IntegerField(default=0)
+    water_goal = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.username
@@ -55,13 +57,13 @@ class PhysicalActivity(models.Model):
 
 
 class Insulin(models.Model):
-    mcU_ml = models.DecimalField(max_digits=3, decimal_places=2)
+    mcU_ml = models.DecimalField(max_digits=8, decimal_places=2)
     time_stamp = models.DateTimeField(auto_now_add=False)
     profile_id = models.ForeignKey(Profile)
 
 
 class BloodSugar(models.Model):
-    mg_dL = models.DecimalField(max_digits=3, decimal_places=2)
+    mg_dL = models.DecimalField(max_digits=8, decimal_places=2)
     time_stamp = models.DateTimeField(auto_now_add=False)
     profile_id = models.ForeignKey(Profile)
 

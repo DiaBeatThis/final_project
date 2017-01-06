@@ -1,14 +1,15 @@
 import os
-from .secrets import SECRET_KEY, DATABASES
+# from .secrets import SECRET_KEY, DATABASES
 import dj_database_url
 
+SECRET_KEY = os.environ['SECRET_KEY']
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'vast-caverns-94150.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'mighty-wave-77740.herokuapp.com']
 
 # Application definition
 
@@ -84,11 +85,15 @@ USE_L10N = False
 USE_TZ = True
 
 
+DATABASES = {
+    'default': {
+    }
+}
+
 db_from_env = dj_database_url.config(conn_max_age=500)
 
-# DATABASES['default'] =  dj_database_url.config()
-
 DATABASES['default'].update(db_from_env)
+# DATABASES['default'] =  dj_database_url.config()
 
 LOGIN_REDIRECT_URL = '/home/'
 
@@ -96,7 +101,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, '/staticfiles/')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (

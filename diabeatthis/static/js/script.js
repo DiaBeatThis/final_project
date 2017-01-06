@@ -47,6 +47,7 @@ function imageIsLoaded(e) {
 };
 });
 
+
 var insulin = []
 var bloodSugar = []
 var insulinTimestamp = []
@@ -56,8 +57,10 @@ var currentUser = $('#userId').val()
 
 
 getInsulin()
-setTimeout(insulinCharts, 1000)
-setTimeout(waterCharts, 1000)
+getGlucose()
+getWater()
+// setTimeout(insulinCharts, 1000)
+// setTimeout(waterCharts, 1000)
 
 
 function getInsulin (){
@@ -69,7 +72,11 @@ function getInsulin (){
                 insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
             }
         }
+        insulinCharts()
     })
+}
+
+function getGlucose (){
     $.ajax('/api/blood_sugar/').done(function (stuff){
         res = stuff.results
         for (var i = 0; i < res.length; i++){
@@ -77,16 +84,22 @@ function getInsulin (){
                 bloodSugar.push(parseFloat(res[i]['mg_dL']))
             }
         }
+        getGlucose()
     })
+}
+
+function getWater (){
     $.ajax('/api/water/').done(function (stuff){
+        console.log(stuff)
+        var sum = 0
         res = stuff.results
-        console.log(res)
         for (var i = 0; i < res.length; i++){
             if(res[i]['profile_id'] == currentUser){
-                water.push(parseFloat(res[i]['ounces']))
-                waterTimestamp.push(res[i]['time_stamp'].slice(11, 16))
+                sum += parseFloat(res[i]['ounces'])
             }
         }
+        water.push(sum)
+        waterCharts()
     })
 }
 
@@ -147,14 +160,14 @@ function waterCharts(){
         },
 
         xAxis: {
-            categories: waterTimestamp
+            categories: 'Water'
         },
 
         yAxis: {
             allowDecimals: false,
             min: 0,
             title: {
-                text: 'Amount of water'
+                text: 'Ounces'
             }
         },
 
@@ -206,5 +219,9 @@ $(document).on('confirmation', '[data-remodal-id=waterIntake]', function () {
     var postdata = {'ounces':water, 'time_stamp':time_stamp, 'profile_id':currentUser}
     $.ajax({url:'/api/water/', data:postdata, type:'POST'}).done(function(){
         location = location
+        getWater()
     })
 });
+
+// fitbit API request
+// https://api.fitbit.com/1/user/5BZ85Q/activities/date/2016-08-08.json?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Qlo4NVEiLCJhdWQiOiIyMjg3NjMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNDgzNjgwMzY5LCJpYXQiOjE0ODM2NTE1Njl9.m6ZiS8uR-4rEGrAepgjQZ6ddlhErRNj1Jkdh1VH43EE
