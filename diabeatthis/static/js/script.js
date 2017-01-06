@@ -82,7 +82,7 @@ function getGlucose (){
                 bloodSugar.push(parseFloat(res[i]['mg_dL']))
             }
         }
-        getGlucose()
+        insulinCharts()
     })
 }
 
