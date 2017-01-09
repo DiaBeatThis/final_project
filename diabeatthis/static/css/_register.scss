@@ -1,0 +1,36 @@
+.profilesettings{
+  background-color: $gray;
+  margin: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  .row{
+    margin: 0 auto;
+    width: 85%;
+    .columns{
+      box-sizing: border-box;
+      margin: .75%;
+    }
+  }
+}
+
+.profilephoto{
+  height: 200px;
+  width: 200px;
+  object-fit: contain;
+}
+
+// form{
+//   input, select{
+//     display: none;
+//   }
+// }
+
+.submit{
+  margin: 0 auto;
+  text-align: center;
+}
+
+#user_form{
+  margin: 0px;
+  padding: 0px;
+}

@@ -5,20 +5,125 @@
 <head>
   <meta charset="utf-8">
   <title>diaBEATthis</title>
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/images/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" href="{% static '/images/favicons/favicon-32x32.png' %}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{% static '/images/favicons/favicon-16x16.png' %}" sizes="16x16">
+    <link rel="manifest" href="{% static '/images/favicons/manifest.json' %}">
+    <link rel="mask-icon" href="{% static '/images/favicons/safari-pinned-tab.svg' %}" color="#99dce4">
+    <meta name="theme-color" content="#ffffff">
+
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href='{% static "css/normalize.css" %}'>
-  <link rel="stylesheet" href='{% static "css/skeleton.css" %}'>
-  <link rel="stylesheet" href='{% static "css/style.css" %}'>
+
+  <!-- normal css -->
+  <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static '/css/skeleton.css' %}">
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
 </head>
 
 <body>
 
+  <!-- header nav -->
+  <section>
+    <div id="header"></div>
+  </section>
+
+<section class="infoPage">
+  <!-- about the app -->
+  <section class="aboutApp" id="aboutApp">
+    <div class="row">
+      <div class="three columns">
+        <h4>About the App</h4>
+      </div>
+      <div class="nine2 columns">
+        <h6>When Zach Ferguson was diagnosed with diabetes he found there were no resources for helping him track his blood tests and insulin dosages on a daily basis to help get the disease under control. <br><br>
+        Fast forward several years, and the chance arose to develop a web app that does just that. Three <a href="http://www.theironyard.com" target="_blank">Iron Yard</a> students from the Raleigh and Durham, NC campuses teamed up to create diaBEATthis as their final project. The team comprised of two Python developers, Zach Ferguson and Maks Tymtsiv, and one UI Designer, Ashley Massengill.</h6>
+      </div>
+    </div>
+  </section>
+
+  <!-- section divider line -->
+  <div class="row">
+    <div class="twelve columns breakline infoBreak"></div>
+  </div>
+
+  <!-- how the app works -->
+  <section class="howItWorks">
+    <div class="row">
+      <div class="three columns">
+        <h4>How it Works</h4>
+      </div>
+      <div class="nine2 columns">
+        <h6>Once you have created an account, on your dashboard you will be able to log your glucose levels at each testing, the insulin dosage that corresponds to each test, how much water you've had to drink and how many steps you've taken each day. Your log results will show on the corresponding graphs where you can scroll back through the data, or print your graphs to share with your doctor.<br><br>
+        You can also connect your Fitbit account to have your steps automatically updated each day, and set up testing reminders via Google Calendar.</h6>
+      </div>
+    </div>
+  </section>
+
+  <!-- section divider line -->
+  <div class="row">
+    <div class="twelve columns breakline infoBreak"></div>
+  </div>
+
+<!-- resources -->
+  <section class="resources">
+    <div class="row">
+      <div class="three columns">
+        <h4>Resources</h4>
+      </div>
+      <div class="nine2 columns">
+        <h6>There are a number of online resources available to help you inform yourself more about diabetes. Here a couple we recommend to get you started.</h6>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="four2 columns center">
+        <a href="http://www.diabetes.org" target="_blank"><img src="{% static  '/images/ada_logo.png' %}" alt="American Diabetes Association" class="resourcesimg"></a>
+      </div>
+      <div class="eight columns">
+        <ul>
+          <li>The American Diabetes Assocation (ADA) has great information about the types of diagnoses, complications that can arise, and treatments.</li>
+          <li>Features are also available for planning your daily life, including diet planners and food tips, and information regarding excercising and getting fit.</li>
+          <li>The ADA also has an online community to allow you to connect to other diabetes sufferers for support and information.</li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="four2 columns center">
+        <a href="http://www.idf.org/" target="_blank"><img src="{% static  '/images/idf_logo.svg' %}" alt="International Diabetes Federation" class="resourcesimg"></a>
+      </div>
+      <div class="eight columns">
+        <ul>
+          <li>The International Diabetes Federation (IDF) is the umbrella organization of over 230 national diabetes associations in 170 countries and territories.</li>
+          <li>Their website has great eductional modules to help everyone understand the various aspects of this disease.</li>
+          <li>The IDF is the organizer behind World Diabetes Day each year, which promotes coordinated worldwide events focusing on diabetes education and activism.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</section>
 
 
+  <!-- footer nav -->
+  <section>
+  <div id="footer"></div>
+  </section>
+
+  <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="{% static '/js/script.js' %}"></script>
+
+  <!-- header & footer calls -->
+  <script>$(document).ready(function(){
+     $('#header').load('../header_loggedin');
+   });</script>
+   <script>$(document).ready(function(){
+     $('#footer').load('../footer');
+   });</script>
 </body>
 
 </html>

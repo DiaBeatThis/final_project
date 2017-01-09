@@ -5,6 +5,15 @@
 <head>
   <meta charset="utf-8">
   <title>diaBEATthis</title>
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static '/images/favicons/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" href="{% static '/images/favicons/favicon-32x32.png' %}" sizes="32x32">
+  <link rel="icon" type="image/png" href="{% static '/images/favicons/favicon-16x16.png' %}" sizes="16x16">
+  <link rel="manifest" href="{% static '/images/favicons/manifest.json' %}">
+  <link rel="mask-icon" href="{% static '/images/favicons/safari-pinned-tab.svg' %}" color="#99dce4">
+  <meta name="theme-color" content="#ffffff">
+
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,7 +54,9 @@
 
     <!--  profile form -->
     <div class="nine columns">
-      <h5>This is what you've told us about yourself:</h5>
+      <h5 class="profileHeader">This is what you've told us about yourself:</h5>
+      <button type="button" name="edit" class="buttonLeft">Edit</button>
+      <button type="button" name="save" class="buttonRight">Save</button>
       <form>
 
         <!-- first name -->
@@ -93,6 +104,20 @@
              <option value="Other">Other</option>
            </select>
          </div>
+         <!-- race -->
+         <div class="four2 columns">
+          <label for="race">What race you identify as</label>
+          <select name="race" class="u-full-width" id="race" placeholder="Race">
+            <option value="AA">African American</option>
+            <option value="AI">American Indian</option>
+            <option value="A">Asian</option>
+            <option value="L">Latino</option>
+            <option value="ME">Middle Eastern</option>
+            <option value="NH">Native Hawaiian</option>
+            <option value="SA">South Asian/Indian</option>
+            <option value="W">Non-Hispanic White</option>
+          </select>
+        </div>
       </form>
     </div>
   </div>
@@ -141,9 +166,6 @@
 
     <!-- api connections -->
     <div class="nine columns">
-
-      <!-- <img src="{% static  '/images/Fitbit_logo_RGB.png' %}" alt="Fitbit" class="fitbitlogo"> -->
-
       <img src="{% static  '/images/Google_2015_logo.png' %}" alt="Google Logo" class="thirdpartylogo">
       <button type="button" class="connectapi">Set Up Reminders</button>
       <br><br>

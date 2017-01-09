@@ -6,13 +6,19 @@
 @import "profile.scss";
 @import "faq.scss";
 @import "register.scss";
+@import "login.scss";
 
 body{
   font-family: 'hevetica neue', helvetica, sans-serif;
+  background-color: $gray;
 }
 
 p{
   margin: 0px;
+}
+
+h6{
+  font-size: 1.8rem;
 }
 
 

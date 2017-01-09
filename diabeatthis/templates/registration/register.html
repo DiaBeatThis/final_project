@@ -6,6 +6,15 @@
   <meta charset="utf-8">
 
   <title>diaBEATthis</title>
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static '/images/favicons/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" href="{% static '/images/favicons/favicon-32x32.png' %}" sizes="32x32">
+  <link rel="icon" type="image/png" href="{% static '/images/favicons/favicon-16x16.png' %}" sizes="16x16">
+  <link rel="manifest" href="{% static '/images/favicons/manifest.json' %}">
+  <link rel="mask-icon" href="{% static '/images/favicons/safari-pinned-tab.svg' %}" color="#99dce4">
+  <meta name="theme-color" content="#ffffff">
+
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,7 +55,7 @@
     <!--  profile form -->
 
     <div class="nine columns">
-      <h5>This is what you've told us about yourself:</h5>
+      <h5>Tell us a little about yourself:</h5>
 
         <!-- first name -->
           <div class="six2 columns">
@@ -63,13 +72,13 @@
             <label for="Password">Password</label>
             <input name="password" class="u-full-width" type="password" placeholder="Password" id="password">
           </div>
-          <!-- <div class="six2 columns">
+          <div class="six2 columns">
             <label for="confirmPassword">Confirm password</label>
             <input name="confirmPassword" class="u-full-width" type="password" placeholder="Confirm Password" id="confirmPassword">
-          </div> -->
+          </div>
           <!-- email -->
           <div class="twelve2 columns">
-            <label for="email">Your email address (this is your user id also)</label>
+            <label for="email">Your email address (this will be your User ID)</label>
             <input name="email" class="u-full-width" type="text" placeholder="Email Address" id="email">
           </div>
           <!-- age -->
@@ -89,8 +98,8 @@
           </div>
           <!-- sex -->
           <div class="four2 columns">
-           <label for="sex">What sex you identify as</label>
-           <select name="sex" class="u-full-width" id="sex">
+           <label for="sex">Your biological sex</label>
+           <select name="sex" class="u-full-width" id="sex" placeholder="Sex">
              <option value="M">Male</option>
              <option value="F">Female</option>
              <option value="O">Other</option>
@@ -99,36 +108,28 @@
          <!-- race -->
          <div class="four2 columns">
           <label for="race">What race you identify as</label>
-          <select name="race" class="u-full-width" id="race">
+          <select name="race" class="u-full-width" id="race" placeholder="Race">
+            <option value="AA">African American</option>
             <option value="AI">American Indian</option>
             <option value="A">Asian</option>
-            <option value="AA">African American</option>
+            <option value="L">Latino</option>
+            <option value="ME">Middle Eastern</option>
             <option value="NH">Native Hawaiian</option>
-            <option value="W">White</option>
+            <option value="SA">South Asian/Indian</option>
+            <option value="W">Non-Hispanic White</option>
           </select>
         </div>
     </div>
   </div>
 
-
 <div class="row">
   <div class="three columns"></div>
-  <div class="nine columns breakline"><!-- section divider line --></div>
+  <div class="nine columns">
+    <button type="submit" name="registerSubmit" class="submit">Submit</button>
+  </div>
 </div>
 
-  <div class="row">
-    <div class="three columns">
-      <!-- blank div -->
-    </div>
-    <!-- api connections -->
-    <div class="nine columns">
-      <img src="{% static 'images/Fitbit_logo_RGB.png' %}" alt="Fitbit" class="fitbitlogo">
-      <!-- <button name="submit" type="submit" class="connectapi">Register</button> -->
-      <input type="submit" name="submit" value="Register"/>
-    </div>
-  </div>
-
-</section>
+  </section>
 </form>
 {% endif %}
 <!-- footer nav -->
