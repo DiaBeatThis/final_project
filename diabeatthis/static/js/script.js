@@ -1,5 +1,3 @@
-console.log("hi mom")
-
 // cookie csrf function
 function getCookie(name) {
    var cookieValue = null;
