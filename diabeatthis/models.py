@@ -12,6 +12,9 @@ class Profile(models.Model):
         ('AI', 'American Indian'),
         ('A', 'Asian'),
         ('AA', 'African American'),
+        ('L', 'Latino'),
+        ('ME', 'Middle Eastern'),
+        ('SA', 'South Asian/Indian'),
         ('NH', 'Native Hawaiian'),
         ('W', 'White'),
     )
