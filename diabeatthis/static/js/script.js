@@ -52,20 +52,24 @@ var insulinTimestamp = []
 var water = []
 var waterTimestamp = []
 var currentUser = $('#userId').val()
+var currentDate = $('#currentDate').val()
+var date = $('#insulinDay').val()
+var week = $('#insulinWeek').val()
 
 
-getInsulin()
+// getInsulin()
+//insulinByDate()
 getGlucose()
 getWater()
-// setTimeout(insulinCharts, 1000)
-// setTimeout(waterCharts, 1000)
+getLastWeekInsulin()
+lastXDays()
+console.log(currentDate)
 
-
-function getInsulin (){
+function getLastWeekInsulin (){
     $.ajax('/api/insulin/').done(function (stuff){
         res = stuff.results
         for (var i = 0; i < res.length; i++){
-            if(res[i]['profile_id'] == currentUser){
+            if(res[i]['profile_id'] == currentUser && currentDate === res[i]['time_stamp'].slice(0, 10)){
                 insulin.push(parseFloat(res[i]['mcU_ml']))
                 insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
             }
@@ -73,6 +77,24 @@ function getInsulin (){
         insulinCharts()
     })
 }
+
+
+function insulinByDate (){
+    date = $('#insulinDay').val()
+    insulin = []
+    insulinTimestamp = []
+    $.ajax('/api/insulin/').done(function (stuff){
+        res = stuff.results
+        for (var i = 0; i < res.length; i++){
+            if(res[i]['profile_id'] == currentUser && date === res[i]['time_stamp'].slice(0, 10)){
+                insulin.push(parseFloat(res[i]['mcU_ml']))
+                insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
+            }
+        }
+        insulinCharts()
+    })
+}
+
 
 function getGlucose (){
     $.ajax('/api/blood_sugar/').done(function (stuff){
@@ -87,18 +109,30 @@ function getGlucose (){
 }
 
 function getWater (){
+    date = $('#insulinDay').val()
     $.ajax('/api/water/').done(function (stuff){
-        console.log(stuff)
         var sum = 0
         res = stuff.results
         for (var i = 0; i < res.length; i++){
-            if(res[i]['profile_id'] == currentUser){
+            if(res[i]['profile_id'] == currentUser && date === res[i]['time_stamp'].slice(0, 10)){
                 sum += parseFloat(res[i]['ounces'])
             }
         }
-        water.push(sum)
+        water = [sum]
         waterCharts()
     })
+}
+
+
+function lastXDays(){
+    var days = 7
+    var date = new Date();
+    var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
+    var day =last.getDate();
+    var month=last.getMonth()+1;
+    var year=last.getFullYear();
+    console.log(year, "-", month, "-", day)
+    return (day, month, year)
 }
 
 
@@ -205,6 +239,7 @@ $(document).on('confirmation', '[data-remodal-id=modalInsulin]', function () {
   var postdata = {'mcU_ml':insulin, 'time_stamp':time_stamp, 'profile_id':currentUser}
   $.ajax({url:'/api/insulin/', data:postdata, type:'POST'}).done(function(){
       location = location
+      insulinByDate()
   })
 });
 
@@ -221,5 +256,7 @@ $(document).on('confirmation', '[data-remodal-id=waterIntake]', function () {
     })
 });
 
+
+$('#dateSubmit').click(insulinByDate)
 // fitbit API request
 // https://api.fitbit.com/1/user/5BZ85Q/activities/date/2016-08-08.json?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Qlo4NVEiLCJhdWQiOiIyMjg3NjMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNDgzNjgwMzY5LCJpYXQiOjE0ODM2NTE1Njl9.m6ZiS8uR-4rEGrAepgjQZ6ddlhErRNj1Jkdh1VH43EE

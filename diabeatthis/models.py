@@ -30,6 +30,7 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+
 class Nutrition(models.Model):
     calories = models.DecimalField(max_digits=3, decimal_places=2)
     carbs = models.DecimalField(max_digits=3, decimal_places=2)
