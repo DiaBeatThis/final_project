@@ -1,22 +1,86 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>diaBEATthis Log In</title>
+        <!-- normal css -->
+        <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
+        <link rel="stylesheet" href="{% static '/css/skeleton.css' %}">
+        <link rel="stylesheet" href="{% static '/css/style.css' %}">
     </head>
+
     <body>
 
-          <h2>Login</h2>
-          <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Login</button>
-          </form>
+      <div class="row header">
+        <div class="four columns left">
+          <img src="{% static 'images/diabeatthisLogo_linear.png' %}" alt="diaBEATthis">
+        </div>
+        <div class="eight columns right">
+        </div>
+      </div>
 
-          <form method="post" action="/register/">
-              {% csrf_token %}
-            <input type="submit" value="Register"/>
+
+      <section class="login">
+        <!-- login title -->
+        <div class="row center">
+          <div class="four2 columns offset-by-four columns">
+            <h4>Sign in to your account</h4>
+          </div>
+        </div>
+
+        <form method="post">
+          <!-- email address -->
+          <div class="row">
+            <div class="four2 columns offset-by-four columns">
+              <label for="email">Email Address</label>
+              <input class="u-full-width" value="{{ user.email }}" type="text" placeholder="Email Address" id="email" name="email">
+            </div>
+          </div>
+          <!-- password -->
+          <div class="row">
+            <div class="four2 columns offset-by-four columns">
+              <label for="password">Password</label>
+              <input class="u-full-width" value="{{ user.password }}" type="text" placeholder="Password" id="password" name="password">
+            </div>
+          </div>
+            <!-- {% csrf_token %}
+            {{ form.as_p }} -->
+            <!-- cancel/submit buttons -->
+            <div class="row center">
+              <div class="four2 columns offset-by-four columns">
+                <button type="cancel">Cancel</button>
+                <button type="submit">Sign In</button>
+              </div>
+            </div>
           </form>
+        </div>
+        <!-- register button -->
+        <div class="row center">
+          <div class="four2 columns offset-by-four columns">
+            <form method="post" action="/register/">
+                {% csrf_token %}
+              <input type="submit" value="Register"/>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="footmain">
+        <div class="row footer">
+          <div class="four columns left">
+            <p>2016<br>
+            <span>Zach Ferguson, Ashley Massengill, Maks Tymtsiv</span></p>
+          </div>
+          <div class="four columns middle">
+            <p><a href="../faq">About diaBEATthis</a></p>
+          </div>
+          <div class="four columns right">
+            <p><a href="mailto:contact.diabeatthis@gmail.com">Email Us</a></p>
+          </div>
+        </div>
+      </section>
 
     </body>
 </html>

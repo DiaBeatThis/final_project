@@ -58,24 +58,31 @@ a:hover {
 .menuimg {
   display: none; }
 
+.footmain {
+  background-color: rgba(65, 94, 111, 0.7); }
+
 .footer {
   height: 65px;
+  width: 90%;
   padding-top: 15px;
   margin: 0 auto;
-  text-align: center;
-  background-color: rgba(65, 94, 111, 0.7);
   font-size: 24px;
   color: #F2F2F2; }
-  .footer .center {
-    line-height: 18px; }
-  .footer span {
-    font-size: 14px; }
-  .footer a {
-    text-decoration: none;
-    color: #F2F2F2; }
-  .footer a:hover {
-    text-decoration: underline;
-    color: #99DCE4; }
+  .footer .left {
+    line-height: 18px;
+    text-align: left; }
+    .footer .left span {
+      font-size: 14px; }
+  .footer .middle {
+    text-align: center; }
+  .footer .right {
+    text-align: right; }
+    .footer .right a {
+      text-decoration: none;
+      color: #F2F2F2; }
+    .footer .right a:hover {
+      text-decoration: underline;
+      color: #99DCE4; }
 
 .profilesettings {
   background-color: #F2F2F2;
@@ -94,6 +101,15 @@ a:hover {
   width: 200px;
   object-fit: contain; }
 
+.profileHeader {
+  display: inline; }
+
+.buttonLeft {
+  margin-left: 200px; }
+
+.buttonRight {
+  margin-left: 25px; }
+
 .breakline {
   border-top: 1px dotted #091019; }
 
@@ -105,10 +121,71 @@ a:hover {
   margin-left: 50px;
   margin-bottom: 0px; }
 
+.infoPage {
+  padding-top: 50px;
+  padding-bottom: 40px;
+  background-color: #F2F2F2; }
+  .infoPage .row {
+    width: 75%;
+    margin: 0 auto; }
+    .infoPage .row h4 {
+      text-decoration: underline; }
+
+.infoBreak {
+  margin-bottom: 25px; }
+
+.aboutApp a {
+  color: #091019; }
+.aboutApp a:hover {
+  color: teal; }
+
+.resources a {
+  text-align: center; }
+  .resources a .resourcesimg {
+    height: 120px; }
+.resources ul {
+  list-style: none; }
+
+.profilesettings {
+  background-color: #F2F2F2;
+  margin: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px; }
+  .profilesettings .row {
+    margin: 0 auto;
+    width: 85%; }
+    .profilesettings .row .columns {
+      box-sizing: border-box;
+      margin: .75%; }
+
+.profilephoto {
+  height: 200px;
+  width: 200px;
+  object-fit: contain; }
+
+.submit {
+  margin: 0 auto;
+  text-align: center; }
+
+#user_form {
+  margin: 0px;
+  padding: 0px; }
+
+.login {
+  padding-top: 120px;
+  padding-bottom: 120px; }
+
+.center {
+  text-align: center; }
+
 body {
-  font-family: 'hevetica neue', helvetica, sans-serif; }
+  font-family: 'hevetica neue', helvetica, sans-serif;
+  background-color: #F2F2F2; }
 
 p {
   margin: 0px; }
+
+h6 {
+  font-size: 1.8rem; }
 
 /*# sourceMappingURL=style.css.map */

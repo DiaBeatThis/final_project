@@ -1,0 +1,37 @@
+.infoPage{
+  padding-top: 50px;
+  padding-bottom: 40px;
+  background-color: $gray;
+  .row{
+    width: 75%;
+    margin: 0 auto;
+    h4{
+      text-decoration: underline;
+    }
+  }
+}
+
+.infoBreak{
+  margin-bottom: 25px;
+}
+
+.aboutApp{
+  a{
+    color: $navy;
+  }
+  a:hover{
+    color: teal;
+  }
+}
+
+.resources{
+  a{
+    text-align: center;
+    .resourcesimg{
+      height: 120px;
+    }
+  }
+  ul{
+    list-style: none;
+  }
+}
