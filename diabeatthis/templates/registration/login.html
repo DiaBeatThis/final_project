@@ -21,7 +21,6 @@
         </div>
       </div>
 
-
       <section class="login">
         <!-- login title -->
         <div class="row center">
@@ -30,19 +29,20 @@
           </div>
         </div>
 
-        <form method="post">
+        <form id="login_form" method="post" action="/login/">
+            {% csrf_token %}
           <!-- email address -->
           <div class="row">
             <div class="four2 columns offset-by-four columns">
               <label for="email">Email Address</label>
-              <input class="u-full-width" value="{{ user.email }}" type="text" placeholder="Email Address" id="email" name="email">
+              <input class="u-full-width" value="{{ user.username }}" type="text" placeholder="Email Address" id="email" name="username">
             </div>
           </div>
           <!-- password -->
           <div class="row">
             <div class="four2 columns offset-by-four columns">
               <label for="password">Password</label>
-              <input class="u-full-width" value="{{ user.password }}" type="text" placeholder="Password" id="password" name="password">
+              <input class="u-full-width" type="password" placeholder="Password" id="password" name="password">
             </div>
           </div>
             <!-- {% csrf_token %}
@@ -60,7 +60,6 @@
         <div class="row center">
           <div class="four2 columns offset-by-four columns">
             <form method="post" action="/register/">
-                {% csrf_token %}
               <input type="submit" value="Register"/>
             </form>
           </div>

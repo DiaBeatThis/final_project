@@ -63,7 +63,6 @@ getGlucose()
 getWater()
 getLastWeekInsulin()
 lastXDays()
-console.log(currentDate)
 
 function getLastWeekInsulin (){
     $.ajax('/api/insulin/').done(function (stuff){
@@ -131,7 +130,6 @@ function lastXDays(){
     var day =last.getDate();
     var month=last.getMonth()+1;
     var year=last.getFullYear();
-    console.log(year, "-", month, "-", day)
     return (day, month, year)
 }
 
