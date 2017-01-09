@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from .models import Profile, Nutrition, Meals
@@ -8,8 +7,9 @@ from .serializers import UserSerializer, ProfileSerializer, PhysicalActivitySeri
 from .serializers import NutritionSerializer, MealsSerializer, InsulinSerializer
 from .serializers import BloodSugarSerializer, WaterSerializer
 from .forms import UserForm, ProfileForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -83,7 +83,6 @@ class WaterViewSet(viewsets.ModelViewSet):
 def register(request):
     registered = False
     if request.method == 'POST':
-        print("trying post")
         user_form = UserForm(data=request.POST)
         profile_form = ProfileForm(request.POST, request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
@@ -98,7 +97,6 @@ def register(request):
         else:
             print(user_form.errors, profile_form.errors)
     else:
-        print("not post")
         user_form = UserForm()
         profile_form = ProfileForm()
     return render(request,
@@ -122,3 +120,21 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied.")
     else:
         return render(request, 'registration/login.html', {})
+
+
+@login_required
+def update_profile(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('profile')
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })

@@ -20,7 +20,6 @@ urlpatterns = [
     url(r'^index/$', views.index, name='index'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^login/$', views.user_login, name='login'),
-    # url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/index'}, name='logout'),
     url(r'^faq/$', TemplateView.as_view(template_name="faq.html")),
     url(r'^footer/$', TemplateView.as_view(template_name="footer.html")),

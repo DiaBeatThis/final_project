@@ -35,6 +35,8 @@
 </section>
 
 <!-- body content -->
+<form method="POST">
+    {% csrf_token %}
 <section class="profilesettings">
   <div class="row">
 
@@ -42,13 +44,13 @@
     <div class="three columns">
         <img src="{% static user.profile.avatar %}" class="profilephoto"></img>
       <div class>
-        <input type="file"></input>
+        <input name="avatar" type="file"></input>
       </div>
 
       <!-- reset password -->
       <div>
         <label for="password">Change your password</label>
-        <input class="u-half-width" type="text" placeholder="********" id="password" name="password">
+        <input class="u-half-width" type="password" value="{{ user.password }}" id="password" name="password">
       </div>
     </div>
 
@@ -56,19 +58,19 @@
     <div class="nine columns">
       <h5 class="profileHeader">This is what you've told us about yourself:</h5>
       <button type="button" name="edit" class="buttonLeft">Edit</button>
-      <button type="button" name="save" class="buttonRight">Save</button>
-      <form>
+      <button type="submit" name="save" class="buttonRight">Save</button>
+      <!-- <form> -->
 
         <!-- first name -->
           <div class="six2 columns">
             <label for="firstName">Your first name</label>
-            <input name="firstName" value="{{ user.first_name }}" class="u-full-width" type="text" placeholder="First Name" id="firstName">
+            <input name="first_name" value="{{ user.first_name }}" class="u-full-width" type="text" placeholder="First Name" id="firstName">
           </div>
 
           <!-- last name -->
           <div class="six2 columns">
             <label for="lastName">Your last name</label>
-            <input class="u-full-width" value="{{ user.last_name }}" type="text" placeholder="Last Name" id="lastName" name="lastName">
+            <input class="u-full-width" value="{{ user.last_name }}" type="text" placeholder="Last Name" id="lastName" name="last_name">
           </div>
 
           <!-- email -->
@@ -80,7 +82,7 @@
           <!-- age -->
           <div class="four2 columns">
             <label for="birthday">Your birthday</label>
-            <input class="u-full-width" value="{{ user.profile.dob }}" type="date" placeholder="Age" id="birthday" name="birthday">
+            <input class="u-full-width" value="{{ user.profile.dob|date:"Y-m-d" }}" type="date" placeholder="Age" id="birthday" name="dob">
           </div>
 
           <!-- height -->
@@ -118,7 +120,7 @@
             <option value="W">Non-Hispanic White</option>
           </select>
         </div>
-      </form>
+      <!-- </form> -->
     </div>
   </div>
 
@@ -153,7 +155,7 @@
     </select>
   </div>
 </div>
-
+</form>
 <!-- section divider line -->
 <div class="row">
   <div class="three columns"></div>
@@ -182,7 +184,7 @@
 
   <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="{% static '/js/script.js' %}"></script>
+  <script src="{% static '/js/profile.js' %}"></script>
 
   <!-- header & footer calls -->
   <script>$(document).ready(function(){
