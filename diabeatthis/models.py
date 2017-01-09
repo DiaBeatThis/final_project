@@ -49,12 +49,14 @@ class Meals(models.Model):
 
 
 class PhysicalActivity(models.Model):
-    activity_name = models.CharField(max_length=20)
-    calories_burned = models.DecimalField(max_digits=4, decimal_places=2)
-    duration = models.TimeField(auto_now=False)
-    date = models.DateTimeField(auto_now_add=False)
-    distance = models.DecimalField(max_digits=6, decimal_places=2)
-    notes = models.CharField(max_length=255)
+    activity_name = models.CharField(max_length=20, blank=True, null=True)
+    calories_burned = models.DecimalField(max_digits=4, decimal_places=2,
+                                            blank=True, null=True)
+    duration = models.TimeField(auto_now=False, blank=True, null=True)
+    date = models.DateField(auto_now_add=False, blank=True, null=True)
+    distance = models.DecimalField(max_digits=6, decimal_places=2,
+                                blank=True, null=True)
+    notes = models.CharField(max_length=255, blank=True, null=True)
     profile_id = models.ForeignKey(Profile)
 
 
