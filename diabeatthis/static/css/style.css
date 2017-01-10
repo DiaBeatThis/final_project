@@ -46,6 +46,9 @@
   text-decoration: underline;
   color: #248C96; }
 
+#container-speed {
+  margin-left: 5px; }
+
 a {
   text-decoration: none;
   color: #F2F2F2; }
@@ -107,7 +110,8 @@ a:hover {
   background-color: #F2F2F2;
   margin: 0px;
   padding-top: 20px;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  color: #091019; }
   .profilesettings .row {
     margin: 0 auto;
     width: 85%; }
@@ -120,14 +124,32 @@ a:hover {
   width: 200px;
   object-fit: contain; }
 
+.resetPassword a {
+  text-decoration: none;
+  color: #091019;
+  font-size: 20px; }
+.resetPassword a:hover {
+  text-decoration: underline;
+  color: #248C96; }
+
 .profileHeader {
-  display: inline; }
+  display: inline;
+  float: left; }
 
-.buttonLeft {
-  margin-left: 200px; }
+.headerButtons {
+  float: right; }
+  .headerButtons .buttonRight {
+    margin-left: 25px;
+    margin-right: 20px; }
 
-.buttonRight {
-  margin-left: 25px; }
+.clearFloat {
+  clear: both; }
+
+form .profileForm {
+  display: none; }
+form p {
+  font-size: 1.3em;
+  font-weight: 300; }
 
 .breakline {
   border-top: 1px dotted #091019; }

@@ -3,6 +3,7 @@
   margin: 0px;
   padding-top: 20px;
   padding-bottom: 20px;
+  color: $navy;
   .row{
     margin: 0 auto;
     width: 85%;
@@ -19,22 +20,43 @@
   object-fit: contain;
 }
 
+.resetPassword{
+  a{
+    text-decoration: none;
+    color: $navy;
+    font-size: 20px;
+  }
+  a:hover{
+    text-decoration: underline;
+    color: $teal;
+  }
+}
+
 .profileHeader{
   display: inline;
+  float: left;
+}
+.headerButtons{
+  float: right;
+  .buttonRight{
+    margin-left: 25px;
+    margin-right: 20px;
+  }
 }
 
-.buttonLeft{
-  margin-left: 200px;
-}
-.buttonRight{
-  margin-left: 25px;
+.clearFloat{
+  clear: both;
 }
 
-// form{
-//   input, select{
-//     display: none;
-//   }
-// }
+form{
+   .profileForm{
+    display: none;
+  }
+  p{
+    font-size: 1.3em;
+    font-weight: 300;
+  }
+}
 
 .breakline{
   border-top: 1px dotted $navy;
