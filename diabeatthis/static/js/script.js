@@ -58,6 +58,7 @@ var date = $('#insulinDay').val()
 var week = $('#insulinWeek').val()
 
 
+
 // getInsulin()
 //insulinByDate()
 getGlucose()
@@ -225,7 +226,15 @@ function waterCharts(){
             min: 0,
             title: {
                 text: 'Ounces'
-            }
+            },
+            plotLines: [{
+                    value: $('#waterGoal').val(),
+                    color: 'green',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    label: {
+                        text: 'Goal'
+                    }}]
         },
 
         tooltip: {
@@ -307,7 +316,7 @@ function stepsChart(){
         var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
             yAxis: {
                 min: 0,
-                max: 200,
+                max: $('#stepsGoal').val(),
                 title: {
                     text: 'Steps'
                 }

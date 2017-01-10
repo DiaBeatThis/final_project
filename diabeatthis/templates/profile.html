@@ -101,9 +101,9 @@
           <div class="four2 columns">
            <label for="sex">What your biological sex is</label>
            <select class="u-full-width" id="sex" name="sex">
-             <option value="Male">Male</option>
-             <option value="Female">Female</option>
-             <option value="Other">Other</option>
+             <option value="M">Male</option>
+             <option value="F">Female</option>
+             <option value="O">Other</option>
            </select>
          </div>
          <!-- race -->
@@ -138,7 +138,8 @@
   <!-- steps goal -->
   <div class="three columns">
     <label for="stepsGoal">Select a daily goal for steps walked/run</label>
-    <select class="u-full-width" id="stepsGoal" name="stepsGoal">
+    <select class="u-full-width" id="stepsGoal" name="steps_goal">
+      <option value="{{ user.profile.steps_goal }}">{{ user.profile.steps_goal }}</option>
       <option value="5000">5,000</option>
       <option value="7000">7,500</option>
       <option value="10000">10,000</option>
@@ -148,7 +149,8 @@
   <!-- water goal -->
   <div class="three columns">
     <label for="waterGoal">Select a daily goal for drinking water</label>
-    <select class="u-full-width" id="waterGoal" name="waterGoal">
+    <select class="u-full-width" id="waterGoal" name="water_goal">
+      <option value="{{ user.profile.water_goal }}">{{ user.profile.water_goal }} cups</option>
       <option value="8">8 cups</option>
       <option value="10">10 cups</option>
       <option value="12">12 cups</option>

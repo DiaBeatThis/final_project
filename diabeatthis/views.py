@@ -123,14 +123,20 @@ def user_login(request):
 
 
 @login_required
-def update_profile(request):
+def profile(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        print(user_form)
+        print(profile_form)
         if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            return redirect('profile')
+            user = user_form.save()
+            user.username = user.email
+            user.set_password(user.password)
+            user.save()
+            profile = profile_form.save(commit=False)
+            profile.save()
+            return redirect('login')
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)

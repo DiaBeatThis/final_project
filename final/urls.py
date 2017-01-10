@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^header_loggedin/$', TemplateView.as_view(template_name="header_loggedin.html")),
     url(r'^header_loggedout/$', TemplateView.as_view(template_name="header_loggedout.html")),
     url(r'^home/$', TemplateView.as_view(template_name="home.html")),
-    url(r'^profile/$', TemplateView.as_view(template_name="profile.html")),
+    url(r'^profile/$', views.profile, name="profile.html"),
     url(r'^settings/$', TemplateView.as_view(template_name="settings.html")),
     url(r'^register/$', views.register, name='register'),
     ]
