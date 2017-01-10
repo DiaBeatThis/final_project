@@ -137,7 +137,7 @@ function getGlucose (){
 
 // <!-- getting water for selected date -->
 function getWater (){
-    date = $('#insulinDay').val()
+    date = $('#waterDay').val()
     $.ajax('/api/water/').done(function (stuff){
         var sum = 0
         res = stuff.results
@@ -153,7 +153,7 @@ function getWater (){
 
 // <!-- getting steps for selected date -->
 function getSteps (){
-    date = $('#insulinDay').val()
+    date = $('#activityDay').val()
     $.ajax('/api/physical_activity/').done(function (stuff){
         var sum = 0
         res = stuff.results
