@@ -171,22 +171,37 @@
     <!-- api connections -->
     <div class="nine columns">
       <img src="{% static  '/images/Google_2015_logo.png' %}" alt="Google Logo" class="thirdpartylogo">
-      <button type="button" class="connectapi">Set Up Reminders</button>
+      <button type="button" class="connectapi" id="authorize-button" onclick="handleAuthClick(event)">Set Up Reminders</button>
       <br><br>
       <img src="{% static  '/images/Fitbit_logo_RGB.png' %}" alt="Fitbit" class="thirdpartylogo">
-      <button type="button" class="connectapi">Connect Your Fitbit</button>
+      <button type="button" onclick="location.href='/fitbit/login';" class="connectapi">Connect Your Fitbit</button>
     </div>
   </div>
 </section>
+
+<!-- button for authorizing google calendar. Will set up within modal soon -->
+
+<div id="authorize-div" style="display: none">
+        <span>Authorize access to Google Calendar API</span>
+        <button id="authorize-button" onclick="handleAuthClick(event)">Authorize</button>
+    </div>
+      <pre id="output"></pre>
 
 <!-- footer nav -->
   <section>
   <div id="footer"></div>
   </section>
 
+  <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
+  <script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+      </script>
   <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="{% static '/js/profile.js' %}"></script>
+  <script src="{% static '/js/googlecal.js' %}"></script>
+
 
   <!-- header & footer calls -->
   <script>$(document).ready(function(){

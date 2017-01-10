@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'diabeatthis.apps.DiabeatthisConfig',
     'rest_framework',
+	'fitapp',
 ]
 
 REST_FRAMEWORK = {
@@ -111,3 +112,7 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'diabeatthis/static/')
+
+FITAPP_CONSUMER_KEY = '22878M'
+FITAPP_CONSUMER_SECRET = '78b76ef60444570d55e8758098c8dc8b'
+FITAPP_LOGIN_REDIRECT = "http://127.0.0.1:8000/profile/"

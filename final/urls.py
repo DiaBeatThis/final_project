@@ -16,6 +16,7 @@ router.register(r'api/water', views.WaterViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
+	url(r'^fitbit/', include('fitapp.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^index/$', views.index, name='index'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
