@@ -125,6 +125,7 @@ def user_login(request):
 @login_required
 def profile(request):
     if request.method == 'POST':
+        password = request.user.password
         user_form = UserForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, instance=request.user.profile)
         print(user_form)
@@ -132,7 +133,7 @@ def profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.username = user.email
-            user.set_password(user.password)
+            user.set_password(password)
             user.save()
             profile = profile_form.save(commit=False)
             profile.save()

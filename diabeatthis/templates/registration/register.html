@@ -31,8 +31,9 @@
 
 <body>
 {% if registered %}
+    {% include '/login/' %}
     <strong>thank you for registering!</strong>
-    <a href="/home/">Return to the homepage.</a><br />
+    <a href="/login/">Login</a><br />
 {% else %}
 <form id="user_form" method="post" action="/register/" enctype="multipart/form-data">
         {% csrf_token %}

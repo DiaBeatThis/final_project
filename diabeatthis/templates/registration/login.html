@@ -20,7 +20,7 @@
         <div class="eight columns right">
         </div>
       </div>
-      
+
       <section class="login">
         <!-- login title -->
         <div class="row center">
@@ -60,6 +60,7 @@
         <div class="row center">
           <div class="four2 columns offset-by-four columns">
             <form method="post" action="/register/">
+                    {% csrf_token %}
               <input type="submit" value="Register"/>
             </form>
           </div>
