@@ -1,5 +1,5 @@
 import os
-from .secrets import SECRET_KEY, DATABASES
+# from .secrets import SECRET_KEY, DATABASES
 import dj_database_url
 
 # SECRET_KEY = os.environ['SECRET_KEY']
@@ -85,15 +85,15 @@ USE_L10N = True
 
 USE_TZ = True
 
-# DATABASES = {
-#     'default': {
-#     }
-# }
-#
-# db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES = {
+    'default': {
+    }
+}
 
-# DATABASES['default'].update(db_from_env)
-# DATABASES['default'] =  dj_database_url.config()
+db_from_env = dj_database_url.config(conn_max_age=500)
+
+DATABASES['default'].update(db_from_env)
+DATABASES['default'] =  dj_database_url.config()
 
 LOGIN_REDIRECT_URL = '/home/'
 
