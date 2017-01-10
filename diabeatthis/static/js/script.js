@@ -159,7 +159,7 @@ function insulinCharts(){
         },
 
         title: {
-            text: 'Insulin/blood sugar'
+            text: 'Insulin'
         },
 
         xAxis: {
@@ -170,7 +170,7 @@ function insulinCharts(){
             allowDecimals: false,
             min: 0,
             title: {
-                text: 'Amount of insulin/blood sugar'
+                text: 'Amount of insulin sugar'
             }
         },
 
