@@ -49,23 +49,37 @@ function imageIsLoaded(e) {
 var insulin = []
 var bloodSugar = []
 var insulinTimestamp = []
+var steps = []
 var water = []
 var waterTimestamp = []
 var currentUser = $('#userId').val()
+var currentDate = $('#currentDate').val()
+var date = $('#insulinDay').val()
+var week = $('#insulinWeek').val()
 
 
-getInsulin()
+
+// getInsulin()
+//insulinByDate()
 getGlucose()
 getWater()
-// setTimeout(insulinCharts, 1000)
-// setTimeout(waterCharts, 1000)
+getSteps()
+getLastWeekInsulin()
+lastXDays()
 
 
-function getInsulin (){
+function chartsForDate (){
+    getGlucose()
+    getWater()
+    getSteps()
+}
+
+
+function getLastWeekInsulin (){
     $.ajax('/api/insulin/').done(function (stuff){
         res = stuff.results
         for (var i = 0; i < res.length; i++){
-            if(res[i]['profile_id'] == currentUser){
+            if(res[i]['profile_id'] == currentUser && currentDate === res[i]['time_stamp'].slice(0, 10)){
                 insulin.push(parseFloat(res[i]['mcU_ml']))
                 insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
             }
@@ -73,6 +87,24 @@ function getInsulin (){
         insulinCharts()
     })
 }
+
+
+function insulinByDate (){
+    date = $('#insulinDay').val()
+    insulin = []
+    insulinTimestamp = []
+    $.ajax('/api/insulin/').done(function (stuff){
+        res = stuff.results
+        for (var i = 0; i < res.length; i++){
+            if(res[i]['profile_id'] == currentUser && date === res[i]['time_stamp'].slice(0, 10)){
+                insulin.push(parseFloat(res[i]['mcU_ml']))
+                insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
+            }
+        }
+        insulinCharts()
+    })
+}
+
 
 function getGlucose (){
     $.ajax('/api/blood_sugar/').done(function (stuff){
@@ -86,19 +118,47 @@ function getGlucose (){
     })
 }
 
+
 function getWater (){
+    date = $('#insulinDay').val()
     $.ajax('/api/water/').done(function (stuff){
-        console.log(stuff)
         var sum = 0
         res = stuff.results
         for (var i = 0; i < res.length; i++){
-            if(res[i]['profile_id'] == currentUser){
+            if(res[i]['profile_id'] == currentUser && date === res[i]['time_stamp'].slice(0, 10)){
                 sum += parseFloat(res[i]['ounces'])
             }
         }
-        water.push(sum)
+        water = [sum]
         waterCharts()
     })
+}
+
+
+function getSteps (){
+    date = $('#insulinDay').val()
+    $.ajax('/api/physical_activity/').done(function (stuff){
+        var sum = 0
+        res = stuff.results
+        for (var i = 0; i < res.length; i++){
+            if(res[i]['profile_id'] == currentUser && date === res[i]['date']){
+                sum += parseInt(res[i]['distance'])
+            }
+        }
+        steps = [sum]
+        stepsChart()
+    })
+}
+
+
+function lastXDays(){
+    var days = 7
+    var date = new Date();
+    var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
+    var day =last.getDate();
+    var month=last.getMonth()+1;
+    var year=last.getFullYear();
+    return (day, month, year)
 }
 
 
@@ -166,7 +226,15 @@ function waterCharts(){
             min: 0,
             title: {
                 text: 'Ounces'
-            }
+            },
+            plotLines: [{
+                    value: $('#waterGoal').val(),
+                    color: 'green',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    label: {
+                        text: 'Goal'
+                    }}]
         },
 
         tooltip: {
@@ -188,6 +256,93 @@ function waterCharts(){
     });
 }
 
+function stepsChart(){
+    $(function () {
+        var gaugeOptions = {
+
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.1, '#55BF3B'], // green
+                    [0.5, '#DDDF0D'], // yellow
+                    [0.9, '#DF5353'] // red
+                ],
+                lineWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: $('#stepsGoal').val(),
+                title: {
+                    text: 'Steps'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Speed',
+                data: steps,
+                dataLabels: {
+                    format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                           '<span style="font-size:12px;color:silver">steps</span></div>'
+                },
+                tooltip: {
+                    valueSuffix: ' steps'
+                }
+            }]
+
+        }));
+
+    });
+}
 
 $(document).on('confirmation', '[data-remodal-id=modalGlucose]', function () {
     var glucose = $("#glucoseLevel").val()
@@ -205,6 +360,7 @@ $(document).on('confirmation', '[data-remodal-id=modalInsulin]', function () {
   var postdata = {'mcU_ml':insulin, 'time_stamp':time_stamp, 'profile_id':currentUser}
   $.ajax({url:'/api/insulin/', data:postdata, type:'POST'}).done(function(){
       location = location
+      insulinByDate()
   })
 });
 
@@ -221,5 +377,18 @@ $(document).on('confirmation', '[data-remodal-id=waterIntake]', function () {
     })
 });
 
+
+$(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
+    steps = $("#stepsTaken").val()
+    time_stamp = currentDate
+    var postdata = {'distance':steps, 'date':time_stamp, 'profile_id':currentUser}
+    $.ajax({url:'/api/physical_activity/', data:postdata, type:'POST'}).done(function(){
+        location = location
+        getSteps()
+    })
+});
+
+
+$('#dateSubmit').click(chartsForDate)
 // fitbit API request
 // https://api.fitbit.com/1/user/5BZ85Q/activities/date/2016-08-08.json?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Qlo4NVEiLCJhdWQiOiIyMjg3NjMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNDgzNjgwMzY5LCJpYXQiOjE0ODM2NTE1Njl9.m6ZiS8uR-4rEGrAepgjQZ6ddlhErRNj1Jkdh1VH43EE

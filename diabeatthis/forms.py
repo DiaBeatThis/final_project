@@ -25,10 +25,14 @@ class UserForm(forms.ModelForm):
 
 class ProfileForm(forms.ModelForm):
     # dob = forms.DateField(widget=extras.SelectDateWidget(years=range(1920, 2017)))
+    steps_goal = forms.IntegerField(required=False)
+    water_goal = forms.IntegerField(required=False)
+
 
     class Meta:
         model = Profile
-        fields = ('height', 'weight', 'sex', 'dob', 'race', 'avatar')
+        fields = ('height', 'weight', 'sex', 'dob', 'race', 'avatar',
+                    'steps_goal', 'water_goal')
 
     def clean_avatar(self):
         avatar = self.cleaned_data['avatar']

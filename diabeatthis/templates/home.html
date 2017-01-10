@@ -4,6 +4,12 @@
 
 <head>
   <meta charset="utf-8">
+  <!-- high charts calls -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/highcharts-more.js"></script>
+  <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+
   <title>diaBEATthis</title>
 
     <!-- favicon -->
@@ -39,7 +45,7 @@
   <div class="row">
 
     <!-- profile photo -->
-  <div class="three columns">
+    <div class="three columns">
     <img src="{% static user.profile.avatar %}" class="profilephoto"></img>
       <!-- log navigation -->
       <ul class="lognav">
@@ -53,6 +59,12 @@
 
     <!-- glucose chart -->
     <div class="nine columns" id="insulinChart">
+            Date:
+            <input id="insulinDay" value="{% now 'Y-m-d' %}" type="date" name="date">
+            <input id="dateSubmit" type="submit">
+            Week:
+            <input id="insulinWeek" Value="{% now 'Y-\W\0W' %}" type="week" name="week">
+            <input id="weekSubmit" type="submit">
         <div id="containerInsulin" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
     </div>
   </div>
@@ -75,7 +87,7 @@
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="glucoseDateTime">Date/Time (e.g. 01/01/2017, 08:00 AM)</label>
-                <input class="u-full-width" type="datetime-local" id="glucoseDateTime" name="glucoseDateTime">
+                <input class="u-full-width" valut="{% now 'm/d/Y, h:i A' %}" type="datetime-local" id="glucoseDateTime" name="glucoseDateTime">
               </div>
             </div>
           <br>
@@ -184,13 +196,18 @@ insulin chart goes here
 
       <!-- activity chart -->
     <div class="six columns">
-    activity chart goes here
+    <div style="width: 600px; height: 400px; margin: 0 auto">
+        <div id="container-speed" style="width: 300px; height: 200px;"></div>
+    </div>
     </div>
   </div>
 
 </section>
 
-<input type="hidden" id="userId" value={{user.profile.id}}>
+<input type="hidden" id="stepsGoal" value='{{user.profile.steps_goal}}'>
+<input type="hidden" id="waterGoal" value='{{user.profile.water_goal}}'>
+<input type="hidden" id="userId" value='{{user.profile.id}}'>
+<input type="hidden" id="currentDate" value="{% now 'Y-m-d' %}">
 
 <!-- footer nav -->
   <section>
@@ -201,10 +218,6 @@ insulin chart goes here
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
   <script src="{%  static '/js/script.js' %}"></script>
-
-  <!-- high charts calls -->
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
   <!-- remodal -->
   <script src="{% static '/js/remodal.min.js' %}"></script>

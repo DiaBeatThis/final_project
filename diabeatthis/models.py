@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class Profile(models.Model):
     SEX_CHOICES = (
         ('M', 'Male'),
@@ -13,6 +12,9 @@ class Profile(models.Model):
         ('AI', 'American Indian'),
         ('A', 'Asian'),
         ('AA', 'African American'),
+        ('L', 'Latino'),
+        ('ME', 'Middle Eastern'),
+        ('SA', 'South Asian/Indian'),
         ('NH', 'Native Hawaiian'),
         ('W', 'White'),
     )
@@ -29,6 +31,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
 
 class Nutrition(models.Model):
     calories = models.DecimalField(max_digits=3, decimal_places=2)
@@ -48,12 +51,14 @@ class Meals(models.Model):
 
 
 class PhysicalActivity(models.Model):
-    activity_name = models.CharField(max_length=20)
-    calories_burned = models.DecimalField(max_digits=4, decimal_places=2)
-    duration = models.TimeField(auto_now=False)
-    date = models.DateTimeField(auto_now_add=False)
-    distance = models.DecimalField(max_digits=6, decimal_places=2)
-    notes = models.CharField(max_length=255)
+    activity_name = models.CharField(max_length=20, blank=True, null=True)
+    calories_burned = models.DecimalField(max_digits=4, decimal_places=2,
+                                            blank=True, null=True)
+    duration = models.TimeField(auto_now=False, blank=True, null=True)
+    date = models.DateField(auto_now_add=False, blank=True, null=True)
+    distance = models.DecimalField(max_digits=6, decimal_places=2,
+                                blank=True, null=True)
+    notes = models.CharField(max_length=255, blank=True, null=True)
     profile_id = models.ForeignKey(Profile)
 
 

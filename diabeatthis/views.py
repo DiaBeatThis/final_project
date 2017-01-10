@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from .models import Profile, Nutrition, Meals
@@ -8,8 +7,9 @@ from .serializers import UserSerializer, ProfileSerializer, PhysicalActivitySeri
 from .serializers import NutritionSerializer, MealsSerializer, InsulinSerializer
 from .serializers import BloodSugarSerializer, WaterSerializer
 from .forms import UserForm, ProfileForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -83,7 +83,6 @@ class WaterViewSet(viewsets.ModelViewSet):
 def register(request):
     registered = False
     if request.method == 'POST':
-        print("trying post")
         user_form = UserForm(data=request.POST)
         profile_form = ProfileForm(request.POST, request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
@@ -98,7 +97,6 @@ def register(request):
         else:
             print(user_form.errors, profile_form.errors)
     else:
-        print("not post")
         user_form = UserForm()
         profile_form = ProfileForm()
     return render(request,
@@ -106,19 +104,43 @@ def register(request):
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
 
 
-# def user_login(request):
-#     if request.method == 'POST':
-#         username = request.POST.get('username')
-#         password = request.POST.get('password')
-#         user = authenticate(username=username, password=password)
-#         if user:
-#             if user.is_active:
-#                 login(request, user)
-#                 return HttpResponseRedirect('/index/')
-#             else:
-#                 return HttpResponse("Your account is disabled.")
-#         else:
-#             print("Invalid login details: {0}, {1}").format(username, password)
-#             return HttpResponse("Invalid login details supplied.")
-#     else:
-#         return render(request, 'registration/login.html', {})
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('/home/')
+            else:
+                return HttpResponse("Your account is disabled.")
+        else:
+            print("Invalid login details: {0}, {1}").format(username, password)
+            return HttpResponse("Invalid login details supplied.")
+    else:
+        return render(request, 'registration/login.html', {})
+
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        print(user_form)
+        print(profile_form)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            user.username = user.email
+            user.set_password(user.password)
+            user.save()
+            profile = profile_form.save(commit=False)
+            profile.save()
+            return redirect('login')
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })

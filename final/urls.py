@@ -16,18 +16,18 @@ router.register(r'api/water', views.WaterViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
+	url(r'^fitbit/', include('fitapp.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^index/$', views.index, name='index'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    # url(r'^register/$', views.register, name='register'),
-    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^login/$', views.user_login, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/index'}, name='logout'),
     url(r'^faq/$', TemplateView.as_view(template_name="faq.html")),
     url(r'^footer/$', TemplateView.as_view(template_name="footer.html")),
     url(r'^header_loggedin/$', TemplateView.as_view(template_name="header_loggedin.html")),
     url(r'^header_loggedout/$', TemplateView.as_view(template_name="header_loggedout.html")),
     url(r'^home/$', TemplateView.as_view(template_name="home.html")),
-    url(r'^profile/$', TemplateView.as_view(template_name="profile.html")),
+    url(r'^profile/$', views.profile, name="profile.html"),
     url(r'^settings/$', TemplateView.as_view(template_name="settings.html")),
     url(r'^register/$', views.register, name='register'),
     ]
