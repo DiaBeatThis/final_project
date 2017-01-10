@@ -8,8 +8,6 @@
     width: 85%;
     .columns{
       box-sizing: border-box;
-      // background: white;         //don't forget to erase this!!
-      // height: 200px;
       margin: .75%;
     }
   }
@@ -19,6 +17,8 @@
   height: 200px;
   width: 200px;
   object-fit: contain;
+  padding: 10px;
+  border: 1px solid $navy;
 }
 
 .lognav{
@@ -34,5 +34,29 @@
       text-decoration: underline;
       color: $teal;
     }
+  }
+}
+
+.remindersInfo{
+  .remindersData{
+    max-width: 200px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid $navy;
+    ul{
+      list-style: none;
+      li{
+        font-size: 1.2em;
+      }
+    }
+  }
+  a{
+    text-decoration: none;
+    color: $navy;
+    font-size: 20px;
+  }
+  a:hover{
+    text-decoration: underline;
+    color: $teal;
   }
 }

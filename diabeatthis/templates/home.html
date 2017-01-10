@@ -47,38 +47,39 @@
     <!-- profile photo -->
     <div class="three columns">
     <img src="{% static user.profile.avatar %}" class="profilephoto"></img>
-      <!-- log navigation -->
-      <ul class="lognav">
-        <li><a href="#modalGlucose">Log Glucose</a></li>
-        <li><a href="#modalInsulin">Log Insulin</a></li>
-        <li><a href="#waterIntake">Log Water</a></li>
-        <li><a href="#stepsTaken">Log Steps</a></li>
-      </ul>
-
-    </div>
+    <!-- log navigation -->
+    <ul class="lognav">
+      <li><a href="#modalGlucose">Log Glucose</a></li>
+      <li><a href="#modalInsulin">Log Insulin</a></li>
+      <li><a href="#waterIntake">Log Water</a></li>
+      <li><a href="#stepsTaken">Log Steps</a></li>
+    </ul>
+  </div>
 
     <!-- glucose chart -->
-    <div class="nine columns" id="insulinChart">
-            Date:
-            <input id="insulinDay" value="{% now 'Y-m-d' %}" type="date" name="date">
-            <input id="dateSubmit" type="submit">
-            Week:
-            <input id="insulinWeek" Value="{% now 'Y-\W\0W' %}" type="week" name="week">
-            <input id="weekSubmit" type="submit">
-        <div id="containerInsulin" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
+    <div class="nine columns" id="glucoseChart">
+        <div class="datePicker">
+          <span>Week:</span>
+          <input id="glucoseWeek" Value="{% now 'Y-\W\0W' %}" type="week" name="week">
+          <input id="weekSubmit" type="submit" class="buttonSmall">
+        </div>
+        <div id="containerGlucose" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
     </div>
   </div>
 
   <div class="row">
 
     <div class="three columns">
-      <div class="reminderInfo">
-        <h5>Daily Reminders</h5>
-        <ul>
-          <li>Breakfast: </li>
-          <li>Lunch: </li>
-          <li>Dinner: </li>
-        </ul>
+      <div class="remindersInfo">
+        <div class="remindersData">
+          <h5>Daily Reminders</h5>
+          <ul>
+            <li>Breakfast: </li>
+            <li>Lunch: </li>
+            <li>Dinner: </li>
+          </ul>
+        </div>
+        <a href="#modalReminders">Edit Reminders</a>
       </div>
 
       <!-- glucose modal -->
@@ -103,7 +104,6 @@
           <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
         </div>
       </div>
-
       <!-- insulin modal -->
       <div class="remodal-bg">
         <div class="remodal" data-remodal-id="modalInsulin">
@@ -126,7 +126,6 @@
           <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
         </div>
       </div>
-
       <!-- water modal -->
       <div class="remodal-bg">
         <div class="remodal" data-remodal-id="waterIntake">
@@ -161,7 +160,6 @@
           <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
         </div>
       </div>
-
       <!-- steps modal -->
       <div class="remodal-bg">
         <div class="remodal" data-remodal-id="stepsTaken">
@@ -180,12 +178,45 @@
           <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
         </div>
       </div>
+      <!-- reminders modal -->
+      <div class="remodal-bg">
+        <div class="remodal" data-remodal-id="modalReminders">
+          <h3>Set up your daily testing reminders</h3>
+          <form>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="breakfastReminder">Breakfast:</label>
+                <input class="u-full-width" type="time" placeholder="0" id="breakfastReminder" name="breakfastReminder">
+              </div>
+            </div>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="lunchReminder">Lunch:</label>
+                <input class="u-full-width" type="time" placeholder="0" id="lunchReminder" name="lunchReminder">
+            </div>
+          </div>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="dinnerReminder">Dinner:</label>
+                <input class="u-full-width" type="time" placeholder="0" id="dinnerReminder" name="dinnerReminder">
+            </div>
+          </div>
+          <br>
+          <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+          <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
+        </div>
+      </div>
 
     </div>
 
     <!-- insulin chart -->
     <div class="nine columns">
-insulin chart goes here
+      <div class="datePicker">
+        <span>Week:</span>
+        <input id="insulinWeek" Value="{% now 'Y-\W\0W' %}" type="week" name="week">
+        <input id="weekSubmit" type="submit" class="buttonSmall">
+      </div>
+      <div id="containerInsulin" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
     </div>
   </div>
 
@@ -197,6 +228,11 @@ insulin chart goes here
     <!-- water chart -->
     <div class="three columns">
       <div class="nine columns" id="waterChart">
+        <div class="datePicker">
+          <span>Day:</span>
+          <input id="waterDay" value="2017-01-10" type="date" name="date">
+          <input id="dateSubmit" type="submit" class="buttonSmall">
+        </div>
         <div id="containerWater" style="min-width: 310px; height: 300px; margin: 0 auto">
         </div>
       </div>
@@ -204,8 +240,12 @@ insulin chart goes here
 
       <!-- activity chart -->
     <div class="six columns">
-    <div style="width: 600px; height: 400px; margin: 0 auto">
-        <div id="container-speed" style="width: 300px; height: 200px;"></div>
+      <div class="datePicker">
+        <span>Day:</span>
+        <input id="activityDay" value="2017-01-10" type="date" name="date">
+        <input id="dateSubmit" type="submit" class="buttonSmall">
+      </div>
+      <div id="container-speed" style="width: 558px; height: 300px;"></div>
     </div>
     </div>
   </div>
