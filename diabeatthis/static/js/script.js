@@ -383,6 +383,7 @@ $(document).on('confirmation', '[data-remodal-id=modalGlucose]', function () {
     var postdata = {'mg_dL':glucose, 'time_stamp':time_stamp, 'profile_id':currentUser}
     $.ajax({url:'/api/blood_sugar/', data:postdata, type:'POST'}).done(function(){
         location = location
+        getGlucose()
     })
 });
 
