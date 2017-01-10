@@ -13,7 +13,9 @@
 .profilephoto {
   height: 200px;
   width: 200px;
-  object-fit: contain; }
+  object-fit: contain;
+  padding: 10px;
+  border: 1px solid #091019; }
 
 .lognav {
   padding-top: 10px; }
@@ -26,6 +28,26 @@
     .lognav li a:hover {
       text-decoration: underline;
       color: #248C96; }
+
+.remindersInfo .remindersData {
+  max-width: 200px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #091019; }
+  .remindersInfo .remindersData ul {
+    list-style: none; }
+    .remindersInfo .remindersData ul li {
+      font-size: 1.2em; }
+.remindersInfo a {
+  text-decoration: none;
+  color: #091019;
+  font-size: 20px; }
+.remindersInfo a:hover {
+  text-decoration: underline;
+  color: #248C96; }
+
+#container-speed {
+  margin-left: 5px; }
 
 a {
   text-decoration: none;
@@ -88,7 +110,8 @@ a:hover {
   background-color: #F2F2F2;
   margin: 0px;
   padding-top: 20px;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  color: #091019; }
   .profilesettings .row {
     margin: 0 auto;
     width: 85%; }
@@ -101,14 +124,32 @@ a:hover {
   width: 200px;
   object-fit: contain; }
 
+.resetPassword a {
+  text-decoration: none;
+  color: #091019;
+  font-size: 20px; }
+.resetPassword a:hover {
+  text-decoration: underline;
+  color: #248C96; }
+
 .profileHeader {
-  display: inline; }
+  display: inline;
+  float: left; }
 
-.buttonLeft {
-  margin-left: 200px; }
+.headerButtons {
+  float: right; }
+  .headerButtons .buttonRight {
+    margin-left: 25px;
+    margin-right: 20px; }
 
-.buttonRight {
-  margin-left: 25px; }
+.clearFloat {
+  clear: both; }
+
+form .profileForm {
+  display: none; }
+form p {
+  font-size: 1.3em;
+  font-weight: 300; }
 
 .breakline {
   border-top: 1px dotted #091019; }

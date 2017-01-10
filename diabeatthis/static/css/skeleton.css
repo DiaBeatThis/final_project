@@ -238,6 +238,11 @@ input[type="button"].button-primary:focus {
   color: #FFF;
   background-color: #1EAEDB;
   border-color: #1EAEDB; }
+input[type="submit"].buttonSmall{
+  height: 25px;
+  padding: 0px 13px;
+  line-height: 25px;
+  font-size: 16px;}
 
 
 /* Forms

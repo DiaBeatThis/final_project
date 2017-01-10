@@ -59,27 +59,27 @@
 
         <!-- first name -->
           <div class="six2 columns">
-            <label for="firstName">Your first name</label>
+            <label for="firstName">Your first name*</label>
             <input name="first_name" class="u-full-width" type="text" placeholder="First Name" id="firstName">
           </div>
           <!-- last name -->
           <div class="six2 columns">
-            <label for="lastName">Your last name</label>
+            <label for="lastName">Your last name*</label>
             <input name="last_name" class="u-full-width" type="text" placeholder="Last Name" id="lastName">
-          </div>
-          <!-- password -->
-          <div class="six2 columns">
-            <label for="Password">Password</label>
-            <input name="password" class="u-full-width" type="password" placeholder="Password" id="password">
-          </div>
-          <div class="six2 columns">
-            <label for="confirmPassword">Confirm password</label>
-            <input name="confirmPassword" class="u-full-width" type="password" placeholder="Confirm Password" id="confirmPassword">
           </div>
           <!-- email -->
           <div class="twelve2 columns">
-            <label for="email">Your email address (this will be your User ID)</label>
+            <label for="email">Your email address* (this will be your User ID)</label>
             <input name="email" class="u-full-width" type="text" placeholder="Email Address" id="email">
+          </div>
+          <!-- password -->
+          <div class="six2 columns">
+            <label for="Password">Password*</label>
+            <input name="password" class="u-full-width" type="password" placeholder="Password" id="password">
+          </div>
+          <div class="six2 columns">
+            <label for="confirmPassword">Confirm password*</label>
+            <input name="confirmPassword" class="u-full-width" type="password" placeholder="Confirm Password" id="confirmPassword">
           </div>
           <!-- age -->
           <div class="four2 columns">
@@ -122,9 +122,44 @@
     </div>
   </div>
 
+  <!-- section divider line -->
+  <div class="row">
+    <div class="three columns"></div>
+    <div class="nine columns breakline"></div>
+  </div>
+
+  <!-- blank div -->
+  <div class="row">
+    <div class="three columns"></div>
+
+    <!-- settings -->
+    <!-- water goal -->
+    <div class="three columns">
+      <label for="waterGoal">Select a daily goal for drinking water</label>
+      <select class="u-full-width" id="waterGoal" name="water_goal">
+        <option value="{{ user.profile.water_goal }}">{{ user.profile.water_goal }}</option>
+        <option value="8">8 cups</option>
+        <option value="10">10 cups</option>
+        <option value="12">12 cups</option>
+      </select>
+    </div>
+    <!-- steps goal -->
+    <div class="three columns">
+      <label for="stepsGoal">Select a daily goal for steps walked/run</label>
+      <select class="u-full-width" id="stepsGoal" name="steps_goal">
+        <option value="{{ user.profile.steps_goal }}">{{ user.profile.steps_goal }}</option>
+        <option value="5,000">5,000</option>
+        <option value="7,500">7,500</option>
+        <option value="10,000">10,000</option>
+      </select>
+    </div>
+  </div>
+  </form>
+
 <div class="row">
   <div class="three columns"></div>
   <div class="nine columns">
+    *these fields are required<br><br>
     <button type="submit" name="registerSubmit" class="submit">Submit</button>
   </div>
 </div>
