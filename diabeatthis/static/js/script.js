@@ -52,7 +52,7 @@ getSteps()
 getLastWeekInsulin()
 lastXDays()
 getDateWeekStarts()
-console.log($('#insulinWeek').val())
+
 // <!-- updating charts for date -->
 function chartsForDate (){
     insulinByDate()
@@ -83,7 +83,6 @@ function getDateWeekStarts(){
 
     // back to Monday (from Thursday)
     d.setDate(d.getDate() - 3);
-    console.log(d)
     return d;
 }
 
@@ -451,6 +450,8 @@ $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
 });
 
 
+$('#waterDateSubmit').click(getWater)
+$('#activityDateSubmit').click(getSteps)
 $('#dateSubmit').click(chartsForDate)
 // fitbit API request
 // https://api.fitbit.com/1/user/5BZ85Q/activities/date/2016-08-08.json?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Qlo4NVEiLCJhdWQiOiIyMjg3NjMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNDgzNjgwMzY5LCJpYXQiOjE0ODM2NTE1Njl9.m6ZiS8uR-4rEGrAepgjQZ6ddlhErRNj1Jkdh1VH43EE
