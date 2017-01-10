@@ -146,7 +146,7 @@ def profile(request):
                                     password=request.user.password,
                                     )
             login(request, user)
-            return redirect('home')
+            return HttpResponseRedirect("/home/")
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
