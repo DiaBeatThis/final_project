@@ -6,6 +6,7 @@
   <div class="eight columns right">
     <ul><img src="{% static 'images/MENU.png' %}" alt="Menu" class="menuimg">
         {% if user.is_anonymous %}
+              <li><a href="../index">Home</a></li>
               <li><a href="../login">Login</a></li>
               <li><a href="../register">Register</a></li>
               <li><a href="../faq">Info</a></li>
