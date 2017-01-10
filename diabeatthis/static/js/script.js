@@ -55,6 +55,7 @@ lastXDays()
 // <!-- updating charts for date -->
 function chartsForDate (){
     insulinByDate()
+    getGlucose()
     getWater()
     getSteps()
 }
@@ -103,7 +104,7 @@ function getGlucose (){
                 bloodSugarTimestamp.push(res[i]['time_stamp'].slice(11, 16))
             }
         }
-        insulinCharts()
+        glucoseCharts()
     })
 }
 
