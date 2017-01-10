@@ -10,6 +10,7 @@ from .forms import UserForm, ProfileForm, UserUpdateForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 def index(request):
@@ -94,6 +95,12 @@ def register(request):
             profile.user = user
             profile.save()
             registered = True
+            messages.info(request, "Thanks for registering. You are now logged in.")
+            user = authenticate(username=user_form.cleaned_data['username'],
+                                    password=user_form.cleaned_data['password'],
+                                    )
+            login(request, user)
+            return HttpResponseRedirect("/home/")
         else:
             print(user_form.errors, profile_form.errors)
     else:
