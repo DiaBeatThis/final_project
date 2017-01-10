@@ -36,12 +36,12 @@ var bloodSugar = []
 var insulinTimestamp = []
 var steps = []
 var water = []
+var bloodSugarTimestamp = []
 var waterTimestamp = []
 var currentUser = $('#userId').val()
 var currentDate = $('#currentDate').val()
 var date = $('#insulinDay').val()
 var week = $('#insulinWeek').val()
-
 
 // <!-- functions called when page is loaded -->
 // getInsulin()
@@ -92,11 +92,15 @@ function insulinByDate (){
 
 // <!-- getting glucose for selected date -->
 function getGlucose (){
+    date = $('#insulinDay').val()
+    bloodSugar = []
+    bloodSugarTimestamp = []
     $.ajax('/api/blood_sugar/').done(function (stuff){
         res = stuff.results
         for (var i = 0; i < res.length; i++){
             if(res[i]['profile_id'] == currentUser){
                 bloodSugar.push(parseFloat(res[i]['mg_dL']))
+                bloodSugarTimestamp.push(res[i]['time_stamp'].slice(11, 16))
             }
         }
         insulinCharts()
@@ -190,6 +194,49 @@ function insulinCharts(){
         }]
     });
 }
+
+// <!-- building insulin chart -->
+function glucoseCharts(){
+    Highcharts.chart('containerGlucose', {
+        chart: {
+            type: 'column'
+        },
+
+        title: {
+            text: 'Blood sugar'
+        },
+
+        xAxis: {
+            categories: bloodSugarTimestamp
+        },
+
+        yAxis: {
+            allowDecimals: false,
+            min: 0,
+            title: {
+                text: 'Amount of blood sugar'
+            }
+        },
+
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.x + '</b><br/>' +
+                    this.series.name + ': ' + this.y + '<br/>' +
+                    'Total: ' + this.point.stackTotal;
+            }
+        },
+        plotOptions: {
+            column: {
+                stacking: 'normal'
+            }
+        },
+        series: [{
+            name: 'Blood sugar',
+            data: bloodSugar,
+        }]
+    });
+}
+
 
 // <!-- building water chart -->
 function waterCharts(){
