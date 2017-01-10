@@ -23,6 +23,24 @@ class UserForm(forms.ModelForm):
         return user
 
 
+class UserUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ('email', 'first_name', 'last_name')
+
+    def __init__(self, *args, **kwargs):
+         super(UserForm, self).__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        user = super(UserForm, self).save(commit=False)
+        user.email = self.cleaned_data["email"]
+        user.username = user.email
+        if commit:
+            user.save()
+        return user
+
+
 class ProfileForm(forms.ModelForm):
     # dob = forms.DateField(widget=extras.SelectDateWidget(years=range(1920, 2017)))
     steps_goal = forms.IntegerField(required=False)

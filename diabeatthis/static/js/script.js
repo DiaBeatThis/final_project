@@ -30,22 +30,7 @@ $.ajaxSetup({
 });
 
 
-// photo upload JS
-$(function(){
-    $(":file").change(function () {
-        if (this.files && this.files[0]) {
-            var reader = new FileReader();
-            reader.onload = imageIsLoaded;
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
-
-function imageIsLoaded(e) {
-    $('.profilephoto').attr('src', e.target.result);
-};
-});
-
-
+// <!-- global variables -->
 var insulin = []
 var bloodSugar = []
 var insulinTimestamp = []
@@ -58,7 +43,7 @@ var date = $('#insulinDay').val()
 var week = $('#insulinWeek').val()
 
 
-
+// <!-- functions called when page is loaded -->
 // getInsulin()
 //insulinByDate()
 getGlucose()
@@ -67,14 +52,14 @@ getSteps()
 getLastWeekInsulin()
 lastXDays()
 
-
+// <!-- updating charts for date -->
 function chartsForDate (){
     insulinByDate()
     getWater()
     getSteps()
 }
 
-
+// <!-- getting results for past 7 days -->
 function getLastWeekInsulin (){
     $.ajax('/api/insulin/').done(function (stuff){
         res = stuff.results
@@ -88,7 +73,7 @@ function getLastWeekInsulin (){
     })
 }
 
-
+// <!-- getting insulin for selected date -->
 function insulinByDate (){
     date = $('#insulinDay').val()
     insulin = []
@@ -105,7 +90,7 @@ function insulinByDate (){
     })
 }
 
-
+// <!-- getting glucose for selected date -->
 function getGlucose (){
     $.ajax('/api/blood_sugar/').done(function (stuff){
         res = stuff.results
@@ -118,7 +103,7 @@ function getGlucose (){
     })
 }
 
-
+// <!-- getting water for selected date -->
 function getWater (){
     date = $('#insulinDay').val()
     $.ajax('/api/water/').done(function (stuff){
@@ -134,7 +119,7 @@ function getWater (){
     })
 }
 
-
+// <!-- getting steps for selected date -->
 function getSteps (){
     date = $('#insulinDay').val()
     $.ajax('/api/physical_activity/').done(function (stuff){
@@ -161,7 +146,7 @@ function lastXDays(){
     return (day, month, year)
 }
 
-
+// <!-- building insulin chart -->
 function insulinCharts(){
     Highcharts.chart('containerInsulin', {
         chart: {
@@ -206,7 +191,7 @@ function insulinCharts(){
     });
 }
 
-
+// <!-- building water chart -->
 function waterCharts(){
     Highcharts.chart('containerWater', {
         chart: {
@@ -256,6 +241,8 @@ function waterCharts(){
     });
 }
 
+
+// <!-- building steps chart -->
 function stepsChart(){
     $(function () {
         var gaugeOptions = {
@@ -344,6 +331,7 @@ function stepsChart(){
     });
 }
 
+// <!-- glucose modal -->
 $(document).on('confirmation', '[data-remodal-id=modalGlucose]', function () {
     var glucose = $("#glucoseLevel").val()
     var time_stamp = $("#glucoseDateTime").val()
@@ -353,7 +341,7 @@ $(document).on('confirmation', '[data-remodal-id=modalGlucose]', function () {
     })
 });
 
-
+// <!-- insuin modal -->
 $(document).on('confirmation', '[data-remodal-id=modalInsulin]', function () {
   var insulin = $("#insulinLevel").val()
   var time_stamp = $("#insulinDateTime").val()
@@ -364,7 +352,7 @@ $(document).on('confirmation', '[data-remodal-id=modalInsulin]', function () {
   })
 });
 
-
+// <!-- water modal -->
 $(document).on('confirmation', '[data-remodal-id=waterIntake]', function () {
     size = $("#waterSize").val()
     cups = $("#waterIntake").val()
@@ -377,7 +365,7 @@ $(document).on('confirmation', '[data-remodal-id=waterIntake]', function () {
     })
 });
 
-
+// <!-- steps modal -->
 $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
     steps = $("#stepsTaken").val()
     time_stamp = currentDate
