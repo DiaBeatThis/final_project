@@ -132,6 +132,7 @@ def user_login(request):
 @login_required
 def profile(request):
     if request.method == 'POST':
+        user_password = UserForm(instance=request.user)
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, instance=request.user.profile)
         print(user_form)
@@ -142,7 +143,11 @@ def profile(request):
             user.save()
             profile = profile_form.save(commit=False)
             profile.save()
-            return redirect('login')
+            user = authenticate(username=user_form.cleaned_data['email'],
+                                    password=user_password.cleaned_data['password'],
+                                    )
+            login(request, user)
+            return HttpResponseRedirect("/home/")
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
