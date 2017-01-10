@@ -1,15 +1,15 @@
 import os
-from .secrets import SECRET_KEY, DATABASES
+# from .secrets import SECRET_KEY, DATABASES
 import dj_database_url
 
-# SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ['SECRET_KEY']
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'mighty-wave-77740.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'diabeatthis.herokuapp.com']
 
 # Application definition
 
@@ -85,15 +85,15 @@ USE_L10N = True
 
 USE_TZ = True
 
-# DATABASES = {
-#     'default': {
-#     }
-# }
-#
-# db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES = {
+    'default': {
+    }
+}
 
-# DATABASES['default'].update(db_from_env)
-# DATABASES['default'] =  dj_database_url.config()
+db_from_env = dj_database_url.config(conn_max_age=500)
+
+DATABASES['default'].update(db_from_env)
+DATABASES['default'] =  dj_database_url.config()
 
 LOGIN_REDIRECT_URL = '/home/'
 
