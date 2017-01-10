@@ -69,7 +69,7 @@ lastXDays()
 
 
 function chartsForDate (){
-    getGlucose()
+    insulinByDate()
     getWater()
     getSteps()
 }
