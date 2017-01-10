@@ -189,10 +189,7 @@ function insulinCharts(){
         series: [{
             name: 'Insulin',
             data: insulin,
-        }, {
-            name: 'Blood sugar',
-            data: bloodSugar,
-        }]
+        },]
     });
 }
 
