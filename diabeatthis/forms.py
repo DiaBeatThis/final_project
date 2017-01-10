@@ -30,10 +30,10 @@ class UserUpdateForm(forms.ModelForm):
         fields = ('email', 'first_name', 'last_name')
 
     def __init__(self, *args, **kwargs):
-         super(UserForm, self).__init__(*args, **kwargs)
+         super(UserUpdateForm, self).__init__(*args, **kwargs)
 
     def save(self, commit=True):
-        user = super(UserForm, self).save(commit=False)
+        user = super(UserUpdateForm, self).save(commit=False)
         user.email = self.cleaned_data["email"]
         user.username = user.email
         if commit:
