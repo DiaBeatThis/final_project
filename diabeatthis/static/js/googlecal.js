@@ -27,7 +27,7 @@ function handleAuthResult(authResult) {
   if (authResult && !authResult.error) {
 	// Hide auth UI, then load client library.
 	authorizeDiv.style.display = 'none';
-	loadCalendarApi();
+	add_event();
   } else {
 	// Show auth UI, allowing the user to initiate authorization by
 	// clicking authorize button.
@@ -54,7 +54,7 @@ function handleAuthClick(event) {
  */
 
 function loadCalendarApi() {
-  gapi.client.load('calendar', 'v3', listUpcomingEvents);
+  gapi.client.load('calendar', 'v3', add_event);
 }
 
 /**
@@ -102,3 +102,52 @@ function appendPre(message) {
   var textContent = document.createTextNode(message + '\n');
   pre.appendChild(textContent);
 }
+
+
+var new_event = {
+  'summary': 'Google I/O 2015',
+  'location': '800 Howard St., San Francisco, CA 94103',
+  'description': 'A chance to hear more about Google\'s developer products.',
+  'start': {
+    'dateTime': '2017-01-12T09:00:00-07:00',
+    'timeZone': 'America/Los_Angeles'
+  },
+  'end': {
+    'dateTime': '2017-01-13T17:00:00-07:00',
+    'timeZone': 'America/Los_Angeles'
+  },
+  'recurrence': [
+    'RRULE:FREQ=DAILY;COUNT=2'
+  ],
+  'attendees': [
+    {'email': 'lpage@example.com'},
+    {'email': 'sbrin@example.com'}
+  ],
+  'reminders': {
+    'useDefault': false,
+    'overrides': [
+      {'method': 'email', 'minutes': 24 * 60},
+      {'method': 'popup', 'minutes': 10}
+    ]
+  }
+};
+function add_event(){
+var request = gapi.client.calendar.events.insert({
+  'calendarId': 'primary',
+  'resource': new_event
+});
+
+request.execute(function(new_event) {
+  appendPre('Event created: ' + new_event.htmlLink);
+});
+}
+
+// var crequest = gapi.client.calendar.events.insert({
+//  'calendarId': 'primary',
+//  'resource': event
+// });
+//
+// crequest.execute(function(event) {
+//  appendPre('Event created: ' + event.htmlLink);
+// });
+// }
