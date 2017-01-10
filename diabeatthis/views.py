@@ -96,7 +96,7 @@ def register(request):
             profile.save()
             registered = True
             messages.info(request, "Thanks for registering. You are now logged in.")
-            user = authenticate(username=user_form.cleaned_data['username'],
+            user = authenticate(username=user_form.cleaned_data['email'],
                                     password=user_form.cleaned_data['password'],
                                     )
             login(request, user)
