@@ -187,6 +187,9 @@
     </div>
       <pre id="output"></pre>
 
+	  <button id="insert-calendar" onclick="prepCalendarInsert()">Reminder</button>
+
+
 <!-- footer nav -->
   <section>
   <div id="footer"></div>
@@ -194,13 +197,15 @@
 
   <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
   <script async defer src="https://apis.google.com/js/api.js"
-        onload="this.onload=function(){};handleClientLoad()"
+        onload="this.onload=function(){};"
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
       </script>
   <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="{% static '/js/profile.js' %}"></script>
   <script src="{% static '/js/googlecal.js' %}"></script>
+  <script src="{% static '/js/googleinsert.js' %}"></script>
+
 
 
   <!-- header & footer calls -->
