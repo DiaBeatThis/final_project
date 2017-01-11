@@ -46,7 +46,6 @@ class ProfileForm(forms.ModelForm):
     steps_goal = forms.IntegerField(required=False)
     water_goal = forms.IntegerField(required=False)
 
-
     class Meta:
         model = Profile
         fields = ('height', 'weight', 'sex', 'dob', 'race', 'avatar',
