@@ -1,7 +1,7 @@
-console.log("google calendar auth")
+// console.log("google calendar auth")
 var CLIENT_ID = '950183132798-6cnr1mbiq4on5bll0fsuubq6krv7i6p6.apps.googleusercontent.com';
 
-var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
+var SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
 var signoutButton = document.getElementById('signout-button');
 
@@ -83,7 +83,7 @@ function listUpcomingEvents() {
 		if (!when) {
 		  when = event.start.date;
 		}
-		appendPre('summary: ' + event.summary + '\n\n' + 'Date: ' + ' (' + when + ')' + '\n\n' + 'description: ' +  event.description  + '\n\n')
+		appendPre('Date: ' + ' (' + when + ')')
 	  }
 	} else {
 	  appendPre('No upcoming events found.');
