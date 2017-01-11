@@ -186,7 +186,6 @@
       <option value="12">12 cups</option>
     </select>
   </div>
-</div>
   <!-- steps goal -->
   <div class="three columns">
     <label for="stepsGoal">Select a daily goal for steps walked/run</label>
@@ -198,6 +197,7 @@
       <option value="10000">10,000</option>
     </select>
   </div>
+</div>
 
 </form>
 <!-- section divider line -->
@@ -211,10 +211,41 @@
     <div class="three columns"></div>
 
     <!-- api connections -->
-    <div class="nine columns">
+    <div class="nine columns" id="thirdParty">
       <img src="{% static  '/images/Google_2015_logo.png' %}" alt="Google Logo" class="thirdpartylogo">
-      <button type="button" class="connectapi" id="authorize-button" onclick="handleAuthClick(event)">Set Up Reminders</button>
+      <button type="button" class="connectapi" id="authorize-button" onclick="handleAuthClick(event)">Connect Google Calendar</button>
+      <button type="button" name="button"><a href="#modalReminders" class="remindersLink">Set Up Reminders</a></button>
+      <!-- reminders modal -->
+      <div class="remodal-bg">
+        <div class="remodal" data-remodal-id="modalReminders">
+          <h3>Set up your daily testing reminders</h3>
+          <form>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="breakfastReminder">Breakfast:</label>
+                <input class="u-full-width" type="time" placeholder="0" id="breakfastReminder" name="breakfastReminder">
+              </div>
+            </div>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="lunchReminder">Lunch:</label>
+                <input class="u-full-width" type="time" placeholder="0" id="lunchReminder" name="lunchReminder">
+            </div>
+          </div>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="dinnerReminder">Dinner:</label>
+                <input class="u-full-width" type="time" placeholder="0" id="dinnerReminder" name="dinnerReminder">
+            </div>
+          </div>
+          <br>
+          <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+          <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
+        </div>
+      </div>
+
       <br><br>
+
       <img src="{% static  '/images/Fitbit_logo_RGB.png' %}" alt="Fitbit" class="thirdpartylogo">
       <button type="button" onclick="location.href='/fitbit/login';" class="connectapi">Connect Your Fitbit</button>
     </div>

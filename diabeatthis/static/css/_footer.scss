@@ -9,6 +9,14 @@
   margin: 0 auto;
   font-size: 24px;
   color: $gray;
+  a{
+    text-decoration: none;
+    color: $gray;
+  }
+  a:hover{
+    text-decoration: underline;
+    color: $lightblue;
+  }
   .left{
     line-height: 18px;
     text-align: left;
@@ -21,13 +29,5 @@
   }
   .right{
     text-align: right;
-    a{
-      text-decoration: none;
-      color: $gray;
-    }
-    a:hover{
-      text-decoration: underline;
-      color: $lightblue;
-    }
   }
 }

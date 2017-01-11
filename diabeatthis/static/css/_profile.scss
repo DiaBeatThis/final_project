@@ -63,11 +63,19 @@ form{
 }
 
 .thirdpartylogo{
-  height: 60px;
-  padding-top: 15px;
+  width: 150px;
+  vertical-align: middle;
 }
 
 .connectapi{
   margin-left: 50px;
   margin-bottom: 0px;
+}
+
+.remindersLink{
+  text-decoration: none;
+  color: #555;
+}
+.remindersLink:hover{
+  color: #555;
 }

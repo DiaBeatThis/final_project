@@ -49,14 +49,6 @@
 #container-speed {
   margin-left: 5px; }
 
-a {
-  text-decoration: none;
-  color: #F2F2F2; }
-
-a:hover {
-  text-decoration: underline;
-  color: #99DCE4; }
-
 .header {
   margin: 0 auto;
   padding-top: 15px;
@@ -76,6 +68,12 @@ a:hover {
       .header .right ul li {
         display: inline;
         padding-left: 40px; }
+        .header .right ul li a {
+          text-decoration: none;
+          color: #F2F2F2; }
+        .header .right ul li a:hover {
+          text-decoration: underline;
+          color: #99DCE4; }
 
 .menuimg {
   display: none; }
@@ -90,6 +88,12 @@ a:hover {
   margin: 0 auto;
   font-size: 24px;
   color: #F2F2F2; }
+  .footer a {
+    text-decoration: none;
+    color: #F2F2F2; }
+  .footer a:hover {
+    text-decoration: underline;
+    color: #99DCE4; }
   .footer .left {
     line-height: 18px;
     text-align: left; }
@@ -99,12 +103,6 @@ a:hover {
     text-align: center; }
   .footer .right {
     text-align: right; }
-    .footer .right a {
-      text-decoration: none;
-      color: #F2F2F2; }
-    .footer .right a:hover {
-      text-decoration: underline;
-      color: #99DCE4; }
 
 .profilesettings {
   background-color: #F2F2F2;
@@ -155,12 +153,19 @@ form p {
   border-top: 1px dotted #091019; }
 
 .thirdpartylogo {
-  height: 60px;
-  padding-top: 15px; }
+  width: 150px;
+  vertical-align: middle; }
 
 .connectapi {
   margin-left: 50px;
   margin-bottom: 0px; }
+
+.remindersLink {
+  text-decoration: none;
+  color: #555; }
+
+.remindersLink:hover {
+  color: #555; }
 
 .infoPage {
   padding-top: 50px;
