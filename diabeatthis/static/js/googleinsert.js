@@ -6,14 +6,14 @@ function prepCalendarInsert() {
 
 function insertReminders(){
 	event = {
-  'summary': 'trying an API insert',
-  'description': 'successfully entering an event insert!',
+  'summary': ' ',
+  'description': ' ',
   'start': {
-    'dateTime': '2017-01-15T09:00:00-07:00',
+    'dateTime': ' ',
     'timeZone': 'America/Los_Angeles'
   },
   'end': {
-    'dateTime': '2017-01-15T09:00:00-07:00',
+    'dateTime': ' ',
     'timeZone': 'America/Los_Angeles'
   },
   'recurrence': [

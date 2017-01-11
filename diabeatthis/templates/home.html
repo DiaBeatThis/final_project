@@ -75,9 +75,9 @@
         <div class="remindersData">
           <h5>Daily Reminders</h5>
           <ul>
-            <li>Breakfast: </li>
-            <li>Lunch: </li>
-            <li>Dinner: </li>
+            <li>Breakfast: {{ user.profile.steps_goal }} </li>
+            <li>Lunch: {{ event.start.dateTime }} </li>
+            <li>Dinner: </pre> </li>
           </ul>
         </div>
         <a href="../profile/#thirdParty">Edit Reminders</a>
@@ -237,16 +237,13 @@
 
   <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<<<<<<< HEAD
   <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
   <script async defer src="https://apis.google.com/js/api.js"
         onload="this.onload=function(){};"
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
       </script>
 
-=======
-  
->>>>>>> 7d6b41903b3320f3869c52e3fb1f395c4ed81606
+
   <script src="{%  static '/js/script.js' %}"></script>
   <script src="{% static '/js/googlecal.js' %}"></script>
 
