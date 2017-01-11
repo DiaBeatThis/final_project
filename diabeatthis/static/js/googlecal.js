@@ -27,7 +27,7 @@ function handleAuthResult(authResult) {
   if (authResult && !authResult.error) {
 	// Hide auth UI, then load client library.
 	authorizeDiv.style.display = 'none';
-	add_event();
+	loadCalendarApi();
   } else {
 	// Show auth UI, allowing the user to initiate authorization by
 	// clicking authorize button.
@@ -54,7 +54,7 @@ function handleAuthClick(event) {
  */
 
 function loadCalendarApi() {
-  gapi.client.load('calendar', 'v3', add_event);
+  gapi.client.load('calendar', 'v3');
 }
 
 /**
