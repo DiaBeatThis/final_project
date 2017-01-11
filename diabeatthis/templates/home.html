@@ -47,31 +47,30 @@
     <!-- profile photo -->
     <div class="three columns">
     <img src="{% static user.profile.avatar %}" class="profilephoto"></img>
-      <!-- log navigation -->
-      <ul class="lognav">
-        <li><a href="#modalGlucose">Log Glucose</a></li>
-        <li><a href="#modalInsulin">Log Insulin</a></li>
-        <li><a href="#waterIntake">Log Water</a></li>
-        <li><a href="#stepsTaken">Log Steps</a></li>
-      </ul>
-
-    </div>
+    <!-- log navigation -->
+    <ul class="lognav">
+      <li><a href="#modalGlucose">Log Glucose</a></li>
+      <li><a href="#modalInsulin">Log Insulin</a></li>
+      <li><a href="#waterIntake">Log Water</a></li>
+      <li><a href="#stepsTaken">Log Steps</a></li>
+    </ul>
+  </div>
 
     <!-- glucose chart -->
-    <div class="nine columns" id="insulinChart">
-            Date:
-            <input id="insulinDay" value="{% now 'Y-m-d' %}" type="date" name="date">
-            <input id="dateSubmit" type="submit">
-            Week:
-            <input id="insulinWeek" Value="{% now 'Y-\W\0W' %}" type="week" name="week">
-            <input id="weekSubmit" type="submit">
-        <div id="containerInsulin" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
+    <div class="nine columns" id="glucoseChart">
+        <div class="datePicker">
+          <span>Week:</span>
+          <input id="glucoseWeek" Value="{% now 'Y-\W\0W' %}" type="week" name="week">
+          <input id="weekSubmit" type="submit" class="buttonSmall">
+        </div>
+        <div id="containerGlucose" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
     </div>
   </div>
 
   <div class="row">
 
     <div class="three columns">
+<<<<<<< HEAD
       <div class="reminderInfo">
         <h5>Daily Reminders</h5>
         <ul>
@@ -79,6 +78,18 @@
           <li>Lunch: </li>
           <li>Dinner: </li>
         </ul>
+=======
+      <div class="remindersInfo">
+        <div class="remindersData">
+          <h5>Daily Reminders</h5>
+          <ul>
+            <li>Breakfast: </li>
+            <li>Lunch: </li>
+            <li>Dinner: </li>
+          </ul>
+        </div>
+        <a href="../profile/#thirdParty">Edit Reminders</a>
+>>>>>>> 5220d187be2b809a0dc39a0333250c7a00c03283
       </div>
 
       <!-- glucose modal -->
@@ -95,7 +106,7 @@
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="glucoseDateTime">Date/Time (e.g. 01/01/2017, 08:00 AM)</label>
-                <input class="u-full-width" valut="{% now 'm/d/Y, h:i A' %}" type="datetime-local" id="glucoseDateTime" name="glucoseDateTime">
+                <input class="u-full-width" value="{% now 'Y-m-d\Th:i' %}" type="datetime-local" id="glucoseDateTime" name="glucoseDateTime">
               </div>
             </div>
           <br>
@@ -103,7 +114,6 @@
           <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
         </div>
       </div>
-
       <!-- insulin modal -->
       <div class="remodal-bg">
         <div class="remodal" data-remodal-id="modalInsulin">
@@ -118,7 +128,7 @@
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="insulinDateTime">Date/Time (e.g. 01/01/2017, 08:00 AM)</label>
-                <input class="u-full-width" type="datetime-local" id="insulinDateTime" name="insulinDateTime">
+                <input class="u-full-width" value="{% now 'Y-m-d\Th:i' %}"  type="datetime-local" id="insulinDateTime" name="insulinDateTime">
               </div>
             </div>
           <br>
@@ -126,12 +136,11 @@
           <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
         </div>
       </div>
-
       <!-- water modal -->
       <div class="remodal-bg">
         <div class="remodal" data-remodal-id="waterIntake">
           <h3>How water have you had to drink?</h3>
-          <p>Daily Goal: 12 cups</p>
+          <p>Daily Goal: {{ user.profile.water_goal }} cups</p>
           <br>
           <form>
             <div class="row">
@@ -153,7 +162,7 @@
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="waterDateTime">Date/Time (e.g. 01/01/2017, 08:00 AM)</label>
-                <input class="u-full-width" type="datetime-local" id="waterDateTime" name="waterDateTime">
+                <input class="u-full-width" value="{% now 'Y-m-d\Th:i' %}"  type="datetime-local" id="waterDateTime" name="waterDateTime">
               </div>
             </div>
           <br>
@@ -161,12 +170,11 @@
           <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
         </div>
       </div>
-
       <!-- steps modal -->
       <div class="remodal-bg">
         <div class="remodal" data-remodal-id="stepsTaken">
           <h3>How many steps have you taken today?</h3>
-          <p>Daily Goal: 10,000 steps</p>
+          <p>Daily Goal: {{ user.profile.steps_goal }} steps</p>
           <br>
           <form>
             <div class="row">
@@ -185,11 +193,20 @@
 
     <!-- insulin chart -->
     <div class="nine columns">
+<<<<<<< HEAD
 
 insulin chart goes here
 
 <div id="containerInsulin" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
 
+=======
+      <div class="datePicker">
+        <span>Week:</span>
+        <input id="insulinWeek" Value="{% now 'Y-\W\0W' %}" type="week" name="week">
+        <input id="weekSubmit" type="submit" class="buttonSmall">
+      </div>
+      <div id="containerInsulin" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
+>>>>>>> 5220d187be2b809a0dc39a0333250c7a00c03283
     </div>
   </div>
 
@@ -199,17 +216,25 @@ insulin chart goes here
     <div class="three columns"></div>
 
     <!-- water chart -->
-    <div class="three columns">
-      <div class="nine columns" id="waterChart">
-        <div id="containerWater" style="min-width: 310px; height: 300px; margin: 0 auto">
+    <div class="nine columns">
+      <div class="four columns" id="waterChart">
+        <div class="datePicker">
+          <span>Day:</span>
+          <input id="waterDay" value="2017-01-10" type="date" name="date">
+          <input id="dateSubmit" type="submit" class="buttonSmall">
+        </div>
+        <div id="containerWater" style="min-width: 300px; height: 300px; margin: 0 auto">
         </div>
       </div>
-    </div>
 
       <!-- activity chart -->
-    <div class="six columns">
-    <div style="width: 600px; height: 400px; margin: 0 auto">
-        <div id="container-speed" style="width: 300px; height: 200px;"></div>
+    <div class="seven columns">
+      <div class="datePicker">
+        <span>Day:</span>
+        <input id="activityDay" value="2017-01-10" type="date" name="date">
+        <input id="dateSubmit" type="submit" class="buttonSmall">
+      </div>
+      <div id="container-speed" style="width: 560px; height: 300px;"></div>
     </div>
     </div>
   </div>

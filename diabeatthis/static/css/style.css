@@ -13,7 +13,9 @@
 .profilephoto {
   height: 200px;
   width: 200px;
-  object-fit: contain; }
+  object-fit: contain;
+  padding: 10px;
+  border: 1px solid #091019; }
 
 .lognav {
   padding-top: 10px; }
@@ -27,13 +29,25 @@
       text-decoration: underline;
       color: #248C96; }
 
-a {
+.remindersInfo .remindersData {
+  max-width: 200px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #091019; }
+  .remindersInfo .remindersData ul {
+    list-style: none; }
+    .remindersInfo .remindersData ul li {
+      font-size: 1.2em; }
+.remindersInfo a {
   text-decoration: none;
-  color: #F2F2F2; }
-
-a:hover {
+  color: #091019;
+  font-size: 20px; }
+.remindersInfo a:hover {
   text-decoration: underline;
-  color: #99DCE4; }
+  color: #248C96; }
+
+#container-speed {
+  margin-left: 5px; }
 
 .header {
   margin: 0 auto;
@@ -54,6 +68,12 @@ a:hover {
       .header .right ul li {
         display: inline;
         padding-left: 40px; }
+        .header .right ul li a {
+          text-decoration: none;
+          color: #F2F2F2; }
+        .header .right ul li a:hover {
+          text-decoration: underline;
+          color: #99DCE4; }
 
 .menuimg {
   display: none; }
@@ -68,6 +88,12 @@ a:hover {
   margin: 0 auto;
   font-size: 24px;
   color: #F2F2F2; }
+  .footer a {
+    text-decoration: none;
+    color: #F2F2F2; }
+  .footer a:hover {
+    text-decoration: underline;
+    color: #99DCE4; }
   .footer .left {
     line-height: 18px;
     text-align: left; }
@@ -77,18 +103,13 @@ a:hover {
     text-align: center; }
   .footer .right {
     text-align: right; }
-    .footer .right a {
-      text-decoration: none;
-      color: #F2F2F2; }
-    .footer .right a:hover {
-      text-decoration: underline;
-      color: #99DCE4; }
 
 .profilesettings {
   background-color: #F2F2F2;
   margin: 0px;
   padding-top: 20px;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  color: #091019; }
   .profilesettings .row {
     margin: 0 auto;
     width: 85%; }
@@ -101,25 +122,50 @@ a:hover {
   width: 200px;
   object-fit: contain; }
 
+.resetPassword a {
+  text-decoration: none;
+  color: #091019;
+  font-size: 20px; }
+.resetPassword a:hover {
+  text-decoration: underline;
+  color: #248C96; }
+
 .profileHeader {
-  display: inline; }
+  display: inline;
+  float: left; }
 
-.buttonLeft {
-  margin-left: 200px; }
+.headerButtons {
+  float: right; }
+  .headerButtons .buttonRight {
+    margin-left: 25px;
+    margin-right: 20px; }
 
-.buttonRight {
-  margin-left: 25px; }
+.clearFloat {
+  clear: both; }
+
+form .profileForm {
+  display: none; }
+form p {
+  font-size: 1.3em;
+  font-weight: 300; }
 
 .breakline {
   border-top: 1px dotted #091019; }
 
 .thirdpartylogo {
-  height: 60px;
-  padding-top: 15px; }
+  width: 150px;
+  vertical-align: middle; }
 
 .connectapi {
   margin-left: 50px;
   margin-bottom: 0px; }
+
+.remindersLink {
+  text-decoration: none;
+  color: #555; }
+
+.remindersLink:hover {
+  color: #555; }
 
 .infoPage {
   padding-top: 50px;
