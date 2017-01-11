@@ -134,8 +134,6 @@ def profile(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, instance=request.user.profile)
-        print(user_form)
-        print(profile_form)
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.username = user.email
