@@ -61,7 +61,7 @@
         <div class="datePicker">
           <span>Week:</span>
           <input id="glucoseWeek" Value="{% now 'Y-\W\0W' %}" type="week" name="week">
-          <input id="weekSubmit" type="submit" class="buttonSmall">
+          <input id="glucoseWeekSubmit" type="submit" class="buttonSmall">
         </div>
         <div id="containerGlucose" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
     </div>
@@ -188,7 +188,7 @@
       <div class="datePicker">
         <span>Week:</span>
         <input id="insulinWeek" Value="{% now 'Y-\W\0W' %}" type="week" name="week">
-        <input id="weekSubmit" type="submit" class="buttonSmall">
+        <input id="insulinWeekSubmit" type="submit" class="buttonSmall">
       </div>
       <div id="containerInsulin" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
     </div>
@@ -237,12 +237,15 @@
 
   <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<<<<<<< HEAD
   <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
   <script async defer src="https://apis.google.com/js/api.js"
         onload="this.onload=function(){};"
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
       </script>
 
+=======
+>>>>>>> d7b3c9fa43b712991e262b99ec6028be592ad732
 
   <script src="{%  static '/js/script.js' %}"></script>
   <script src="{% static '/js/googlecal.js' %}"></script>

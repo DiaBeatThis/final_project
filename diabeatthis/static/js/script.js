@@ -28,7 +28,26 @@ $.ajaxSetup({
         }
     }
 });
+(function() {
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
+    Date.prototype.getDayName = function() {
+        return days[ this.getDay() ];
+    };
+})();
+
+// function getWeekday(d) {
+//     var weekday = new Array(7);
+//     weekday[0] = "Sunday";
+//     weekday[1] = "Monday";
+//     weekday[2] = "Tuesday";
+//     weekday[3] = "Wednesday";
+//     weekday[4] = "Thursday";
+//     weekday[5] = "Friday";
+//     weekday[6] = "Saturday";
+//
+//     return weekday[d.getDay()];
+// }
 
 function getWeekNumber(d) {
     // Copy date so don't modify original
@@ -44,10 +63,6 @@ function getWeekNumber(d) {
     // Return array of year and week number
     return d.getFullYear() + "-W" + (weekNo < 10 ? '0' : '') + weekNo
 }
-d = new Date($('#currentDate').val())
-var result = getWeekNumber(d);
-
-console.log(result)
 
 // <!-- global variables -->
 var insulin = []
@@ -59,23 +74,18 @@ var bloodSugarTimestamp = []
 var waterTimestamp = []
 var currentUser = $('#userId').val()
 var currentDate = $('#currentDate').val()
-var date = $('#insulinDay').val()
 var insulinWeek = $('#insulinWeek').val()
 var glucoseWeek = $('#glucoseWeek').val()
 
-console.log(insulinWeek)
 // <!-- functions called when page is loaded -->
-// getInsulin()
-//insulinByDate()
 getGlucose()
 getWater()
 getSteps()
-getLastWeekInsulin()
-lastXDays()
+getInsulin()
 
 // <!-- updating charts for date -->
 function chartsForDate (){
-    insulinByDate()
+    getInsulin()
     getGlucose()
     getWater()
     getSteps()
@@ -83,51 +93,42 @@ function chartsForDate (){
 
 
 // <!-- getting results for past 7 days -->
-function getLastWeekInsulin (){
-    $.ajax('/api/insulin/').done(function (stuff){
-        res = stuff.results
-        for (var i = 0; i < res.length; i++){
-            console.log(insulinWeek)
-            d = new Date(res[i]['time_stamp'])
-            week = getWeekNumber(d)
-            console.log(week)
-            if(res[i]['profile_id'] == currentUser && insulinWeek === week){
-                insulin.push(parseFloat(res[i]['mcU_ml']))
-                insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
-            }
-        }
-        insulinCharts()
-    })
-}
-
-// <!-- getting insulin for selected date -->
-function insulinByDate (){
-    date = $('#insulinDay').val()
+function getInsulin (){
     insulin = []
     insulinTimestamp = []
+    insulinWeek = $('#insulinWeek').val()
     $.ajax('/api/insulin/').done(function (stuff){
         res = stuff.results
         for (var i = 0; i < res.length; i++){
-            if(res[i]['profile_id'] == currentUser && date === res[i]['time_stamp'].slice(0, 10)){
+            d = new Date(res[i]['time_stamp'])
+            var dayName =  d.getDayName()
+            week = getWeekNumber(d)
+            if(res[i]['profile_id'] == currentUser && insulinWeek === week){
                 insulin.push(parseFloat(res[i]['mcU_ml']))
-                insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
+                insulinTimestamp.push(dayName)
+                // day = (res[i]['time_stamp']).getDayName()
+                // console.log(day)
+                // insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
             }
         }
         insulinCharts()
     })
 }
 
-// <!-- getting glucose for selected date -->
+// <!-- getting glucose for selected week -->
 function getGlucose (){
-    date = $('#insulinDay').val()
     bloodSugar = []
     bloodSugarTimestamp = []
+    glucoseWeek = $('#glucoseWeek').val()
     $.ajax('/api/blood_sugar/').done(function (stuff){
         res = stuff.results
         for (var i = 0; i < res.length; i++){
-            if(res[i]['profile_id'] == currentUser){
+            d = new Date(res[i]['time_stamp'])
+            var dayName =  d.getDayName()
+            week = getWeekNumber(d)
+            if(res[i]['profile_id'] == currentUser && glucoseWeek === week){
                 bloodSugar.push(parseFloat(res[i]['mg_dL']))
-                bloodSugarTimestamp.push(res[i]['time_stamp'].slice(11, 16))
+                bloodSugarTimestamp.push(dayName)
             }
         }
         glucoseCharts()
@@ -166,16 +167,6 @@ function getSteps (){
     })
 }
 
-
-function lastXDays(){
-    var days = 7
-    var date = new Date();
-    var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
-    var day =last.getDate();
-    var month=last.getMonth()+1;
-    var year=last.getFullYear();
-    return (day, month, year)
-}
 
 // <!-- building insulin chart -->
 function insulinCharts(){
@@ -421,7 +412,7 @@ $(document).on('confirmation', '[data-remodal-id=modalInsulin]', function () {
   var postdata = {'mcU_ml':insulin, 'time_stamp':time_stamp, 'profile_id':currentUser}
   $.ajax({url:'/api/insulin/', data:postdata, type:'POST'}).done(function(){
       location = location
-      insulinByDate()
+      getInsulin()
   })
 });
 
@@ -453,5 +444,8 @@ $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
 $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)
 $('#dateSubmit').click(chartsForDate)
+$('#glucoseWeekSubmit').click(getGlucose)
+$('#insulinWeekSubmit').click(getInsulin)
+
 // fitbit API request
 // https://api.fitbit.com/1/user/5BZ85Q/activities/date/2016-08-08.json?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Qlo4NVEiLCJhdWQiOiIyMjg3NjMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNDgzNjgwMzY5LCJpYXQiOjE0ODM2NTE1Njl9.m6ZiS8uR-4rEGrAepgjQZ6ddlhErRNj1Jkdh1VH43EE
