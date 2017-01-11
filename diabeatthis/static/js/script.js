@@ -30,6 +30,25 @@ $.ajaxSetup({
 });
 
 
+function getWeekNumber(d) {
+    // Copy date so don't modify original
+    d = new Date(+d);
+    d.setHours(0,0,0,0);
+    // Set to nearest Thursday: current date + 4 - current day number
+    // Make Sunday's day number 7
+    d.setDate(d.getDate() + 4 - (d.getDay()||7));
+    // Get first day of year
+    var yearStart = new Date(d.getFullYear(),0,1);
+    // Calculate full weeks to nearest Thursday
+    var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+    // Return array of year and week number
+    return d.getFullYear() + "-W" + (weekNo < 10 ? '0' : '') + weekNo
+}
+d = new Date($('#currentDate').val())
+var result = getWeekNumber(d);
+
+console.log(result)
+
 // <!-- global variables -->
 var insulin = []
 var bloodSugar = []
@@ -41,8 +60,10 @@ var waterTimestamp = []
 var currentUser = $('#userId').val()
 var currentDate = $('#currentDate').val()
 var date = $('#insulinDay').val()
-var week = $('#insulinWeek').val()
+var insulinWeek = $('#insulinWeek').val()
+var glucoseWeek = $('#glucoseWeek').val()
 
+console.log(insulinWeek)
 // <!-- functions called when page is loaded -->
 // getInsulin()
 //insulinByDate()
@@ -60,12 +81,17 @@ function chartsForDate (){
     getSteps()
 }
 
+
 // <!-- getting results for past 7 days -->
 function getLastWeekInsulin (){
     $.ajax('/api/insulin/').done(function (stuff){
         res = stuff.results
         for (var i = 0; i < res.length; i++){
-            if(res[i]['profile_id'] == currentUser && currentDate === res[i]['time_stamp'].slice(0, 10)){
+            console.log(insulinWeek)
+            d = new Date(res[i]['time_stamp'])
+            week = getWeekNumber(d)
+            console.log(week)
+            if(res[i]['profile_id'] == currentUser && insulinWeek === week){
                 insulin.push(parseFloat(res[i]['mcU_ml']))
                 insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
             }
@@ -110,7 +136,7 @@ function getGlucose (){
 
 // <!-- getting water for selected date -->
 function getWater (){
-    date = $('#insulinDay').val()
+    date = $('#waterDay').val()
     $.ajax('/api/water/').done(function (stuff){
         var sum = 0
         res = stuff.results
@@ -126,7 +152,7 @@ function getWater (){
 
 // <!-- getting steps for selected date -->
 function getSteps (){
-    date = $('#insulinDay').val()
+    date = $('#activityDay').val()
     $.ajax('/api/physical_activity/').done(function (stuff){
         var sum = 0
         res = stuff.results
@@ -254,6 +280,7 @@ function waterCharts(){
         yAxis: {
             allowDecimals: false,
             min: 0,
+            max: 15,
             title: {
                 text: 'Ounces'
             },
@@ -383,6 +410,7 @@ $(document).on('confirmation', '[data-remodal-id=modalGlucose]', function () {
     var postdata = {'mg_dL':glucose, 'time_stamp':time_stamp, 'profile_id':currentUser}
     $.ajax({url:'/api/blood_sugar/', data:postdata, type:'POST'}).done(function(){
         location = location
+        getGlucose()
     })
 });
 
@@ -422,6 +450,8 @@ $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
 });
 
 
+$('#waterDateSubmit').click(getWater)
+$('#activityDateSubmit').click(getSteps)
 $('#dateSubmit').click(chartsForDate)
 // fitbit API request
 // https://api.fitbit.com/1/user/5BZ85Q/activities/date/2016-08-08.json?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Qlo4NVEiLCJhdWQiOiIyMjg3NjMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNDgzNjgwMzY5LCJpYXQiOjE0ODM2NTE1Njl9.m6ZiS8uR-4rEGrAepgjQZ6ddlhErRNj1Jkdh1VH43EE

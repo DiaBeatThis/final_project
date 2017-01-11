@@ -138,7 +138,7 @@
           <!-- sex -->
           <div class="four2 columns">
            <label for="sex">What your biological sex is</label>
-           <p>{{ user.profile.sex }}</p>
+           <p>{{ user.profile.get_sex_display }}</p>
            <!-- <select class="u-full-width profileForm" id="sex" name="sex">
              <option value="M">Male</option>
              <option value="F">Female</option>
@@ -148,7 +148,7 @@
          <!-- race -->
          <div class="four2 columns">
           <label for="race">What race you identify as</label>
-          <p>{{ user.profile.race }}</p>
+          <p>{{ user.profile.get_race_display }}</p>
           <!-- <select name="race" class="u-full-width profileForm" id="race" placeholder="Race" value="{{ user.profile.race }}">
             <option value="AA">African American</option>
             <option value="AI">American Indian</option>
