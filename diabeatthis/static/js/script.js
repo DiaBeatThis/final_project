@@ -442,12 +442,26 @@ $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
     })
 });
 
+//fitbit steps call
+function getSteps(){
+    var $stuff = $("<ol class='ol'>")
+    $.ajax("https://api.fitbit.com/1/user/-/activities/steps/date/today/1m.json").done(function(results) {
+        var rr = results.results
+		console.log(rr)
+    $stuff.html()
+                $("#singleInfo").append($stuff)
+            })
+}
+
 
 $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)
 $('#dateSubmit').click(chartsForDate)
 $('#glucoseWeekSubmit').click(getGlucose)
 $('#insulinWeekSubmit').click(getInsulin)
+
+
+// https://api.fitbit.com/1/user/5BZ85Q/activities/date/2016-08-08.json?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Qlo4NVEiLCJhdWQiOiIyMjg3OE0iLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNDgzNzU0NzAzLCJpYXQiOjE0ODM3MjU5MDN9.Qyk3HS5P0FK7GtJkC4MT7j05DSvZ-nJpqXm7ZzAGEEo
 
 // fitbit API request
 // https://api.fitbit.com/1/user/5BZ85Q/activities/date/2016-08-08.json?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Qlo4NVEiLCJhdWQiOiIyMjg3NjMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNDgzNjgwMzY5LCJpYXQiOjE0ODM2NTE1Njl9.m6ZiS8uR-4rEGrAepgjQZ6ddlhErRNj1Jkdh1VH43EE
