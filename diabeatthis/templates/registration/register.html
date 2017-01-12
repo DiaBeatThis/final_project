@@ -137,7 +137,6 @@
     <div class="three columns">
       <label for="waterGoal">Select a daily goal for drinking water</label>
       <select class="u-full-width" id="waterGoal" name="water_goal">
-        <option value="{{ user.profile.water_goal }}">{{ user.profile.water_goal }}</option>
         <option value="8">8 cups</option>
         <option value="10">10 cups</option>
         <option value="12">12 cups</option>
@@ -147,10 +146,9 @@
     <div class="three columns">
       <label for="stepsGoal">Select a daily goal for steps walked/run</label>
       <select class="u-full-width" id="stepsGoal" name="steps_goal">
-        <option value="{{ user.profile.steps_goal }}">{{ user.profile.steps_goal }}</option>
-        <option value="5,000">5,000</option>
-        <option value="7,500">7,500</option>
-        <option value="10,000">10,000</option>
+        <option value="5000">5,000</option>
+        <option value="7500">7,500</option>
+        <option value="10000">10,000</option>
       </select>
     </div>
   </div>
@@ -174,7 +172,7 @@
 
   <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="{% static '/js/script.js' %}"></script>
+  <!-- <script src="{% static '/js/script.js' %}"></script> -->
 
   <!-- header & footer calls -->
   <script>$(document).ready(function(){
