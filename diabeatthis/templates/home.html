@@ -82,6 +82,7 @@
         <div class="remindersData">
           <h5>Daily Reminders</h5>
           <ul>
+
             <p id="breakfast"></p>
             <li>Breakfast: {{ user.profile.steps_goal }} </li>
             <li>Lunch: {{ event.start.dateTime }} </li>
@@ -226,7 +227,7 @@
         <input id="activityDay" value="{% now 'Y-m-d' %}" type="date" name="date">
         <input id="activityDateSubmit" type="submit" class="buttonSmall">
       </div>
-      <div id="container-speed" style="width: 560px; height: 300px;"></div>
+      <div id="stepsChart" style="width: 560px; height: 300px;"></div>
     </div>
     </div>
   </div>

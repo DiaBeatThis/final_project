@@ -381,7 +381,7 @@ function stepsChart(){
         };
 
         // The speed gauge
-        var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+        var chartSpeed = Highcharts.chart('stepsChart', Highcharts.merge(gaugeOptions, {
             yAxis: {
                 min: 0,
                 max: $('#stepsGoal').val(),
@@ -395,7 +395,7 @@ function stepsChart(){
             },
 
             series: [{
-                name: 'Speed',
+                name: 'Steps',
                 data: steps,
                 dataLabels: {
                     format: '<div style="text-align:center"><span style="font-size:1.5em;color:' +
@@ -458,8 +458,21 @@ $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
     })
 });
 
+//fitbit steps call
+// function getSteps(){
+//     var $stuff = $("<ol class='ol'>")
+//     $.ajax("https://api.fitbit.com/1/user/-/activities/steps/date/today/1m.json").done(function(results) {
+//         var rr = results.results
+// 		console.log(rr)
+//     $stuff.html()
+//                 $("#singleInfo").append($stuff)
+//             })
+// }
 
 $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)
 $('#glucoseWeekSubmit').click(getGlucose)
 $('#insulinWeekSubmit').click(getInsulin)
+
+// fitbit API request
+// https://api.fitbit.com/1/user/5BZ85Q/activities/date/2016-08-08.json?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Qlo4NVEiLCJhdWQiOiIyMjg3NjMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNDgzNjgwMzY5LCJpYXQiOjE0ODM2NTE1Njl9.m6ZiS8uR-4rEGrAepgjQZ6ddlhErRNj1Jkdh1VH43EE
