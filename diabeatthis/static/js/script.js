@@ -36,19 +36,6 @@ $.ajaxSetup({
     };
 })();
 
-// function getWeekday(d) {
-//     var weekday = new Array(7);
-//     weekday[0] = "Sunday";
-//     weekday[1] = "Monday";
-//     weekday[2] = "Tuesday";
-//     weekday[3] = "Wednesday";
-//     weekday[4] = "Thursday";
-//     weekday[5] = "Friday";
-//     weekday[6] = "Saturday";
-//
-//     return weekday[d.getDay()];
-// }
-
 function getWeekNumber(d) {
     // Copy date so don't modify original
     d = new Date(+d);
@@ -76,6 +63,7 @@ var currentUser = $('#userId').val()
 var currentDate = $('#currentDate').val()
 var insulinWeek = $('#insulinWeek').val()
 var glucoseWeek = $('#glucoseWeek').val()
+var currentDateName = new Date(currentDate).getDayName()
 
 // <!-- functions called when page is loaded -->
 getGlucose()
@@ -83,34 +71,28 @@ getWater()
 getSteps()
 getInsulin()
 
-// <!-- updating charts for date -->
-function chartsForDate (){
-    getInsulin()
-    getGlucose()
-    getWater()
-    getSteps()
-}
-
-
 // <!-- getting results for past 7 days -->
 function getInsulin (){
     insulin = []
     insulinTimestamp = []
     insulinWeek = $('#insulinWeek').val()
-    $.ajax('/api/insulin/').done(function (stuff){
+    $.ajax('/api/insulin?ordered=time_stamp').done(function (stuff){
         res = stuff.results
         for (var i = 0; i < res.length; i++){
             d = new Date(res[i]['time_stamp'])
+            time = d.toLocaleTimeString().replace(/:\d{2}\s/,' ');
             var dayName =  d.getDayName()
             week = getWeekNumber(d)
             if(res[i]['profile_id'] == currentUser && insulinWeek === week){
                 insulin.push(parseFloat(res[i]['mcU_ml']))
-                insulinTimestamp.push(dayName)
+                insulinTimestamp.push(dayName + ', ' + time)
                 // day = (res[i]['time_stamp']).getDayName()
                 // console.log(day)
                 // insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
             }
         }
+        console.log(insulin)
+        console.log(insulinTimestamp)
         insulinCharts()
     })
 }
@@ -120,15 +102,16 @@ function getGlucose (){
     bloodSugar = []
     bloodSugarTimestamp = []
     glucoseWeek = $('#glucoseWeek').val()
-    $.ajax('/api/blood_sugar/').done(function (stuff){
+    $.ajax('/api/blood_sugar?ordered=time_stamp').done(function (stuff){
         res = stuff.results
         for (var i = 0; i < res.length; i++){
             d = new Date(res[i]['time_stamp'])
+            time = d.toLocaleTimeString().replace(/:\d{2}\s/,' ');
             var dayName =  d.getDayName()
             week = getWeekNumber(d)
             if(res[i]['profile_id'] == currentUser && glucoseWeek === week){
                 bloodSugar.push(parseFloat(res[i]['mg_dL']))
-                bloodSugarTimestamp.push(dayName)
+                bloodSugarTimestamp.push(dayName + ', ' + time)
             }
         }
         glucoseCharts()
@@ -253,7 +236,7 @@ function glucoseCharts(){
 }
 
 
-// <!-- building water chart -->
+<!-- building water chart -->
 function waterCharts(){
     Highcharts.chart('containerWater', {
         chart: {
@@ -265,7 +248,7 @@ function waterCharts(){
         },
 
         xAxis: {
-            categories: 'Water'
+            categories: currentDateName
         },
 
         yAxis: {
@@ -303,7 +286,6 @@ function waterCharts(){
         },]
     });
 }
-
 
 // <!-- building steps chart -->
 function stepsChart(){
@@ -443,9 +425,5 @@ $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
 
 $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)
-$('#dateSubmit').click(chartsForDate)
 $('#glucoseWeekSubmit').click(getGlucose)
 $('#insulinWeekSubmit').click(getInsulin)
-
-// fitbit API request
-// https://api.fitbit.com/1/user/5BZ85Q/activities/date/2016-08-08.json?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Qlo4NVEiLCJhdWQiOiIyMjg3NjMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNDgzNjgwMzY5LCJpYXQiOjE0ODM2NTE1Njl9.m6ZiS8uR-4rEGrAepgjQZ6ddlhErRNj1Jkdh1VH43EE
