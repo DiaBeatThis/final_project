@@ -36,7 +36,7 @@
 </section>
 
 <!-- body content -->
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
   <section class="profilesettings">
@@ -44,7 +44,7 @@
       <!-- profile photo -->
       <div class="three columns">
           <img src="{% static user.profile.avatar %}" class="profilephoto"></img>
-        <div class>
+        <div>
           <input name="avatar" type="file" class="avatar"></input>
         </div>
 
@@ -57,7 +57,7 @@
         <div class="remodal-bg">
           <div class="remodal" data-remodal-id="modalPassword">
             <h3>Change your password</h3>
-            <form>
+            <!-- <form> -->
               <div class="row">
                 <div class="six columns offset-by-three columns">
                   <label for="password">Enter your new password</label>
@@ -67,7 +67,7 @@
               <div class="row">
                   <div class="six columns offset-by-three columns">
                     <label for="password">Re-enter your new password</label>
-                    <input class="u-half-width" type="password" value="{{ user.password }}" id="password" name="password">
+                    <input class="u-half-width" type="password" value="{{ user.password }}" id="password" name="password1">
                 </div>
               </div>
             <br>
@@ -110,8 +110,8 @@
           <!-- age -->
           <div class="four2 columns">
             <label for="birthday">Your birthday</label>
-            <p>{{ user.profile.dob|date:"Y-m-d" }}</p>
-            <!-- <input class="u-full-width profileForm" value="{{ user.profile.dob|date:"Y-m-d" }}" type="date" placeholder="Age" id="birthday" name="dob"> -->
+            <p class="profileData">{{ user.profile.dob|date:"Y-m-d" }}</p>
+            <input class="u-full-width profileForm" value="{{ user.profile.dob|date:"Y-m-d" }}" type="date" placeholder="Age" id="birthday" name="dob">
           </div>
           <!-- height -->
           <div class="four2 columns">
@@ -128,18 +128,20 @@
           <!-- sex -->
           <div class="four2 columns">
            <label for="sex">What your biological sex is</label>
-           <p>{{ user.profile.get_sex_display }}</p>
-           <!-- <select class="u-full-width profileForm" id="sex" name="sex">
+           <p class="profileData">{{ user.profile.get_sex_display }}</p>
+           <select class="u-full-width profileForm" id="sex" name="sex">
+             <option value="{{ user.profile.sex }}">{{ user.profile.get_sex_display }}</option>
              <option value="M">Male</option>
              <option value="F">Female</option>
              <option value="O">Other</option>
-           </select> -->
+           </select>
          </div>
          <!-- race -->
          <div class="four2 columns">
           <label for="race">What race you identify as</label>
-          <p>{{ user.profile.get_race_display }}</p>
-          <!-- <select name="race" class="u-full-width profileForm" id="race" placeholder="Race" value="{{ user.profile.race }}">
+          <p class="profileData">{{ user.profile.get_race_display }}</p>
+          <select name="race" class="u-full-width profileForm" id="race" placeholder="Race" value="{{ user.profile.race }}">
+            <option value="{{ user.profile.race }}">{{ user.profile.get_race_display }}</option>
             <option value="AA">African American</option>
             <option value="AI">American Indian</option>
             <option value="A">Asian</option>
@@ -148,7 +150,7 @@
             <option value="NH">Native Hawaiian</option>
             <option value="SA">South Asian/Indian</option>
             <option value="W">Non-Hispanic White</option>
-          </select> -->
+          </select>
         </div>
     </div>
   </div>
@@ -203,7 +205,7 @@
       <div class="remodal-bg">
         <div class="remodal" data-remodal-id="modalReminders">
           <h3>Set up your daily testing reminders</h3>
-          <form>
+          <!-- <form> -->
             <div class="row">
                 <div class="six columns offset-by-three columns">
                   <label for="breakfastSummary">Summary</label>

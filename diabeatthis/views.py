@@ -109,7 +109,8 @@ def user_login(request):
 def profile(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        print(profile_form)
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.username = user.email
@@ -120,7 +121,7 @@ def profile(request):
                                     password=request.user.password,
                                     )
             login(request, user)
-            return HttpResponseRedirect("/home/")
+            return HttpResponseRedirect("/profile/")
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)

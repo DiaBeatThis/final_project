@@ -91,8 +91,6 @@ function getInsulin (){
                 // insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
             }
         }
-        console.log(insulin)
-        console.log(insulinTimestamp)
         insulinCharts()
     })
 }

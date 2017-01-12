@@ -3,6 +3,17 @@ function loadCalendarApi() {
   gapi.client.load('calendar', 'v3');
 }
 
+function insertCalendar(){
+  var request = gapi.client.calendar.insert({
+     'name': 'diabeatthis',
+     'summary': 'diabeatthis',
+     'timeZone': 'American/Cancun',
+  });
+  request.execute(function() {
+     appendPre('Event created: ' + event.htmlLink);
+  });
+}
+
 var b_summary
 var b_description
 var b_time_stamp
@@ -129,6 +140,7 @@ $(document).on('confirmation', '[data-remodal-id=modalReminders]', function () {
 	d_summary = $("#dinnerSummary").val()
     d_description = $("#dinnerDescription").val()
 	d_time_stamp = new Date($("#dinnerReminder").val()).toISOString()
+    insertCalendar()
 	bInsertReminders()
 	lInsertReminders()
 	dInsertReminders()
