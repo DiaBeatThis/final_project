@@ -54,7 +54,7 @@
   .glucoseLegend .redSquare {
     color: #FB1111; }
   .glucoseLegend .purpleSquare {
-    color: #904f54; }
+    color: #904F54; }
   .glucoseLegend .tealSquare {
     color: #248C96; }
 
@@ -64,12 +64,18 @@
 #container-speed {
   margin-left: 5px; }
 
+.highcharts-axis-title {
+  font-size: 18px; }
+
+.highcharts-yaxis-labels, .highcharts-axis-labels {
+  font-size: 14px; }
+
 .header {
   margin: 0 auto;
   padding-top: 15px;
   padding-left: 4%;
   padding-right: 4%;
-  background-color: rgba(65, 94, 111, 0.7);
+  background-color: rgba(90, 109, 117, 0.825);
   font-size: 24px;
   color: #F2F2F2; }
   .header .left img {
@@ -94,7 +100,7 @@
   display: none; }
 
 .footmain {
-  background-color: rgba(65, 94, 111, 0.7); }
+  background-color: rgba(90, 109, 117, 0.825); }
 
 .footer {
   height: 65px;

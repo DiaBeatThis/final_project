@@ -204,7 +204,7 @@ function insulinCharts(){
             name: 'Insulin',
             data: insulin,
             zones: [
-                {color: '#248C96'}] //teal
+                {color: 'rgba(36, 140, 150, .75)'}] //teal
         }]
     });
 }
@@ -316,7 +316,7 @@ function waterCharts(){
             name: 'Water',
             data: water,
             zones: [
-                {color: '#99DCE4'}] //blue
+                {color: 'rgba(153, 220, 228, .85)'}] //blue
         }]
     });
 }
@@ -330,7 +330,7 @@ function stepsChart(){
                 type: 'solidgauge'
             },
 
-            title: null,
+            title: 'Total Daily Steps',
 
             pane: {
                 center: ['50%', '85%'],
@@ -362,7 +362,7 @@ function stepsChart(){
                 minorTickInterval: null,
                 tickAmount: 2,
                 title: {
-                    y: -70
+                    y: -120
                 },
                 labels: {
                     y: 16
