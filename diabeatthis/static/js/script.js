@@ -469,7 +469,6 @@ $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
 //             })
 // }
 
-
 $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)
 $('#glucoseWeekSubmit').click(getGlucose)
