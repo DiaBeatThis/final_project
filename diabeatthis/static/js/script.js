@@ -381,7 +381,7 @@ function stepsChart(){
         };
 
         // The speed gauge
-        var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+        var chartSpeed = Highcharts.chart('stepsChart', Highcharts.merge(gaugeOptions, {
             yAxis: {
                 min: 0,
                 max: $('#stepsGoal').val(),
