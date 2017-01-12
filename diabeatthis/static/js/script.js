@@ -36,19 +36,6 @@ $.ajaxSetup({
     };
 })();
 
-// function getWeekday(d) {
-//     var weekday = new Array(7);
-//     weekday[0] = "Sunday";
-//     weekday[1] = "Monday";
-//     weekday[2] = "Tuesday";
-//     weekday[3] = "Wednesday";
-//     weekday[4] = "Thursday";
-//     weekday[5] = "Friday";
-//     weekday[6] = "Saturday";
-//
-//     return weekday[d.getDay()];
-// }
-
 function getWeekNumber(d) {
     // Copy date so don't modify original
     d = new Date(+d);
@@ -76,6 +63,7 @@ var currentUser = $('#userId').val()
 var currentDate = $('#currentDate').val()
 var insulinWeek = $('#insulinWeek').val()
 var glucoseWeek = $('#glucoseWeek').val()
+var currentDateName = new Date(currentDate).getDayName()
 
 // <!-- functions called when page is loaded -->
 getGlucose()
@@ -83,34 +71,28 @@ getWater()
 getSteps()
 getInsulin()
 
-// <!-- updating charts for date -->
-function chartsForDate (){
-    getInsulin()
-    getGlucose()
-    getWater()
-    getSteps()
-}
-
-
 // <!-- getting results for past 7 days -->
 function getInsulin (){
     insulin = []
     insulinTimestamp = []
     insulinWeek = $('#insulinWeek').val()
-    $.ajax('/api/insulin/').done(function (stuff){
+    $.ajax('/api/insulin?ordered=time_stamp').done(function (stuff){
         res = stuff.results
         for (var i = 0; i < res.length; i++){
             d = new Date(res[i]['time_stamp'])
+            time = d.toLocaleTimeString().replace(/:\d{2}\s/,' ');
             var dayName =  d.getDayName()
             week = getWeekNumber(d)
             if(res[i]['profile_id'] == currentUser && insulinWeek === week){
                 insulin.push(parseFloat(res[i]['mcU_ml']))
-                insulinTimestamp.push(dayName)
+                insulinTimestamp.push(dayName + ', ' + time)
                 // day = (res[i]['time_stamp']).getDayName()
                 // console.log(day)
                 // insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
             }
         }
+        console.log(insulin)
+        console.log(insulinTimestamp)
         insulinCharts()
     })
 }
@@ -120,15 +102,16 @@ function getGlucose (){
     bloodSugar = []
     bloodSugarTimestamp = []
     glucoseWeek = $('#glucoseWeek').val()
-    $.ajax('/api/blood_sugar/').done(function (stuff){
+    $.ajax('/api/blood_sugar?ordered=time_stamp').done(function (stuff){
         res = stuff.results
         for (var i = 0; i < res.length; i++){
             d = new Date(res[i]['time_stamp'])
+            time = d.toLocaleTimeString().replace(/:\d{2}\s/,' ');
             var dayName =  d.getDayName()
             week = getWeekNumber(d)
             if(res[i]['profile_id'] == currentUser && glucoseWeek === week){
                 bloodSugar.push(parseFloat(res[i]['mg_dL']))
-                bloodSugarTimestamp.push(dayName)
+                bloodSugarTimestamp.push(dayName + ', ' + time)
             }
         }
         glucoseCharts()
@@ -167,6 +150,16 @@ function getSteps (){
     })
 }
 
+// chart font options
+Highcharts.setOptions({
+    chart: {
+        style: {
+            fontFamily: 'Helvetica Neue',
+            color: '#091019'
+        }
+    }
+});
+
 
 // <!-- building insulin chart -->
 function insulinCharts(){
@@ -175,8 +168,12 @@ function insulinCharts(){
             type: 'column'
         },
 
+        legend: {
+            enabled: false
+        },
+
         title: {
-            text: 'Insulin'
+            text: 'Insulin Dosage'
         },
 
         xAxis: {
@@ -187,7 +184,7 @@ function insulinCharts(){
             allowDecimals: false,
             min: 0,
             title: {
-                text: 'Amount of insulin sugar'
+                text: 'units'
             }
         },
 
@@ -206,7 +203,9 @@ function insulinCharts(){
         series: [{
             name: 'Insulin',
             data: insulin,
-        },]
+            zones: [
+                {color: '#248C96'}] //teal
+        }]
     });
 }
 
@@ -217,8 +216,12 @@ function glucoseCharts(){
             type: 'column'
         },
 
+        legend: {
+          enabled: false
+        },
+
         title: {
-            text: 'Blood sugar'
+            text: 'Glucose Levels'
         },
 
         xAxis: {
@@ -229,15 +232,14 @@ function glucoseCharts(){
             allowDecimals: false,
             min: 0,
             title: {
-                text: 'Amount of blood sugar'
+                text: 'mg/dL'
             }
         },
 
         tooltip: {
             formatter: function () {
                 return '<b>' + this.x + '</b><br/>' +
-                    this.series.name + ': ' + this.y + '<br/>' +
-                    'Total: ' + this.point.stackTotal;
+                    this.series.name + ': ' + this.y;
             }
         },
         plotOptions: {
@@ -246,18 +248,32 @@ function glucoseCharts(){
             }
         },
         series: [{
-            name: 'Blood sugar',
+            name: 'Glucose Level',
             data: bloodSugar,
+            zones: [
+              {value: 60,
+                color: '#fb1111'}, //red
+                {value: 70,
+                  color: '#904F54'}, //purple
+                {value: 130,
+                color: '#248C96'}, //teal
+                {value: 140,
+                  color: '#904F54'}, //purple
+                {color: '#fb1111'}] //red
         }]
     });
 }
 
 
-// <!-- building water chart -->
+<!-- building water chart -->
 function waterCharts(){
     Highcharts.chart('containerWater', {
         chart: {
             type: 'column'
+        },
+
+        legend: {
+            enabled: false
         },
 
         title: {
@@ -265,7 +281,7 @@ function waterCharts(){
         },
 
         xAxis: {
-            categories: 'Water'
+            categories: currentDateName
         },
 
         yAxis: {
@@ -288,8 +304,7 @@ function waterCharts(){
         tooltip: {
             formatter: function () {
                 return '<b>' + this.x + '</b><br/>' +
-                    this.series.name + ': ' + this.y + '<br/>' +
-                    'Total: ' + this.point.stackTotal;
+                    this.series.name + ': ' + this.y;
             }
         },
         plotOptions: {
@@ -300,10 +315,11 @@ function waterCharts(){
         series: [{
             name: 'Water',
             data: water,
-        },]
+            zones: [
+                {color: '#99DCE4'}] //blue
+        }]
     });
 }
-
 
 // <!-- building steps chart -->
 function stepsChart(){
@@ -338,7 +354,7 @@ function stepsChart(){
                 stops: [
                     [0.1, '#FB1111'], // Red
                     [0.25, '#C53032'], // Violet
-                    [0.5, '#DDDF0D'], // Purple
+                    [0.5, '#904F54'], // Purple
                     [0.75, '#5A6D75'], // Blue
                     [0.9, '#248C96'] // Teal
                 ],
@@ -456,12 +472,11 @@ function getSteps(){
 
 $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)
-$('#dateSubmit').click(chartsForDate)
 $('#glucoseWeekSubmit').click(getGlucose)
 $('#insulinWeekSubmit').click(getInsulin)
 
 
-// https://api.fitbit.com/1/user/5BZ85Q/activities/date/2016-08-08.json?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Qlo4NVEiLCJhdWQiOiIyMjg3OE0iLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNDgzNzU0NzAzLCJpYXQiOjE0ODM3MjU5MDN9.Qyk3HS5P0FK7GtJkC4MT7j05DSvZ-nJpqXm7ZzAGEEo
+
 
 // fitbit API request
 // https://api.fitbit.com/1/user/5BZ85Q/activities/date/2016-08-08.json?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Qlo4NVEiLCJhdWQiOiIyMjg3NjMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNDgzNjgwMzY5LCJpYXQiOjE0ODM2NTE1Njl9.m6ZiS8uR-4rEGrAepgjQZ6ddlhErRNj1Jkdh1VH43EE

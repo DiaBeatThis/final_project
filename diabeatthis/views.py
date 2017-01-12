@@ -6,7 +6,7 @@ from .models import PhysicalActivity, Insulin, BloodSugar, Water
 from .serializers import UserSerializer, ProfileSerializer, PhysicalActivitySerializer
 from .serializers import NutritionSerializer, MealsSerializer, InsulinSerializer
 from .serializers import BloodSugarSerializer, WaterSerializer
-from .forms import UserForm, ProfileForm, UserUpdateForm
+from .forms import UserForm, ProfileForm, UserUpdateForm, ChangePassword
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -43,42 +43,18 @@ class MealsViewSet(viewsets.ModelViewSet):
 
 
 class InsulinViewSet(viewsets.ModelViewSet):
-    queryset = Insulin.objects.all()
+    queryset = Insulin.objects.all().order_by('time_stamp')
     serializer_class = InsulinSerializer
 
 
 class BloodSugarViewSet(viewsets.ModelViewSet):
-    queryset = BloodSugar.objects.all()
+    queryset = BloodSugar.objects.all().order_by('time_stamp')
     serializer_class = BloodSugarSerializer
 
 
 class WaterViewSet(viewsets.ModelViewSet):
     queryset = Water.objects.all()
     serializer_class = WaterSerializer
-
-#
-# def register(request):
-#     registered = False
-#     if request.method == 'POST':
-#         user_form = UserForm(data=request.POST)
-#         profile_form = ProfileForm(request.POST, request.FILES)
-#         if user_form.is_valid() and profile_form.is_valid():
-#             user = user_form.save()
-#             user.username = user.email
-#             user.set_password(user.password)
-#             user.save()
-#             profile = profile_form.save(commit=False)
-#             profile.user = user
-#             profile.save()
-#             registered = True
-#         else:
-#             print(user_form.errors, profile_form.errors)
-#     else:
-#         user_form = UserForm()
-#         profile_form = ProfileForm()
-#     return render(request,
-#             'registration/register.html',
-#             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
 
 
 def register(request):
@@ -134,6 +110,7 @@ def profile(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        password_form = ChangePassword(request.POST, instance=request.user.profile.password)
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.username = user.email
@@ -145,6 +122,11 @@ def profile(request):
                                     )
             login(request, user)
             return HttpResponseRedirect("/home/")
+        elif user_form.is_valid():
+            new_pass = password_form.cleaned_data['new_password']
+            user.password = new_pass
+            user.save()
+            return HttpResponseRedirect("/login/")
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)

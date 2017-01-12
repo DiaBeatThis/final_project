@@ -9,6 +9,7 @@
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/highcharts-more.js"></script>
   <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+  <script src="https://code.highcharts.com/modules/funnel.js"></script>
 
   <title>diaBEATthis</title>
 
@@ -27,6 +28,9 @@
   <!-- remodal -->
   <link rel="stylesheet" href="{% static '/css/remodal.css' %}">
   <link rel="stylesheet" href="{% static 'css/remodal-default-theme.css' %}">
+
+  <!-- fontawesome -->
+  <script src="https://use.fontawesome.com/f0fffec6a9.js"></script>
 
   <!-- normal css -->
   <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
@@ -58,10 +62,13 @@
 
     <!-- glucose chart -->
     <div class="nine columns" id="glucoseChart">
-        <div class="datePicker">
+        <div class="datePicker glucoseDate">
           <span>Week:</span>
           <input id="glucoseWeek" Value="{% now 'Y-\W\0W' %}" type="week" name="week">
           <input id="glucoseWeekSubmit" type="submit" class="buttonSmall">
+        </div>
+        <div class="glucoseLegend">
+          <p><i class="fa fa-square redSquare" aria-hidden="true"></i> Unsafe Level <i class="fa fa-square purpleSquare" aria-hidden="true"></i> Caution Level <i class="fa fa-square tealSquare" aria-hidden="true"></i> Safe Level </p>
         </div>
         <div id="containerGlucose" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
     </div>
@@ -75,9 +82,11 @@
         <div class="remindersData">
           <h5>Daily Reminders</h5>
           <ul>
-            <li>Breakfast:  </li>
-            <li>Lunch:  </li>
-            <li>Dinner:  </pre> </li>
+
+            <p id="breakfast"></p>
+            <li>Breakfast: {{ user.profile.steps_goal }} </li>
+            <li>Lunch: {{ event.start.dateTime }} </li>
+            <li>Dinner: </pre> </li>
           </ul>
         </div>
         <a href="../profile/#thirdParty">Edit Reminders</a>
@@ -153,7 +162,7 @@
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="waterDateTime">Date/Time (e.g. 01/01/2017, 08:00 AM)</label>
-                <input class="u-full-width" value="{% now 'Y-m-d\Th:i' %}"  type="datetime-local" id="waterDateTime" name="waterDateTime">
+                <input class="u-full-width" value="{% now 'Y-m-d\Th:i' %}" type="datetime-local" id="waterDateTime" name="waterDateTime">
               </div>
             </div>
           <br>
@@ -204,7 +213,7 @@
       <div class="four columns" id="waterChart">
         <div class="datePicker">
           <span>Day:</span>
-          <input id="waterDay" value="2017-01-10" type="date" name="date">
+          <input id="waterDay" value="{% now 'Y-m-d' %}" type="date" name="date">
           <input id="waterDateSubmit" type="submit" class="buttonSmall">
         </div>
         <div id="containerWater" style="min-width: 300px; height: 300px; margin: 0 auto">
@@ -215,7 +224,7 @@
     <div class="seven columns">
       <div class="datePicker">
         <span>Day:</span>
-        <input id="activityDay" value="2017-01-10" type="date" name="date">
+        <input id="activityDay" value="{% now 'Y-m-d' %}" type="date" name="date">
         <input id="activityDateSubmit" type="submit" class="buttonSmall">
       </div>
       <div id="container-speed" style="width: 560px; height: 300px;"></div>
@@ -242,9 +251,7 @@
   <script async defer src="https://apis.google.com/js/api.js"
         onload="this.onload=function(){};"
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
-      </script>
-
-
+  </script>
 
   <script src="{%  static '/js/script.js' %}"></script>
   <script src="{% static '/js/googlecal.js' %}"></script>
