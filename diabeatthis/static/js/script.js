@@ -193,7 +193,7 @@ function insulinCharts(){
     });
 }
 
-// <!-- building insulin chart -->
+// <!-- building glucose chart -->
 function glucoseCharts(){
     Highcharts.chart('containerGlucose', {
         chart: {
@@ -244,7 +244,7 @@ function waterCharts(){
         },
 
         title: {
-            text: 'Water'
+            text: 'Daily Water Intake'
         },
 
         xAxis: {
@@ -256,15 +256,15 @@ function waterCharts(){
             min: 0,
             max: 15,
             title: {
-                text: 'Ounces'
+                text: 'Cups'
             },
             plotLines: [{
                     value: $('#waterGoal').val(),
-                    color: 'green',
+                    color: '#091019',
                     dashStyle: 'shortdash',
                     width: 2,
                     label: {
-                        text: 'Goal'
+                        text: 'Daily Goal'
                     }}]
         },
 
@@ -318,9 +318,11 @@ function stepsChart(){
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.1, '#FB1111'], // Red
+                    [0.25, '#C53032'], // Violet
+                    [0.5, '#DDDF0D'], // Purple
+                    [0.75, '#5A6D75'], // Blue
+                    [0.9, '#248C96'] // Teal
                 ],
                 lineWidth: 0,
                 minorTickInterval: null,
@@ -350,7 +352,7 @@ function stepsChart(){
                 min: 0,
                 max: $('#stepsGoal').val(),
                 title: {
-                    text: 'Steps'
+                    text: 'Total Daily Steps'
                 }
             },
 
@@ -362,12 +364,12 @@ function stepsChart(){
                 name: 'Speed',
                 data: steps,
                 dataLabels: {
-                    format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                    format: '<div style="text-align:center"><span style="font-size:1.5em;color:' +
                         ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                           '<span style="font-size:12px;color:silver">steps</span></div>'
+                           '<span style="font-size:14px;color:silver">steps</span></div>'
                 },
                 tooltip: {
-                    valueSuffix: ' steps'
+                    valueSuffix: 'steps'
                 }
             }]
 

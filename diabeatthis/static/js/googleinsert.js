@@ -1,7 +1,34 @@
 // google INSERT EVENT
+
 function prepCalendarInsert() {
 	console.log("prepCalendarInsert working")
 	gapi.client.load('calendar', 'v3');
+}
+
+var b_summary
+var b_description
+var b_time_stamp
+var l_summary
+var l_description
+var l_time_stamp
+var d_summary
+var d_description
+var d_time_stamp
+
+function bInsertReminders(){
+	event = {
+  'summary': b_summary,
+  'description': b_description,
+  'start': {
+    'dateTime': b_time_stamp,
+    'timeZone': 'America/Los_Angeles'
+  },
+  'end': {
+    'dateTime': b_time_stamp,
+
+
+function loadCalendarApi() {
+  gapi.client.load('calendar', 'v3');
 }
 
 var b_summary
@@ -86,7 +113,7 @@ function dInsertReminders(){
       {'method': 'popup', 'minutes': 10}
     ]
   }
-};setDinnerReminder()
+};setBreakfastReminder()
 }
 
 function setBreakfastReminder(){
@@ -114,9 +141,10 @@ function setDinnerReminder(){
 	  'calendarId': 'primary',
 	  'resource': event
 	});
-	request.execute(function(event) {
-	  appendPre('Event created: ' + event.htmlLink);
-	});
+request.execute(function(event) {
+  appendPre('Event created: ' + event.htmlLink);
+});
+
 }
 
 $(document).on('confirmation', '[data-remodal-id=modalReminders]', function () {

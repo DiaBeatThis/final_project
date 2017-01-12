@@ -246,11 +246,13 @@
               <div class="six columns offset-by-three columns">
                 <label for="lunchReminder">Lunch:</label>
                 <input class="u-full-width" value="{% now 'Y-m-d\Th:i' %}" type="datetime-local" placeholder="0" id="lunchReminder" name="lunchReminder">
+
             </div>
 
           </div>
             <div class="row">
-                <div class="six columns offset-by-three columns">
+				<div class="six columns offset-by-three columns">
+
                   <label for="dinnerSummary">Summary</label>
                   <input class="u-full-width" type="text" placeholder="summary" id="dinnerSummary" name="dinnerSummary">
                 </div>
@@ -260,7 +262,9 @@
                 </div>
               <div class="six columns offset-by-three columns">
                 <label for="dinnerReminder">Dinner:</label>
+
                 <input class="u-full-width" value="{% now 'Y-m-d\Th:i' %}" type="datetime-local" placeholder="0" id="dinnerReminder" name="dinnerReminder">
+
             </div>
           </div>
           <br>
@@ -286,6 +290,8 @@
       <pre id="output"></pre>
 
 	  <button id="insert-calendar" onclick="prepCalendarInsert()">Reminder</button>
+	  <button id="insert-calendar" onclick="insertReminders()">insertReminder</button>
+
 
 
 <!-- footer nav -->
