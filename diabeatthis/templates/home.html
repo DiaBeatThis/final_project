@@ -28,6 +28,9 @@
   <link rel="stylesheet" href="{% static '/css/remodal.css' %}">
   <link rel="stylesheet" href="{% static 'css/remodal-default-theme.css' %}">
 
+  <!-- fontawesome -->
+  <script src="https://use.fontawesome.com/f0fffec6a9.js"></script>
+
   <!-- normal css -->
   <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
   <link rel="stylesheet" href="{% static '/css/skeleton.css' %}">
@@ -58,10 +61,13 @@
 
     <!-- glucose chart -->
     <div class="nine columns" id="glucoseChart">
-        <div class="datePicker">
+        <div class="datePicker glucoseDate">
           <span>Week:</span>
           <input id="glucoseWeek" Value="{% now 'Y-\W\0W' %}" type="week" name="week">
           <input id="glucoseWeekSubmit" type="submit" class="buttonSmall">
+        </div>
+        <div class="glucoseLegend">
+          <p><i class="fa fa-square redSquare" aria-hidden="true"></i> Unsafe Level <i class="fa fa-square purpleSquare" aria-hidden="true"></i> Caution Level <i class="fa fa-square tealSquare" aria-hidden="true"></i> Safe Level </p>
         </div>
         <div id="containerGlucose" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
     </div>
@@ -237,15 +243,12 @@
 
   <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<<<<<<< HEAD
   <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
   <script async defer src="https://apis.google.com/js/api.js"
         onload="this.onload=function(){};"
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
       </script>
 
-=======
->>>>>>> d7b3c9fa43b712991e262b99ec6028be592ad732
 
   <script src="{%  static '/js/script.js' %}"></script>
   <script src="{% static '/js/googlecal.js' %}"></script>
