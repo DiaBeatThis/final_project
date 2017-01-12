@@ -6,7 +6,7 @@ from .models import PhysicalActivity, Insulin, BloodSugar, Water
 from .serializers import UserSerializer, ProfileSerializer, PhysicalActivitySerializer
 from .serializers import NutritionSerializer, MealsSerializer, InsulinSerializer
 from .serializers import BloodSugarSerializer, WaterSerializer
-from .forms import UserForm, ProfileForm, UserUpdateForm, ChangePassword
+from .forms import UserForm, ProfileForm, UserUpdateForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -110,7 +110,6 @@ def profile(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, instance=request.user.profile)
-        password_form = ChangePassword(request.POST, instance=request.user.profile.password)
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.username = user.email
@@ -122,11 +121,6 @@ def profile(request):
                                     )
             login(request, user)
             return HttpResponseRedirect("/home/")
-        elif user_form.is_valid():
-            new_pass = password_form.cleaned_data['new_password']
-            user.password = new_pass
-            user.save()
-            return HttpResponseRedirect("/login/")
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)

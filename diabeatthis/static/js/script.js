@@ -150,6 +150,16 @@ function getSteps (){
     })
 }
 
+// chart font options
+Highcharts.setOptions({
+    chart: {
+        style: {
+            fontFamily: 'Helvetica Neue',
+            color: '#091019'
+        }
+    }
+});
+
 
 // <!-- building insulin chart -->
 function insulinCharts(){
@@ -158,8 +168,12 @@ function insulinCharts(){
             type: 'column'
         },
 
+        legend: {
+            enabled: false
+        },
+
         title: {
-            text: 'Insulin'
+            text: 'Insulin Dosage'
         },
 
         xAxis: {
@@ -170,7 +184,7 @@ function insulinCharts(){
             allowDecimals: false,
             min: 0,
             title: {
-                text: 'Amount of insulin sugar'
+                text: 'units'
             }
         },
 
@@ -189,7 +203,9 @@ function insulinCharts(){
         series: [{
             name: 'Insulin',
             data: insulin,
-        },]
+            zones: [
+                {color: '#248C96'}] //teal
+        }]
     });
 }
 
@@ -200,8 +216,12 @@ function glucoseCharts(){
             type: 'column'
         },
 
+        legend: {
+          enabled: false
+        },
+
         title: {
-            text: 'Blood sugar'
+            text: 'Glucose Levels'
         },
 
         xAxis: {
@@ -212,15 +232,14 @@ function glucoseCharts(){
             allowDecimals: false,
             min: 0,
             title: {
-                text: 'Amount of blood sugar'
+                text: 'mg/dL'
             }
         },
 
         tooltip: {
             formatter: function () {
                 return '<b>' + this.x + '</b><br/>' +
-                    this.series.name + ': ' + this.y + '<br/>' +
-                    'Total: ' + this.point.stackTotal;
+                    this.series.name + ': ' + this.y;
             }
         },
         plotOptions: {
@@ -229,8 +248,18 @@ function glucoseCharts(){
             }
         },
         series: [{
-            name: 'Blood sugar',
+            name: 'Glucose Level',
             data: bloodSugar,
+            zones: [
+              {value: 60,
+                color: '#fb1111'}, //red
+                {value: 70,
+                  color: '#904F54'}, //purple
+                {value: 130,
+                color: '#248C96'}, //teal
+                {value: 140,
+                  color: '#904F54'}, //purple
+                {color: '#fb1111'}] //red
         }]
     });
 }
@@ -241,6 +270,10 @@ function waterCharts(){
     Highcharts.chart('containerWater', {
         chart: {
             type: 'column'
+        },
+
+        legend: {
+            enabled: false
         },
 
         title: {
@@ -271,8 +304,7 @@ function waterCharts(){
         tooltip: {
             formatter: function () {
                 return '<b>' + this.x + '</b><br/>' +
-                    this.series.name + ': ' + this.y + '<br/>' +
-                    'Total: ' + this.point.stackTotal;
+                    this.series.name + ': ' + this.y;
             }
         },
         plotOptions: {
@@ -283,7 +315,9 @@ function waterCharts(){
         series: [{
             name: 'Water',
             data: water,
-        },]
+            zones: [
+                {color: '#99DCE4'}] //blue
+        }]
     });
 }
 
@@ -320,7 +354,7 @@ function stepsChart(){
                 stops: [
                     [0.1, '#FB1111'], // Red
                     [0.25, '#C53032'], // Violet
-                    [0.5, '#DDDF0D'], // Purple
+                    [0.5, '#904F54'], // Purple
                     [0.75, '#5A6D75'], // Blue
                     [0.9, '#248C96'] // Teal
                 ],
@@ -347,7 +381,7 @@ function stepsChart(){
         };
 
         // The speed gauge
-        var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+        var chartSpeed = Highcharts.chart('stepsChart', Highcharts.merge(gaugeOptions, {
             yAxis: {
                 min: 0,
                 max: $('#stepsGoal').val(),
@@ -361,7 +395,7 @@ function stepsChart(){
             },
 
             series: [{
-                name: 'Speed',
+                name: 'Steps',
                 data: steps,
                 dataLabels: {
                     format: '<div style="text-align:center"><span style="font-size:1.5em;color:' +
@@ -424,8 +458,22 @@ $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
     })
 });
 
+//fitbit steps call
+// function getSteps(){
+//     var $stuff = $("<ol class='ol'>")
+//     $.ajax("https://api.fitbit.com/1/user/-/activities/steps/date/today/1m.json").done(function(results) {
+//         var rr = results.results
+// 		console.log(rr)
+//     $stuff.html()
+//                 $("#singleInfo").append($stuff)
+//             })
+// }
+
 
 $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)
 $('#glucoseWeekSubmit').click(getGlucose)
 $('#insulinWeekSubmit').click(getInsulin)
+
+// fitbit API request
+// https://api.fitbit.com/1/user/5BZ85Q/activities/date/2016-08-08.json?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Qlo4NVEiLCJhdWQiOiIyMjg3NjMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNDgzNjgwMzY5LCJpYXQiOjE0ODM2NTE1Njl9.m6ZiS8uR-4rEGrAepgjQZ6ddlhErRNj1Jkdh1VH43EE

@@ -61,6 +61,27 @@
   }
 }
 
+.glucoseDate{
+  float: left;
+}
+
+.glucoseLegend{
+  float: right;
+  .redSquare{
+    color: $red;
+  }
+  .purpleSquare{
+    color: $purple;
+  }
+  .tealSquare{
+    color: $teal;
+  }
+}
+
+.containerGlucose{
+  clear: both;
+}
+
 #container-speed{
   margin-left: 5px;
 }

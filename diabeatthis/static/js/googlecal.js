@@ -23,7 +23,6 @@ function checkAuth() {
 * @param {Object} authResult Authorization result.
 */
 function handleAuthResult(authResult) {
-<<<<<<< HEAD
  var authorizeDiv = document.getElementById('authorize-div');
  if (authResult && !authResult.error) {
     // Hide auth UI, then load client library.
@@ -34,7 +33,6 @@ function handleAuthResult(authResult) {
     // clicking authorize button.
     authorizeDiv.style.display = 'inline';
  }
-=======
   var authorizeDiv = document.getElementById('authorize-div');
   if (authResult && !authResult.error) {
 	// Hide auth UI, then load client library.
@@ -45,7 +43,7 @@ function handleAuthResult(authResult) {
 	// clicking authorize button.
 	authorizeDiv.style.display = 'inline';
   }
->>>>>>> 96ad5379cdab8e16f3deb97274e9e5bd46bd52f9
+
 }
 
 /**
@@ -67,11 +65,8 @@ function handleAuthClick(event) {
 */
 
 function loadCalendarApi() {
-<<<<<<< HEAD
  gapi.client.load('calendar', 'v3', listUpcomingEvents);
-=======
-  gapi.client.load('calendar', 'v3');
->>>>>>> 96ad5379cdab8e16f3deb97274e9e5bd46bd52f9
+
 }
 
 /**

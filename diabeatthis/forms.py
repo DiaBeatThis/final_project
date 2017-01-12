@@ -83,17 +83,3 @@ class ProfileForm(forms.ModelForm):
             pass
 
         return avatar
-
-
-class ChangePassword(forms.Form):
-      new_password = forms.PasswordInput()
-      reenter_password = forms.PasswordInput()
-      def clean(self):
-          new_password = self.cleaned_data.get('new_password')
-          reenter_password = self.cleaned_data.get('reenter_password')
-          #similarly old_password
-          if new_password != reenter_password:
-             raise forms.ValidationError(u'Passwords are not matching!')
-                #raise error
-         #get the user object and check from old_password list if any one matches with the new password raise error(read whole answer you would know)
-          return self.cleaned_data #don't forget this.

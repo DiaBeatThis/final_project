@@ -39,102 +39,92 @@
 <form method="POST">
     {% csrf_token %}
 
-<section class="profilesettings">
-  <div class="row">
+  <section class="profilesettings">
+    <div class="row">
+      <!-- profile photo -->
+      <div class="three columns">
+          <img src="{% static user.profile.avatar %}" class="profilephoto"></img>
+        <div class>
+          <input name="avatar" type="file" class="avatar"></input>
+        </div>
 
-    <!-- profile photo -->
-    <div class="three columns">
-        <img src="{% static user.profile.avatar %}" class="profilephoto"></img>
-      <div class>
-        <input name="avatar" type="file"></input>
-      </div>
-
-      <!-- reset password -->
-      <br><br>
-      <div class="resetPassword">
-        <a href="#modalPassword">Change Your Password</a>
-      </div>
-      <!-- reset password modal-->
-      <div class="remodal-bg">
-        <div class="remodal" data-remodal-id="modalPassword">
-          <h3>Change your password</h3>
-          <form>
-            <div class="row">
-              <div class="six columns offset-by-three columns">
-                <label for="password">Enter your new password</label>
-                <input class="u-half-width" type="password" value="{{ user.password }}" id="password" name="password">
-              </div>
-            </div>
-            <div class="row">
+        <!-- reset password -->
+        <br><br>
+        <div class="resetPassword">
+          <a href="#modalPassword">Change Your Password</a>
+        </div>
+        <!-- reset password modal-->
+        <div class="remodal-bg">
+          <div class="remodal" data-remodal-id="modalPassword">
+            <h3>Change your password</h3>
+            <form>
+              <div class="row">
                 <div class="six columns offset-by-three columns">
-                  <label for="password">Re-enter your new password</label>
+                  <label for="password">Enter your new password</label>
                   <input class="u-half-width" type="password" value="{{ user.password }}" id="password" name="password">
+                </div>
               </div>
+              <div class="row">
+                  <div class="six columns offset-by-three columns">
+                    <label for="password">Re-enter your new password</label>
+                    <input class="u-half-width" type="password" value="{{ user.password }}" id="password" name="password">
+                </div>
+              </div>
+            <br>
+            <div class="row">
+              <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+              <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
             </div>
-          <br>
-          <div class="row">
-            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-            <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
-          </div>
+        </div>
       </div>
-    </div>
-  </div>
-
-    <!--  profile header -->
-    <div class="nine columns">
-      <div class="profileHeader">
-        <h5>This is what you've told us about yourself:</h5>
       </div>
-
-      <div class="headerButtons">
-        <button type="button" name="edit" class="buttonLeft">Edit</button>
-        <button type="submit" name="save" class="buttonRight">Save</button>
-      </div>
-
-      <!-- <form> -->
-
+      <!--  profile header -->
+      <div class="nine columns">
+        <div class="profileHeader">
+          <h5>This is what you've told us about yourself:</h5>
+        </div>
+        <!-- header buttons -->
+        <div class="headerButtons">
+          <button type="button" name="edit" class="buttonLeft">Edit</button>
+          <button type="submit" name="save" class="buttonRight">Save</button>
+        </div>
+        <!-- <form> -->
         <!-- first name -->
           <div class="six2 columns clearFloat">
             <label for="firstName">Your first name</label>
             <p class="profileData">{{ user.first_name }}</p>
             <input name="first_name" value="{{ user.first_name }}" class="u-full-width profileForm" type="text" placeholder="First Name" id="firstName">
           </div>
-
           <!-- last name -->
           <div class="six2 columns">
             <label for="lastName">Your last name</label>
             <p class="profileData">{{ user.last_name }}</p>
             <input class="u-full-width profileForm" value="{{ user.last_name }}" type="text" placeholder="Last Name" id="lastName" name="last_name">
           </div>
-
           <!-- email -->
           <div class="twelve2 columns">
             <label for="email">Your email address (this is your user id also)</label>
             <p class="profileData">{{ user.email }}</p>
             <input class="u-full-width profileForm" value="{{ user.email }}" type="text" placeholder="Email Address" id="email" name="email">
           </div>
-
           <!-- age -->
           <div class="four2 columns">
             <label for="birthday">Your birthday</label>
             <p>{{ user.profile.dob|date:"Y-m-d" }}</p>
             <!-- <input class="u-full-width profileForm" value="{{ user.profile.dob|date:"Y-m-d" }}" type="date" placeholder="Age" id="birthday" name="dob"> -->
           </div>
-
           <!-- height -->
           <div class="four2 columns">
             <label for="height">How tall you are</label>
             <p class="profileData">{{ user.profile.height }} inches</p>
             <input name="height" class="u-full-width profileForm" value="{{ user.profile.height }}" type="number" placeholder="Height (in)" id="height">
           </div>
-
           <!-- weight -->
           <div class="four2 columns">
             <label for="weight">How much you weigh</label>
             <p class="profileData">{{ user.profile.weight }} pounds</p>
             <input class="u-full-width profileForm" value="{{ user.profile.weight }}" type="number" placeholder="Weight (lbs)" id="weight" name="weight">
           </div>
-
           <!-- sex -->
           <div class="four2 columns">
            <label for="sex">What your biological sex is</label>
@@ -160,56 +150,50 @@
             <option value="W">Non-Hispanic White</option>
           </select> -->
         </div>
-      <!-- </form> -->
     </div>
   </div>
-
-<!-- section divider line -->
-<div class="row">
-  <div class="three columns"></div>
-  <div class="nine columns breakline"></div>
-</div>
-
-<!-- blank div -->
-<div class="row">
-  <div class="three columns"></div>
-
-  <!-- settings -->
-  <!-- water goal -->
-  <div class="three columns">
-    <label for="waterGoal">Select a daily goal for drinking water</label>
-    <p class="profileData">{{ user.profile.water_goal }} cups</p>
-    <select class="u-full-width profileForm" id="waterGoal" name="water_goal">
-      <option value="{{ user.profile.water_goal }}">{{ user.profile.water_goal }} cups</option>
-      <option value="8">8 cups</option>
-      <option value="10">10 cups</option>
-      <option value="12">12 cups</option>
-    </select>
+  <!-- section divider line -->
+  <div class="row">
+    <div class="three columns"></div>
+    <div class="nine columns breakline"></div>
   </div>
-  <!-- steps goal -->
-  <div class="three columns">
-    <label for="stepsGoal">Select a daily goal for steps walked/run</label>
-    <p class="profileData">{{ user.profile.steps_goal }} steps</p>
-    <select class="u-full-width profileForm" id="stepsGoal" name="steps_goal">
-      <option value="{{ user.profile.steps_goal }}">{{ user.profile.steps_goal }}</option>
-      <option value="5000">5,000</option>
-      <option value="7500">7,500</option>
-      <option value="10000">10,000</option>
-    </select>
+  <!-- blank div -->
+  <div class="row">
+    <div class="three columns"></div>
+    <!-- settings -->
+    <!-- water goal -->
+    <div class="three columns">
+      <label for="waterGoal">Select a daily goal for drinking water</label>
+      <p class="profileData">{{ user.profile.water_goal }} cups</p>
+      <select class="u-full-width profileForm" id="waterGoal" name="water_goal">
+        <option value="{{ user.profile.water_goal }}">{{ user.profile.water_goal }} cups</option>
+        <option value="8">8 cups</option>
+        <option value="10">10 cups</option>
+        <option value="12">12 cups</option>
+      </select>
+    </div>
+    <!-- steps goal -->
+    <div class="three columns">
+      <label for="stepsGoal">Select a daily goal for steps walked/run</label>
+      <p class="profileData">{{ user.profile.steps_goal }} steps</p>
+      <select class="u-full-width profileForm" id="stepsGoal" name="steps_goal">
+        <option value="{{ user.profile.steps_goal }}">{{ user.profile.steps_goal }}</option>
+        <option value="5000">5,000</option>
+        <option value="7500">7,500</option>
+        <option value="10000">10,000</option>
+      </select>
+    </div>
   </div>
-</div>
-
+<!-- </form> -->
 </form>
 <!-- section divider line -->
 <div class="row">
   <div class="three columns"></div>
   <div class="nine columns breakline"></div>
 </div>
-
   <!-- blank div -->
   <div class="row">
     <div class="three columns"></div>
-
     <!-- api connections -->
     <div class="nine columns" id="thirdParty">
       <img src="{% static  '/images/Google_2015_logo.png' %}" alt="Google Logo" class="thirdpartylogo">
@@ -281,24 +265,11 @@
   </div>
 </section>
 
-<!-- button for authorizing google calendar. Will set up within modal soon -->
-
-<div id="authorize-div" style="display: none">
-        <span>Authorize access to Google Calendar API</span>
-        <button id="authorize-button" onclick="handleAuthClick(event)">Authorize</button>
-    </div>
-      <pre id="output"></pre>
-
-	  <button id="insert-calendar" onclick="prepCalendarInsert()">Reminder</button>
-	  <button id="insert-calendar" onclick="insertReminders()">insertReminder</button>
-
-
 
 <!-- footer nav -->
   <section>
   <div id="footer"></div>
   </section>
-
 
 <!-- google calls -->
   <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
@@ -306,13 +277,12 @@
         onload="this.onload=function(){};"
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
       </script>
+
   <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="{% static '/js/profile.js' %}"></script>
   <script src="{% static '/js/googlecal.js' %}"></script>
   <script src="{% static '/js/googleinsert.js' %}"></script>
-
-
 
   <!-- remodal -->
   <script src="{% static '/js/remodal.min.js' %}"></script>
