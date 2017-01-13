@@ -140,7 +140,6 @@ $(document).on('confirmation', '[data-remodal-id=modalReminders]', function () {
 	d_summary = $("#dinnerSummary").val()
     d_description = $("#dinnerDescription").val()
 	d_time_stamp = new Date($("#dinnerReminder").val()).toISOString()
-    insertCalendar()
 	bInsertReminders()
 	lInsertReminders()
 	dInsertReminders()

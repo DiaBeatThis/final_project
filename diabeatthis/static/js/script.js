@@ -14,12 +14,10 @@ function getCookie(name) {
    return cookieValue;
 }
 
-
 var csrftoken = getCookie('csrftoken');
 function csrfSafeMethod(method) {
    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
-
 
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {
@@ -28,6 +26,7 @@ $.ajaxSetup({
         }
     }
 });
+
 (function() {
     var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
@@ -35,6 +34,7 @@ $.ajaxSetup({
         return days[ this.getDay() ];
     };
 })();
+
 
 function getWeekNumber(d) {
     // Copy date so don't modify original
@@ -64,12 +64,26 @@ var currentDate = $('#currentDate').val()
 var insulinWeek = $('#insulinWeek').val()
 var glucoseWeek = $('#glucoseWeek').val()
 var currentDateName = new Date(currentDate).getDayName()
-
+var screenSize
 // <!-- functions called when page is loaded -->
+screenSize()
 getGlucose()
 getWater()
 getSteps()
 getInsulin()
+
+
+
+function screenSize(){
+    var x = screen.width
+    if (x > 767){
+        screenSize = '140%'
+    }
+    else{
+        screenSize = '100%'
+    }
+}
+
 
 // <!-- getting results for past 7 days -->
 function getInsulin (){
@@ -332,7 +346,7 @@ function stepsChart(){
 
             pane: {
                 center: ['50%', '85%'],
-                size: '140%',
+                size: screenSize,
                 startAngle: -90,
                 endAngle: 90,
                 background: {
@@ -456,16 +470,14 @@ $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
     })
 });
 
-//fitbit steps call
-// function getSteps(){
-//     var $stuff = $("<ol class='ol'>")
-//     $.ajax("https://api.fitbit.com/1/user/-/activities/steps/date/today/1m.json").done(function(results) {
-//         var rr = results.results
-// 		console.log(rr)
-//     $stuff.html()
-//                 $("#singleInfo").append($stuff)
-//             })
-// }
+function getCal() {
+
+    $.ajax({url:'/profile/', data:postdata, type:'POST'}).done(function(){
+        location = location
+        getGlucose()
+    })
+    https://calendar.google.com/calendar/embed?src=4p11l8t0dphp7pbcgf72l6lstc%40group.calendar.google.com&ctz=America/New_York
+}
 
 $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)
