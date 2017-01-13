@@ -80,13 +80,9 @@
 
       <div class="remindersInfo">
         <div class="remindersData">
-          <h5>Daily Reminders</h5>
-		  <button type="button" class="connectapi" id="authorize-button" onclick="handleAuthClick(event)">Check your reminders</button>
+          <h5>Reminders</h5>
 
-          <ul>
-<iframe src="https://calendar.google.com/calendar/embed?src={{user.profile.calendar_id}}&ctz=America/New_York" style="border: 0" width="200" height="200" frameborder="0" scrolling="no"></iframe>            <li>Lunch: {{ event.start.dateTime }} </li>
-            <li>Dinner: </pre> </li>
-          </ul>
+<iframe src="https://calendar.google.com/calendar/embed?src={{user.profile.calendar_id}}&ctz=America/New_York" style="border: 0" width="200" height="200" frameborder="0" scrolling="no"></iframe>
         </div>
         <a href="../profile/#thirdParty">Edit Reminders</a>
       </div>
