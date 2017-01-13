@@ -1,0 +1,116 @@
+// tablet responsive
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+
+}
+
+// mobile responsive
+@media only screen and (min-device-width : 1px) and (max-device-width : 767px) {
+// header
+  .header{
+    padding-top: 2%;
+    .left{
+      float: left;
+      width: 50%;
+      box-sizing: border-box;
+    }
+    .fullLogo{
+      display: none;
+    }
+    .mobileLogo{
+      display: block;
+      width: 75px;
+      object-fit: contain;
+      padding-bottom: 2%;
+    }
+    .right{
+      float: right;
+      text-align: right;
+      width: 50%;
+      box-sizing: border-box;
+      .siteNav{
+        ul{
+          clear: both;
+          li{
+            display: block;
+            list-style: none;
+            line-height: 32px;
+            padding-left: 0px;
+            margin-bottom: 0px;
+            display: none;
+          }
+        }
+        ul:hover li{
+          display: block;
+        }
+      }
+    }
+  }
+  .menuimg{
+    display: inline-block;
+    width: 100px;
+  }
+// footer
+  .footer{
+    height: auto;
+    font-size: 18px;
+    .left{
+      span{
+        display: none;
+      }
+    }
+    .middle{
+      text-align: left;
+    }
+    .right{
+      text-align: left;
+    }
+  }
+// profile
+  .headerButtons{
+    float: none;
+  }
+  .connectapi{
+    margin: 1%;
+    display: block;
+  }
+  .displayNone{
+    display: none;
+  }
+// dashboard
+  .dashboardReminders{
+    display: none;
+  }
+  #containerGlucose{
+    height: 100%;
+  }
+  #activityDay{
+    margin-top: 7px;;
+  }
+  #stepsChart{
+    width: 100%;
+  }
+  .glucoseLegend{
+    float: left;
+  }
+  .displayMedia{
+    display: inline;
+  }
+// logiin
+  .login{
+    padding-top: 5%;
+    font-size: 1.5em;
+    h4{
+      font-size: 1.6em;
+    }
+  }
+  .four2.columns {
+      width: 90%;
+  }
+  .offset-by-four.columns {
+      margin-left: 5%;
+  }
+// multi-screen (dashboard, profile, register)
+  .avatarDiv{
+    display: none;
+  }
+}

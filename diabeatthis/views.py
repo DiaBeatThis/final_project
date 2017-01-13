@@ -120,7 +120,7 @@ def profile(request):
                                     password=request.user.password,
                                     )
             login(request, user)
-            return HttpResponseRedirect("/home/")
+            return HttpResponseRedirect("/profile/")
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)

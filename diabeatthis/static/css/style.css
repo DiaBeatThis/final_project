@@ -21,13 +21,17 @@
   padding-top: 10px; }
   .lognav li {
     list-style: none; }
+    .lognav li img {
+      height: 43px;
+      vertical-align: middle; }
     .lognav li a {
       text-decoration: none;
       color: #091019;
-      font-size: 20px; }
+      font-size: 20px;
+      vertical-align: middle; }
     .lognav li a:hover {
       text-decoration: underline;
-      color: #248C96; }
+      color: rgba(251, 17, 17, 0.75); }
 
 .remindersInfo .remindersData {
   max-width: 200px;
@@ -52,17 +56,26 @@
 .glucoseLegend {
   float: right; }
   .glucoseLegend .redSquare {
-    color: #FB1111; }
-  .glucoseLegend .purpleSquare {
-    color: #904F54; }
+    color: #FB0000; }
+  .glucoseLegend .redtransSquare {
+    color: rgba(251, 17, 17, 0.75); }
   .glucoseLegend .tealSquare {
-    color: #248C96; }
+    color: rgba(36, 140, 150, 0.75); }
+  .glucoseLegend .orangeSquare {
+    color: rgba(255, 163, 25, 0.9); }
+
+.displayMedia {
+  display: none; }
 
 .containerGlucose {
   clear: both; }
 
-#container-speed {
-  margin-left: 5px; }
+#containerGlucose {
+  height: 375px; }
+
+#stepsChart {
+  margin-left: 5px;
+  width: 560px; }
 
 .highcharts-axis-title {
   font-size: 18px; }
@@ -78,23 +91,36 @@
   background-color: rgba(90, 109, 117, 0.825);
   font-size: 24px;
   color: #F2F2F2; }
-  .header .left img {
+  .header .fullLogo {
     height: 70px;
     object-fit: contain; }
+  .header .mobileLogo {
+    display: none; }
   .header .right {
     text-align: right; }
-    .header .right ul {
-      margin: 0px;
-      padding-top: 3%; }
-      .header .right ul li {
-        display: inline;
-        padding-left: 40px; }
-        .header .right ul li a {
-          text-decoration: none;
-          color: #F2F2F2; }
-        .header .right ul li a:hover {
-          text-decoration: underline;
-          color: #99DCE4; }
+    .header .right .welcome p {
+      float: right;
+      max-width: 1000px;
+      padding: 0 .75%;
+      border: 1px solid rgba(251, 17, 17, 0.75);
+      color: #091019;
+      font-size: 1.15em;
+      font-family: Times, sans-serif;
+      text-transform: lowercase; }
+    .header .right .siteNav {
+      clear: both; }
+      .header .right .siteNav ul {
+        margin: 0px;
+        padding-bottom: 3px; }
+        .header .right .siteNav ul li {
+          display: inline;
+          padding-left: 40px; }
+          .header .right .siteNav ul li a {
+            text-decoration: none;
+            color: #F2F2F2; }
+          .header .right .siteNav ul li a:hover {
+            text-decoration: underline;
+            color: #99DCE4; }
 
 .menuimg {
   display: none; }
@@ -143,6 +169,13 @@
   width: 200px;
   object-fit: contain; }
 
+.avatar {
+  width: 300px;
+  font-family: 'helvetica neue', helvetica, sans-serif;
+  font-size: 1.2em;
+  vertical-align: middle;
+  margin-bottom: 0px; }
+
 .resetPassword a {
   text-decoration: none;
   color: #091019;
@@ -164,7 +197,7 @@
 .clearFloat {
   clear: both; }
 
-form .profileForm {
+form .profileForm, form .hiddenField {
   display: none; }
 form p {
   font-size: 1.3em;
@@ -187,6 +220,12 @@ form p {
 
 .remindersLink:hover {
   color: #555; }
+
+.remindersModal .five.columns {
+  margin-left: 6%; }
+.remindersModal .twelve.columns {
+  margin-top: 3px;
+  margin-bottom: 9px; }
 
 .infoPage {
   padding-top: 50px;
@@ -254,5 +293,93 @@ p {
 
 h6 {
   font-size: 1.8rem; }
+
+@media only screen and (min-device-width: 1px) and (max-device-width: 767px) {
+  .header {
+    padding-top: 2%; }
+    .header .left {
+      float: left;
+      width: 50%;
+      box-sizing: border-box; }
+    .header .fullLogo {
+      display: none; }
+    .header .mobileLogo {
+      display: block;
+      width: 75px;
+      object-fit: contain;
+      padding-bottom: 2%; }
+    .header .right {
+      float: right;
+      text-align: right;
+      width: 50%;
+      box-sizing: border-box; }
+      .header .right .siteNav ul {
+        clear: both; }
+        .header .right .siteNav ul li {
+          display: block;
+          list-style: none;
+          line-height: 32px;
+          padding-left: 0px;
+          margin-bottom: 0px;
+          display: none; }
+      .header .right .siteNav ul:hover li {
+        display: block; }
+
+  .menuimg {
+    display: inline-block;
+    width: 100px; }
+
+  .footer {
+    height: auto;
+    font-size: 18px; }
+    .footer .left span {
+      display: none; }
+    .footer .middle {
+      text-align: left; }
+    .footer .right {
+      text-align: left; }
+
+  .headerButtons {
+    float: none; }
+
+  .connectapi {
+    margin: 1%;
+    display: block; }
+
+  .displayNone {
+    display: none; }
+
+  .dashboardReminders {
+    display: none; }
+
+  #containerGlucose {
+    height: 100%; }
+
+  #activityDay {
+    margin-top: 7px; }
+
+  #stepsChart {
+    width: 100%; }
+
+  .glucoseLegend {
+    float: left; }
+
+  .displayMedia {
+    display: inline; }
+
+  .login {
+    padding-top: 5%;
+    font-size: 1.5em; }
+    .login h4 {
+      font-size: 1.6em; }
+
+  .four2.columns {
+    width: 90%; }
+
+  .offset-by-four.columns {
+    margin-left: 5%; }
+
+  .avatarDiv {
+    display: none; } }
 
 /*# sourceMappingURL=style.css.map */

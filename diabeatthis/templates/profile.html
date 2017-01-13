@@ -42,7 +42,7 @@
   <section class="profilesettings">
     <div class="row">
       <!-- profile photo -->
-      <div class="three columns">
+      <div class="three columns avatarDiv">
           <img src="{% static user.profile.avatar %}" class="profilephoto"></img>
         <div class>
           <input name="avatar" type="file" class="avatar"></input>
@@ -71,17 +71,16 @@
                 </div>
               </div>
             <br>
-            <div class="row">
-              <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-              <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
-            </div>
+            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+            <button data-remodal-action="confirm" class="remodal-confirm">Save</button>
         </div>
       </div>
+
       </div>
       <!--  profile header -->
       <div class="nine columns">
         <div class="profileHeader">
-          <h5>This is what you've told us about yourself:</h5>
+          <h5>{{ user.first_name }}, this is what you've told us about yourself:</h5>
         </div>
         <!-- header buttons -->
         <div class="headerButtons">
@@ -107,11 +106,11 @@
             <p class="profileData">{{ user.email }}</p>
             <input class="u-full-width profileForm" value="{{ user.email }}" type="text" placeholder="Email Address" id="email" name="email">
           </div>
-          <!-- age -->
+          <!-- date of birth -->
           <div class="four2 columns">
             <label for="birthday">Your birthday</label>
             <p>{{ user.profile.dob|date:"Y-m-d" }}</p>
-            <!-- <input class="u-full-width profileForm" value="{{ user.profile.dob|date:"Y-m-d" }}" type="date" placeholder="Age" id="birthday" name="dob"> -->
+            <input class="u-full-width hiddenField" value="{{ user.profile.dob|date:"Y-m-d" }}" type="date" placeholder="Age" id="birthday" name="dob">
           </div>
           <!-- height -->
           <div class="four2 columns">
@@ -129,17 +128,19 @@
           <div class="four2 columns">
            <label for="sex">What your biological sex is</label>
            <p>{{ user.profile.get_sex_display }}</p>
-           <!-- <select class="u-full-width profileForm" id="sex" name="sex">
+           <select class="u-full-width hiddenField" id="sex" name="sex">
+             <option value="{{ user.profile.sex }}">{{ user.profile.get_sex_display }}</option>
              <option value="M">Male</option>
              <option value="F">Female</option>
              <option value="O">Other</option>
-           </select> -->
+           </select>
          </div>
          <!-- race -->
          <div class="four2 columns">
           <label for="race">What race you identify as</label>
           <p>{{ user.profile.get_race_display }}</p>
-          <!-- <select name="race" class="u-full-width profileForm" id="race" placeholder="Race" value="{{ user.profile.race }}">
+          <select name="race" class="u-full-width hiddenField" id="race" placeholder="Race" value="{{ user.profile.race }}">
+            <option value="{{ user.profile.race }}">{{ user.profile.get_race_display }}</option>
             <option value="AA">African American</option>
             <option value="AI">American Indian</option>
             <option value="A">Asian</option>
@@ -148,7 +149,7 @@
             <option value="NH">Native Hawaiian</option>
             <option value="SA">South Asian/Indian</option>
             <option value="W">Non-Hispanic White</option>
-          </select> -->
+          </select>
         </div>
     </div>
   </div>
@@ -193,62 +194,77 @@
 </div>
   <!-- blank div -->
   <div class="row">
-    <div class="three columns"></div>
+    <div class="three columns">
+      <!-- calendar reminders -->
+      <div class="remindersInfo">
+        <div class="remindersData">
+          <h5>Daily Reminders</h5>
+          <ul>
+
+            <p id="breakfast"></p>
+            <li>Breakfast: {{ user.profile.steps_goal }} </li>
+            <li>Lunch: {{ event.start.dateTime }} </li>
+            <li>Dinner: </pre> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <!-- api connections -->
     <div class="nine columns" id="thirdParty">
       <img src="{% static  '/images/Google_2015_logo.png' %}" alt="Google Logo" class="thirdpartylogo">
       <button type="button" class="connectapi" id="authorize-button" onclick="handleAuthClick(event)">Connect Google Calendar</button>
-      <button type="button" name="button"><a href="#modalReminders" class="remindersLink">Set Up Reminders</a></button>
+      <button type="button" name="button" class="connectapi"><a href="#modalReminders" class="remindersLink">Set Up Reminders</a></button>
       <!-- reminders modal -->
       <div class="remodal-bg">
-        <div class="remodal" data-remodal-id="modalReminders">
+        <div class="remodal remindersModal" data-remodal-id="modalReminders">
           <h3>Set up your daily testing reminders</h3>
           <form>
             <div class="row">
-                <div class="six columns offset-by-three columns">
-                  <label for="breakfastSummary">Summary</label>
-                  <input class="u-full-width" type="text" placeholder="summary" id="breakfastSummary" name="breakfastSummary">
-                </div>
-                <div class="six columns offset-by-three columns">
-                  <label for="breakfastDescription">Description</label>
-                  <input class="u-full-width" type="text" placeholder="description" id="breakfastDescription" name="breakfastDescription">
-                </div>
               <div class="six columns offset-by-three columns">
-                <label for="breakfastReminder">Breakfast:</label>
+                <label for="breakfastReminder">Breakfast Reminder Time:</label>
                 <input class="u-full-width" value="{% now 'Y-m-d\Th:i' %}" type="datetime-local" placeholder="0" id="breakfastReminder" name="breakfastReminder">
+              </div>
+              <div class="five columns ">
+                <label for="breakfastDescription">Description</label>
+                <input class="u-full-width" type="text" placeholder="Breakfast" id="breakfastDescription" name="breakfastDescription" value="diaBEATthis Breakfast Reminder">
+              </div>
+              <div class="five columns">
+                <label for="breakfastSummary">Summary</label>
+                <input class="u-full-width" type="text" placeholder="Summary" id="breakfastSummary" name="breakfastSummary">
               </div>
             </div>
             <div class="row">
-                <div class="six columns offset-by-three columns">
-                  <label for="lunchSummary">Summary</label>
-                  <input class="u-full-width" type="text" placeholder="summary" id="lunchSummary" name="lunchSummary">
-                </div>
-                <div class="six columns offset-by-three columns">
-                  <label for="lunchDescription">Description</label>
-                  <input class="u-full-width" type="text" placeholder="description" id="lunchDescription" name="lunchDescription">
-                </div>
-              <div class="six columns offset-by-three columns">
-                <label for="lunchReminder">Lunch:</label>
-                <input class="u-full-width" value="{% now 'Y-m-d\Th:i' %}" type="datetime-local" placeholder="0" id="lunchReminder" name="lunchReminder">
-
+              <div class="twelve columns breakline"></div>
             </div>
-
-          </div>
             <div class="row">
-				<div class="six columns offset-by-three columns">
-
-                  <label for="dinnerSummary">Summary</label>
-                  <input class="u-full-width" type="text" placeholder="summary" id="dinnerSummary" name="dinnerSummary">
-                </div>
-                <div class="six columns offset-by-three columns">
-                  <label for="dinnerDescription">Description</label>
-                  <input class="u-full-width" type="text" placeholder="description" id="dinnerDescription" name="dinnerDescription">
-                </div>
               <div class="six columns offset-by-three columns">
-                <label for="dinnerReminder">Dinner:</label>
-
+                <label for="lunchReminder">Lunch Reminder Time:</label>
+                <input class="u-full-width" value="{% now 'Y-m-d\Th:i' %}" type="datetime-local" placeholder="0" id="lunchReminder" name="lunchReminder">
+              </div>
+              <div class="five columns ">
+                <label for="lunchDescription">Description</label>
+                <input class="u-full-width" type="text" placeholder="Lunch" id="lunchDescription" name="lunchDescription" value="diaBEATthis Lunch Reminder">
+              </div>
+              <div class="five columns">
+                <label for="lunchSummary">Summary</label>
+                <input class="u-full-width" type="text" placeholder="Summary" id="lunchSummary" name="lunchSummary">
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns breakline"></div>
+            </div>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="dinnerReminder">Dinner Reminder Time:</label>
                 <input class="u-full-width" value="{% now 'Y-m-d\Th:i' %}" type="datetime-local" placeholder="0" id="dinnerReminder" name="dinnerReminder">
-
+            </div>
+            <div class="five columns ">
+              <label for="dinnerDescription">Description</label>
+              <input class="u-full-width" type="text" placeholder="Dinner" id="dinnerDescription" name="dinnerDescription" value="diaBEATthis Dinner Reminder">
+            </div>
+            <div class="five columns">
+              <label for="dinnerSummary">Summary</label>
+              <input class="u-full-width" type="text" placeholder="summary" id="dinnerSummary" name="dinnerSummary">
             </div>
           </div>
           <br>
@@ -257,7 +273,7 @@
         </div>
       </div>
 
-      <br><br>
+      <br><br class="displayNone">
 
       <img src="{% static  '/images/Fitbit_logo_RGB.png' %}" alt="Fitbit" class="thirdpartylogo">
       <button type="button" onclick="location.href='/fitbit/login';" class="connectapi">Connect Your Fitbit</button>
@@ -282,12 +298,16 @@
       </script>
 
   <!-- standard jQuery calls -->
+  <!-- standard jQuery calls -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="{%  static '/js/script.js' %}"></script>
   <script src="{% static '/js/profile.js' %}"></script>
+  <script src="{%  static '/js/header.js' %}"></script>
   <script src="{% static '/js/googlecal.js' %}"></script>
   <script src="{% static '/js/googleinsert.js' %}"></script>
 
   <!-- remodal -->
+  <script src="{% static '/js/remodal.js' %}"></script>
   <script src="{% static '/js/remodal.min.js' %}"></script>
 
   <!-- header & footer calls -->

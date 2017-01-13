@@ -1,20 +1,29 @@
 {% load static %}
 <div class="row header">
   <div class="four columns left">
-    <a href="../index"><img src="{% static 'images/diabeatthisLogo_linear.png' %}" alt="diaBEATthis"></a>
+    <a href="../index"><img src="{% static 'images/diabeatthisLogo_linear.png' %}" alt="diaBEATthis" class="fullLogo"><img src="{% static 'images/diabeatthisLogo_mobile.png' %}" alt="diaBEATthis" class="mobileLogo"></a>
   </div>
   <div class="eight columns right">
-    <ul><img src="{% static 'images/MENU.png' %}" alt="Menu" class="menuimg">
-        {% if user.is_anonymous %}
-              <li><a href="../login">Login</a></li>
-              <li><a href="../register">Register</a></li>
+    <div class="welcome">
+      {% if user.is_anonymous %}
+        <p>Welcome!</p>
+      {% else %}
+        <p>Hello {{ user.first_name }}!</p>
+      {% endif %}
+    </div>
+    <div class="siteNav">
+      <ul><img src="{% static 'images/MENU.png' %}" alt="Menu" class="menuimg">
+          {% if user.is_anonymous %}
+                <li><a href="../login">Login</a></li>
+                <li><a href="../register">Register</a></li>
+                <li><a href="../faq">Info</a></li>
+          {% else %}
+              <li><a href="../home">My Dashboard</a></li>
+              <li><a href="../profile">Profile</a></li>
               <li><a href="../faq">Info</a></li>
-        {% else %}
-            <li><a href="../home">My Dashboard</a></li>
-            <li><a href="../profile">Profile</a></li>
-            <li><a href="../faq">Info</a></li>
-            <li><a href="../logout">Log Out</a></li>
-        {% endif %}
-    </ul>
+              <li><a href="../logout">Log Out</a></li>
+          {% endif %}
+      </ul>
+    </div>
   </div>
 </div>

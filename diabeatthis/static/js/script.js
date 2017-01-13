@@ -64,12 +64,25 @@ var currentDate = $('#currentDate').val()
 var insulinWeek = $('#insulinWeek').val()
 var glucoseWeek = $('#glucoseWeek').val()
 var currentDateName = new Date(currentDate).getDayName()
+var screenSize
+
+screenSize()
 
 // <!-- functions called when page is loaded -->
 getGlucose()
 getWater()
 getSteps()
 getInsulin()
+
+function screenSize(){
+   var x = screen.width
+   if (x > 767){
+       screenSize = '140%'
+   }
+   else{
+       screenSize = '100%'
+   }
+}
 
 // <!-- getting results for past 7 days -->
 function getInsulin (){
@@ -252,20 +265,18 @@ function glucoseCharts(){
             data: bloodSugar,
             zones: [
               {value: 60,
-                color: '#fb1111'}, //red
+                color: '#fb0000'}, //red
                 {value: 70,
-                  color: '#904F54'}, //purple
-                {value: 130,
-                color: '#248C96'}, //teal
+                  color: 'rgba(255, 163, 25, .9)'}, //orange
                 {value: 140,
-                  color: '#904F54'}, //purple
-                {color: '#fb1111'}] //red
+                color: 'rgba(36, 140, 150, .8)'}, //teal
+                {color: 'rgba(251, 17, 17, .75)'}] //redtrans
         }]
     });
 }
 
 
-<!-- building water chart -->
+//<!-- building water chart -->
 function waterCharts(){
     Highcharts.chart('containerWater', {
         chart: {
@@ -334,7 +345,7 @@ function stepsChart(){
 
             pane: {
                 center: ['50%', '85%'],
-                size: '140%',
+                size: screenSize,
                 startAngle: -90,
                 endAngle: 90,
                 background: {

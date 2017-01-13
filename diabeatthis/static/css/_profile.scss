@@ -20,6 +20,14 @@
   object-fit: contain;
 }
 
+.avatar{
+  width: 300px;
+  font-family: 'helvetica neue', helvetica, sans-serif;
+  font-size: 1.2em;
+  vertical-align: middle;
+  margin-bottom: 0px;
+}
+
 .resetPassword{
   a{
     text-decoration: none;
@@ -49,7 +57,7 @@
 }
 
 form{
-   .profileForm{
+   .profileForm, .hiddenField{
     display: none;
   }
   p{
@@ -78,4 +86,14 @@ form{
 }
 .remindersLink:hover{
   color: #555;
+}
+
+.remindersModal{
+  .five.columns{
+    margin-left: 6%;
+  }
+  .twelve.columns{
+    margin-top: 3px;
+    margin-bottom: 9px;
+  }
 }
