@@ -1,8 +1,57 @@
+// cookie csrf function
+function getCookie(name) {
+   var cookieValue = null;
+   if (document.cookie && document.cookie !== '') {
+       var cookies = document.cookie.split(';');
+       for (var i = 0; i < cookies.length; i++) {
+           var cookie = jQuery.trim(cookies[i]);
+           if (cookie.substring(0, name.length + 1) === (name + '=')) {
+               cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+               break;
+           }
+       }
+   }
+   return cookieValue;
+}
+
+var csrftoken = getCookie('csrftoken');
+function csrfSafeMethod(method) {
+   return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+<<<<<<< HEAD
+
+
+function getCalendarId(){
+	var request = gapi.client.calendar.calendars.get({
+	'calendarId': cal_id,
+	});
+request.execute(function(resp){
+calId = resp.id
+console.log(calId)
+})
+}
+
 // google INSERT EVENT
 function loadCalendarApi() {
   gapi.client.load('calendar', 'v3');
 }
 
+var currentUser = $('#userId').val()
+console.log(currentUser)
+
+var cal_id
+=======
+>>>>>>> 7eb1ae750e1a3a4f79fa46628b72800a65e55be1
 var b_summary
 var b_description
 var b_time_stamp
@@ -12,6 +61,59 @@ var l_time_stamp
 var d_summary
 var d_description
 var d_time_stamp
+var currentUser = $('#userId').val()
+var cal_id = $('#userCal').val()
+
+// google INSERT EVENT
+function loadCalendarApi() {
+  gapi.client.load('calendar', 'v3');
+}
+
+function insertCalendar(){
+  var request = gapi.client.calendar.insert({
+     'name': 'diabeatthis',
+     'summary': 'diabeatthis',
+     'timeZone': 'American/Cancun',
+  });
+  request.execute(function() {
+     appendPre('Event created: ' + event.htmlLink);
+  });
+}
+
+//makes new calendar
+function insertCalendar(){
+    if(cal_id == 'None'){
+    	 var request = gapi.client.calendar.calendars.insert({
+       	     'summary': 'diabeatthis'});
+             request.execute(function(resp){
+    		 cal_id = resp.id
+    		    saveId()
+                bInsertReminders()
+        	 	lInsertReminders()
+        	 	dInsertReminders()
+                })
+        }
+        else{
+            var request = gapi.client.calendar.calendars.get({
+          	    'calendarId': cal_id});
+                request.execute(function(resp){
+                bInsertReminders()
+           	 	lInsertReminders()
+           	 	dInsertReminders()
+        })}
+
+ }
+
+
+function saveId(){
+	 $.ajax({
+		 url:'/api/profile/' + currentUser + '/',
+		 data:{'calendar_id':cal_id},
+		 type:'PATCH'}).done(function(){
+		 location = location
+	 })
+ }
+
 
 function bInsertReminders(){
 	event = {
@@ -85,39 +187,43 @@ function dInsertReminders(){
       {'method': 'popup', 'minutes': 10}
     ]
   }
-};setBreakfastReminder()
+};setDinnerReminder()
 }
 
 function setBreakfastReminder(){
 	var request = gapi.client.calendar.events.insert({
-	  'calendarId': 'primary',
+	  'calendarId': cal_id,
 	  'resource': event
 	});
 	request.execute(function(event) {
-	  appendPre('Event created: ' + event.htmlLink);
+
+	  console.log("breakfast reminder");
 	});
 }
 
 function setLunchReminder(){
 	var request = gapi.client.calendar.events.insert({
-	  'calendarId': 'primary',
+	  'calendarId': cal_id,
 	  'resource': event
 	});
 	request.execute(function(event) {
-	  appendPre('Event created: ' + event.htmlLink);
+	  console.log("lunch reminder");
 	});
 }
 
 function setDinnerReminder(){
 	var request = gapi.client.calendar.events.insert({
-	  'calendarId': 'primary',
+	  'calendarId': cal_id,
 	  'resource': event
 	});
-request.execute(function(event) {
-  appendPre('Event created: ' + event.htmlLink);
-});
-
+	request.execute(function(event) {
+	  console.log("dinner reminder");
+	});
 }
+
+$(document).on('opening', '[data-remodal-id=modalReminders]', function () {
+  console.log('Modal is opening');
+});
 
 $(document).on('confirmation', '[data-remodal-id=modalReminders]', function () {
     b_summary = $("#breakfastSummary").val()
@@ -129,7 +235,6 @@ $(document).on('confirmation', '[data-remodal-id=modalReminders]', function () {
 	d_summary = $("#dinnerSummary").val()
     d_description = $("#dinnerDescription").val()
 	d_time_stamp = new Date($("#dinnerReminder").val()).toISOString()
-	bInsertReminders()
-	lInsertReminders()
-	dInsertReminders()
+	loadCalendarApi()
+	insertCalendar()
 });

@@ -14,12 +14,10 @@ function getCookie(name) {
    return cookieValue;
 }
 
-
 var csrftoken = getCookie('csrftoken');
 function csrfSafeMethod(method) {
    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
-
 
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {
@@ -28,6 +26,7 @@ $.ajaxSetup({
         }
     }
 });
+
 (function() {
     var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
@@ -35,6 +34,7 @@ $.ajaxSetup({
         return days[ this.getDay() ];
     };
 })();
+
 
 function getWeekNumber(d) {
     // Copy date so don't modify original
@@ -66,23 +66,23 @@ var glucoseWeek = $('#glucoseWeek').val()
 var currentDateName = new Date(currentDate).getDayName()
 var screenSize
 
-screenSize()
-
 // <!-- functions called when page is loaded -->
+screenSize()
 getGlucose()
 getWater()
 getSteps()
 getInsulin()
 
 function screenSize(){
-   var x = screen.width
-   if (x > 767){
-       screenSize = '140%'
-   }
-   else{
-       screenSize = '100%'
-   }
+    var x = screen.width
+    if (x > 767){
+        screenSize = '140%'
+    }
+    else{
+        screenSize = '100%'
+    }
 }
+
 
 // <!-- getting results for past 7 days -->
 function getInsulin (){
@@ -104,8 +104,6 @@ function getInsulin (){
                 // insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
             }
         }
-        console.log(insulin)
-        console.log(insulinTimestamp)
         insulinCharts()
     })
 }
@@ -468,17 +466,6 @@ $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
         getSteps()
     })
 });
-
-//fitbit steps call
-// function getSteps(){
-//     var $stuff = $("<ol class='ol'>")
-//     $.ajax("https://api.fitbit.com/1/user/-/activities/steps/date/today/1m.json").done(function(results) {
-//         var rr = results.results
-// 		console.log(rr)
-//     $stuff.html()
-//                 $("#singleInfo").append($stuff)
-//             })
-// }
 
 $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)

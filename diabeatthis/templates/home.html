@@ -58,7 +58,35 @@
       <li><img src="{% static 'images/waterlog_icon.svg' %}" alt="Log Water">&nbsp;<a href="#modalWaterIntake">Log Water</a></li>
       <li><img src="{% static 'images/stepslog_icon.svg' %}" alt="Log Steps">&nbsp;<a href="#modalStepsTaken">Log Steps</a></li>
     </ul>
-    <!-- glucose modal -->
+  </div>
+
+    <!-- glucose chart -->
+    <div class="nine columns" id="glucoseChart">
+        <div class="datePicker glucoseDate">
+          <span>Week:</span>
+          <input id="glucoseWeek" Value="{% now 'Y-\W\0W' %}" type="week" name="week">
+          <input id="glucoseWeekSubmit" type="submit" class="buttonSmall">
+        </div>
+        <div class="glucoseLegend">
+          <p><i class="fa fa-square redSquare" aria-hidden="true"></i> Unsafe Level <i class="fa fa-square purpleSquare" aria-hidden="true"></i> Caution Level <i class="fa fa-square tealSquare" aria-hidden="true"></i> Safe Level </p>
+        </div>
+        <div id="containerGlucose" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="three columns">
+
+      <div class="remindersInfo">
+        <div class="remindersData">
+          <h5>Reminders</h5>
+          <iframe src="https://calendar.google.com/calendar/embed?src={{user.profile.calendar_id}}&ctz=America/New_York" style="border: 0" width="200" height="200" frameborder="0" scrolling="no"></iframe>
+        </div>
+        <a href="../profile/#thirdParty">Edit Reminders</a>
+      </div>
+
+      <!-- glucose modal -->
       <div class="remodal-bg">
         <div class="remodal" data-remodal-id="modalGlucose">
           <h3>What is your Glucose Level?</h3>
@@ -173,7 +201,7 @@
   <div class="row">
 
     <div class="three columns">
-      <!-- reminders widgwt -->
+      <!-- reminders widget -->
       <div class="remindersInfo dashboardReminders">
         <div class="remindersData">
           <h5>Daily Reminders</h5>
@@ -209,7 +237,8 @@
         </div>
       </div>
       <!-- activity chart -->
-      <div class="seven columns">
+    <div class="seven columns">
+    <div class="four columns" id="stepsChart">
       <div class="datePicker">
         <span>Day:</span>
         <input id="activityDay" value="{% now 'Y-m-d' %}" type="date" name="date">
@@ -236,6 +265,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="{%  static '/js/script.js' %}"></script>
   <script src="{%  static '/js/header.js' %}"></script>
+  <script src="{% static '/js/googlecal.js' %}"></script>
+  <script src="{% static '/js/googleinsert.js' %}"></script>
 
   <!-- google calls -->
     <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
