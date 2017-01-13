@@ -1,4 +1,6 @@
 // console.log("google calendar auth")
+var cal_id
+
 var CLIENT_ID = '950183132798-6cnr1mbiq4on5bll0fsuubq6krv7i6p6.apps.googleusercontent.com';
 
 var SCOPES = ["https://www.googleapis.com/auth/calendar"];
@@ -71,6 +73,9 @@ function listUpcomingEvents() {
     'orderBy': 'startTime'
  });
 
+
+console.log(events)
+
  request.execute(function(resp) {
     var events = resp.items;
     appendPre('Upcoming events:');
@@ -83,6 +88,7 @@ function listUpcomingEvents() {
           when = event.start.date;
         }
         appendPre('Date: ' + ' (' + when + ')')
+
       }
     } else {
       appendPre('No upcoming events found.');
@@ -90,6 +96,9 @@ function listUpcomingEvents() {
 
  });
 }
+
+
+
 /**
 * Append a pre element to the body containing the given message
 * as its text node.
