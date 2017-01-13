@@ -28,6 +28,7 @@ $.ajaxSetup({
     }
 });
 
+<<<<<<< HEAD
 
 
 function getCalendarId(){
@@ -49,6 +50,8 @@ var currentUser = $('#userId').val()
 console.log(currentUser)
 
 var cal_id
+=======
+>>>>>>> 7eb1ae750e1a3a4f79fa46628b72800a65e55be1
 var b_summary
 var b_description
 var b_time_stamp
@@ -58,25 +61,51 @@ var l_time_stamp
 var d_summary
 var d_description
 var d_time_stamp
+var currentUser = $('#userId').val()
+var cal_id = $('#userCal').val()
+
+// google INSERT EVENT
+function loadCalendarApi() {
+  gapi.client.load('calendar', 'v3');
+}
+
+function insertCalendar(){
+  var request = gapi.client.calendar.insert({
+     'name': 'diabeatthis',
+     'summary': 'diabeatthis',
+     'timeZone': 'American/Cancun',
+  });
+  request.execute(function() {
+     appendPre('Event created: ' + event.htmlLink);
+  });
+}
 
 //makes new calendar
 function insertCalendar(){
-	 var request = gapi.client.calendar.calendars.insert({
-   	'summary': 'diabeatthis'});
-     request.execute(function(resp){
-		 cal_id = resp.id
-		 console.log(resp)
-		 console.log(cal_id)
-		saveId()
-		bInsertReminders()
-	 	lInsertReminders()
-	 	dInsertReminders()
-	 })
+    if(cal_id == 'None'){
+    	 var request = gapi.client.calendar.calendars.insert({
+       	     'summary': 'diabeatthis'});
+             request.execute(function(resp){
+    		 cal_id = resp.id
+    		    saveId()
+                bInsertReminders()
+        	 	lInsertReminders()
+        	 	dInsertReminders()
+                })
+        }
+        else{
+            var request = gapi.client.calendar.calendars.get({
+          	    'calendarId': cal_id});
+                request.execute(function(resp){
+                bInsertReminders()
+           	 	lInsertReminders()
+           	 	dInsertReminders()
+        })}
+
  }
 
 
-
- function saveId(){
+function saveId(){
 	 $.ajax({
 		 url:'/api/profile/' + currentUser + '/',
 		 data:{'calendar_id':cal_id},
@@ -167,6 +196,7 @@ function setBreakfastReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
+
 	  console.log("breakfast reminder");
 	});
 }
@@ -191,6 +221,9 @@ function setDinnerReminder(){
 	});
 }
 
+$(document).on('opening', '[data-remodal-id=modalReminders]', function () {
+  console.log('Modal is opening');
+});
 
 $(document).on('confirmation', '[data-remodal-id=modalReminders]', function () {
     b_summary = $("#breakfastSummary").val()

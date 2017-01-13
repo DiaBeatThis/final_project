@@ -30,7 +30,6 @@ class Profile(models.Model):
     water_goal = models.IntegerField(default=0)
     calendar_id = models.CharField(max_length=80, blank=True, null=True)
 
-
     def __str__(self):
         return self.user.username
 

@@ -80,9 +80,16 @@
 
       <div class="remindersInfo">
         <div class="remindersData">
+<<<<<<< HEAD
           <h5>Reminders</h5>
 
 <iframe src="https://calendar.google.com/calendar/embed?src={{user.profile.calendar_id}}&ctz=America/New_York" style="border: 0" width="200" height="200" frameborder="0" scrolling="no"></iframe>
+=======
+          <h5>Daily Reminders</h5>
+
+<iframe src="https://calendar.google.com/calendar/embed?src={{user.profile.calendar_id}}&ctz=America/New_York" style="border: 0" width="200" height="200" frameborder="0" scrolling="no"></iframe>            <li>Lunch: {{ event.start.dateTime }} </li>
+
+>>>>>>> 7eb1ae750e1a3a4f79fa46628b72800a65e55be1
         </div>
         <a href="../profile/#thirdParty">Edit Reminders</a>
       </div>
@@ -217,6 +224,7 @@
 
       <!-- activity chart -->
     <div class="seven columns">
+    <div class="four columns" id="stepsChart">
       <div class="datePicker">
         <span>Day:</span>
         <input id="activityDay" value="{% now 'Y-m-d' %}" type="date" name="date">

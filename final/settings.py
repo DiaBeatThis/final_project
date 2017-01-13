@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'diabeatthis.apps.DiabeatthisConfig',
     'rest_framework',
 	'fitapp',
+    'storages',
 ]
 
 REST_FRAMEWORK = {
@@ -116,4 +117,26 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'diabeatthis/static/')
 
 FITAPP_CONSUMER_KEY = '22878M'
 FITAPP_CONSUMER_SECRET = '78b76ef60444570d55e8758098c8dc8b'
+<<<<<<< HEAD
 FITAPP_LOGIN_REDIRECT = "/profile/"
+=======
+FITAPP_LOGIN_REDIRECT = "http://127.0.0.1:8000/profile/"
+
+# AWS_STORAGE_BUCKET_NAME = 'diabeatthis'
+# AWS_ACCESS_KEY_ID = 'AKIAIPOIN3WOFWNZ45IQ'
+# AWS_SECRET_ACCESS_KEY = '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'
+#
+#     # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
+#     # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
+#     # This controls how the `static` template tag from `staticfiles` gets expanded, if you're using it.
+#     # We also use it in the next setting.
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+#
+#     # This is used by the `static` template tag from `static`, if you're using that. Or if anything else
+#     # refers directly to STATIC_URL. So it's safest to always set it.
+# STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+#
+#     # Tell the staticfiles app to use S3Boto storage when writing the collected static files (when
+#     # you run `collectstatic`).
+# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+>>>>>>> 7eb1ae750e1a3a4f79fa46628b72800a65e55be1
