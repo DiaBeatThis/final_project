@@ -198,6 +198,7 @@ function setDinnerReminder(){
 
 $(document).on('opening', '[data-remodal-id=modalReminders]', function () {
   console.log('Modal is opening');
+  handleAuthClick(event)
 });
 
 $(document).on('confirmation', '[data-remodal-id=modalReminders]', function () {
