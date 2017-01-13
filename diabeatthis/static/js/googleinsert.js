@@ -14,7 +14,6 @@ function getCookie(name) {
    return cookieValue;
 }
 
-
 var csrftoken = getCookie('csrftoken');
 function csrfSafeMethod(method) {
    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -29,6 +28,30 @@ $.ajaxSetup({
     }
 });
 
+<<<<<<< HEAD
+
+
+function getCalendarId(){
+	var request = gapi.client.calendar.calendars.get({
+	'calendarId': cal_id,
+	});
+request.execute(function(resp){
+calId = resp.id
+console.log(calId)
+})
+}
+
+// google INSERT EVENT
+function loadCalendarApi() {
+  gapi.client.load('calendar', 'v3');
+}
+
+var currentUser = $('#userId').val()
+console.log(currentUser)
+
+var cal_id
+=======
+>>>>>>> 7eb1ae750e1a3a4f79fa46628b72800a65e55be1
 var b_summary
 var b_description
 var b_time_stamp
@@ -80,6 +103,7 @@ function insertCalendar(){
         })}
 
  }
+
 
 function saveId(){
 	 $.ajax({
@@ -172,7 +196,8 @@ function setBreakfastReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
-	  ;
+
+	  console.log("breakfast reminder");
 	});
 }
 
@@ -182,7 +207,7 @@ function setLunchReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
-	 ;
+	  console.log("lunch reminder");
 	});
 }
 
@@ -192,7 +217,7 @@ function setDinnerReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
-	  ;
+	  console.log("dinner reminder");
 	});
 }
 

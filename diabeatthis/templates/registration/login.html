@@ -13,13 +13,10 @@
 
     <body>
 
-      <div class="row header">
-        <div class="four columns left">
-          <img src="{% static 'images/diabeatthisLogo_linear.png' %}" alt="diaBEATthis">
-        </div>
-        <div class="eight columns right">
-        </div>
-      </div>
+      <!-- header nav -->
+    <section>
+      <div id="header"></div>
+    </section>
 
       <section class="login">
         <!-- login title -->
@@ -67,20 +64,23 @@
         </div>
       </section>
 
-      <section class="footmain">
-        <div class="row footer">
-          <div class="four columns left">
-            <p>2016<br>
-            <span>Zach Ferguson, Ashley Massengill, Maks Tymtsiv</span></p>
-          </div>
-          <div class="four columns middle">
-            <p><a href="../faq">About diaBEATthis</a></p>
-          </div>
-          <div class="four columns right">
-            <p><a href="mailto:contact.diabeatthis@gmail.com">Email Us</a></p>
-          </div>
-        </div>
-      </section>
+      <!-- footer nav -->
+        <section>
+        <div id="footer"></div>
+        </section>
+
+      <!-- standard jQuery calls -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="{%  static '/js/script.js' %}"></script>
+      <script src="{%  static '/js/header.js' %}"></script>
+
+      <!-- header & footer calls -->
+      <script>$(document).ready(function(){
+         $('#header').load('../header_loggedin');
+       });</script>
+       <script>$(document).ready(function(){
+         $('#footer').load('../footer');
+      });</script>
 
     </body>
 </html>

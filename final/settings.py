@@ -117,6 +117,9 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'diabeatthis/static/')
 
 FITAPP_CONSUMER_KEY = '22878M'
 FITAPP_CONSUMER_SECRET = '78b76ef60444570d55e8758098c8dc8b'
+<<<<<<< HEAD
+FITAPP_LOGIN_REDIRECT = "/profile/"
+=======
 FITAPP_LOGIN_REDIRECT = "http://127.0.0.1:8000/profile/"
 
 # AWS_STORAGE_BUCKET_NAME = 'diabeatthis'
@@ -136,3 +139,4 @@ FITAPP_LOGIN_REDIRECT = "http://127.0.0.1:8000/profile/"
 #     # Tell the staticfiles app to use S3Boto storage when writing the collected static files (when
 #     # you run `collectstatic`).
 # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+>>>>>>> 7eb1ae750e1a3a4f79fa46628b72800a65e55be1

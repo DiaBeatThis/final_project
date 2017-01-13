@@ -25,14 +25,19 @@
   padding-top: 10px;
   li{
     list-style: none;
+    img{
+      height: 43px;
+      vertical-align: middle;
+      }
     a{
       text-decoration: none;
       color: $navy;
       font-size: 20px;
+      vertical-align: middle;
     }
     a:hover{
       text-decoration: underline;
-      color: $teal;
+      color: $redtrans;
     }
   }
 }
@@ -70,18 +75,38 @@
   .redSquare{
     color: $red;
   }
-  .purpleSquare{
-    color: $purple;
+  .redtransSquare{
+    color: $redtrans;
   }
   .tealSquare{
-    color: $teal;
+    color: $tealtrans;
   }
+  .orangeSquare{
+    color: $orangetrans;
+  }
+}
+
+.displayMedia{
+  display: none;
 }
 
 .containerGlucose{
   clear: both;
 }
 
-#container-speed{
+#containerGlucose{
+  height: 375px;
+}
+
+#stepsChart{
   margin-left: 5px;
+  width: 560px;
+}
+
+.highcharts-axis-title{
+  font-size: 18px;
+}
+
+.highcharts-yaxis-labels, .highcharts-axis-labels{
+  font-size: 14px;
 }
