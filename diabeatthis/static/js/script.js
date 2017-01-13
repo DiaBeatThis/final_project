@@ -470,15 +470,6 @@ $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
     })
 });
 
-function getCal() {
-
-    $.ajax({url:'/profile/', data:postdata, type:'POST'}).done(function(){
-        location = location
-        getGlucose()
-    })
-    https://calendar.google.com/calendar/embed?src=4p11l8t0dphp7pbcgf72l6lstc%40group.calendar.google.com&ctz=America/New_York
-}
-
 $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)
 $('#glucoseWeekSubmit').click(getGlucose)

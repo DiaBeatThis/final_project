@@ -81,13 +81,9 @@
       <div class="remindersInfo">
         <div class="remindersData">
           <h5>Daily Reminders</h5>
-<iframe src="" style="border: 0" width="200" height="200" frameborder="0" scrolling="no"></iframe>
-            <!-- <ul>
-            <p id="breakfast"></p>
-            <li>Breakfast: {{ user.profile.steps_goal }} </li>
-            <li>Lunch: {{ event.start.dateTime }} </li>
-            <li>Dinner: </pre> </li>
-          </ul> -->
+
+<iframe src="https://calendar.google.com/calendar/embed?src={{user.profile.calendar_id}}&ctz=America/New_York" style="border: 0" width="200" height="200" frameborder="0" scrolling="no"></iframe>            <li>Lunch: {{ event.start.dateTime }} </li>
+
         </div>
         <a href="../profile/#thirdParty">Edit Reminders</a>
       </div>
@@ -256,6 +252,7 @@
 
   <script src="{%  static '/js/script.js' %}"></script>
   <script src="{% static '/js/googlecal.js' %}"></script>
+  <script src="{% static '/js/googleinsert.js' %}"></script>
 
 
   <!-- remodal -->
