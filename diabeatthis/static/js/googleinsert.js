@@ -37,6 +37,7 @@ function loadCalendarApi() {
 }
 
 var currentUser = $('#userId').val()
+console.log(currentUser)
 
 var cal_id
 var b_summary
@@ -65,26 +66,13 @@ function insertCalendar(){
  }
 
  function saveId(){
-	 profile_id = currentUser.profile.id
-	 console.log(profile_id)
-	 console.log(currentUser)
-	 $.ajax({url:'api/profile/profile_id', data:{'calendar_id':cal_id}, type:'PATCH'}).done(function(){
+	 $.ajax({
+		 url:'/api/profile/' + currentUser + '/',
+		 data:{'calendar_id':cal_id},
+		 type:'PATCH'}).done(function(){
 		 location = location
 	 })
  }
-
-//gets calendar id
-// function getCalendarId(){
-// 	var request = gapi.client.calendar.calendars.get({
-// 		'calendarId': cal_id,
-// 	});
-// 	request.execute(function(resp){
-// 		calId = resp.id
-// 		console.log(calId)
-// 		document.getElementById("cal").src = "https://calendar.google.com/calendar/embed?src=" + calId + "&ctz=America/New_York"
-// 	})
-// }
-		// return "https://calendar.google.com/calendar/embed?src=" + calId + "&ctz=America/New_York",
 
 
 function bInsertReminders(){
@@ -190,17 +178,6 @@ function setDinnerReminder(){
 	request.execute(function(event) {
 	  appendPre('Event created: ' + event.htmlLink);
 	});
-}
-
-function setExampleReminder(){
-	$.ajax({
-		url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
-		type: 'GET',
-		}).done(function(){
-			var request = gapi.client.calendar.calendarList.list({
-			  'maxResults': '3',
-			});
-		});
 }
 
 

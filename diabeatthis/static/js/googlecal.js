@@ -97,8 +97,6 @@ console.log(events)
  });
 }
 
-
-
 /**
 * Append a pre element to the body containing the given message
 * as its text node.
