@@ -28,30 +28,6 @@ $.ajaxSetup({
     }
 });
 
-<<<<<<< HEAD
-
-
-function getCalendarId(){
-	var request = gapi.client.calendar.calendars.get({
-	'calendarId': cal_id,
-	});
-request.execute(function(resp){
-calId = resp.id
-console.log(calId)
-})
-}
-
-// google INSERT EVENT
-function loadCalendarApi() {
-  gapi.client.load('calendar', 'v3');
-}
-
-var currentUser = $('#userId').val()
-console.log(currentUser)
-
-var cal_id
-=======
->>>>>>> 7eb1ae750e1a3a4f79fa46628b72800a65e55be1
 var b_summary
 var b_description
 var b_time_stamp
@@ -67,17 +43,6 @@ var cal_id = $('#userCal').val()
 // google INSERT EVENT
 function loadCalendarApi() {
   gapi.client.load('calendar', 'v3');
-}
-
-function insertCalendar(){
-  var request = gapi.client.calendar.insert({
-     'name': 'diabeatthis',
-     'summary': 'diabeatthis',
-     'timeZone': 'American/Cancun',
-  });
-  request.execute(function() {
-     appendPre('Event created: ' + event.htmlLink);
-  });
 }
 
 //makes new calendar

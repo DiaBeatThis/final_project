@@ -102,7 +102,6 @@ function listCalendars()
 
      request.execute(function(resp){
              var calendars = resp.items;
-             console.log(calendars);
      });
 }
 
@@ -113,7 +112,7 @@ function listCalendars()
 * @param {string} message Text to be placed in pre element.
 */
 function appendPre(message) {
- var pre = document.getElementById('output');
- var textContent = document.createTextNode(message + '\n');
- pre.appendChild(textContent);
+     var pre = document.getElementById('output');
+     var textContent = document.createTextNode(message + '\n');
+     pre.appendChild(textContent);
 }
