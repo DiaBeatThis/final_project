@@ -28,6 +28,8 @@ $.ajaxSetup({
     }
 });
 
+showHideCalendar()
+
 var b_summary
 var b_description
 var b_time_stamp
@@ -39,6 +41,12 @@ var d_description
 var d_time_stamp
 var currentUser = $('#userId').val()
 var cal_id = $('#userCal').val()
+
+function showHideCalendar() {
+    if($('#userCal').val() == 'None'){
+        $(".remindersInfo").hide();
+    }
+}
 
 Date.prototype.addHours= function(h){
     this.setHours(this.getHours()+h);
