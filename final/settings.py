@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'diabeatthis.apps.DiabeatthisConfig',
     'rest_framework',
 	'fitapp',
-    # 'storages',
+    'storages',
 ]
 
 REST_FRAMEWORK = {
