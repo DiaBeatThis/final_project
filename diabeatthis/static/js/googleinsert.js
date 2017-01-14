@@ -51,17 +51,6 @@ function loadCalendarApi() {
   gapi.client.load('calendar', 'v3');
 }
 
-// function insertCalendar(){
-//   var request = gapi.client.calendar.insert({
-//      'name': 'diabeatthis',
-//      'summary': 'diabeatthis',
-//      'timeZone': 'American/Cancun',
-//   });
-//   request.execute(function() {
-//      appendPre('Event created: ' + event.htmlLink);
-//   });
-// }
-
 //makes new calendar
 function insertCalendar(){
     if(cal_id == 'None'){
@@ -92,7 +81,7 @@ function insertCalendar(){
 function saveId(){
 	 $.ajax({
 		 url:'/api/profile/' + currentUser + '/',
-		 data:{'calendar_id':cal_id},
+		 data:{'calendar_id':cal_id.slice(0, 26)},
 		 type:'PATCH'}).done(function(){
 		 location = location
 	 })
@@ -180,8 +169,6 @@ function setBreakfastReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
-
-	  console.log("breakfast reminder");
 	});
 }
 
@@ -191,7 +178,6 @@ function setLunchReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
-	  console.log("lunch reminder");
 	});
 }
 
@@ -201,7 +187,6 @@ function setDinnerReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
-	  console.log("dinner reminder");
 	});
 }
 
@@ -213,15 +198,12 @@ $(document).on('confirmation', '[data-remodal-id=modalReminders]', function () {
     b_summary = $("#breakfastSummary").val()
     b_description = $("#breakfastDescription").val()
 	b_time_stamp = new Date($("#breakfastReminder").val()).addHours(5).toISOString()
-	console.log(b_time_stamp)
 	l_summary = $("#lunchSummary").val()
     l_description = $("#lunchDesc  ription").val()
 	l_time_stamp = new Date($("#lunchReminder").val()).addHours(5).toISOString()
-	console.log(l_time_stamp)
 	d_summary = $("#dinnerSummary").val()
     d_description = $("#dinnerDescription").val()
 	d_time_stamp = new Date($("#dinnerReminder").val()).addHours(5).toISOString()
-	console.log(d_time_stamp)
 	loadCalendarApi()
 	insertCalendar()
 });
