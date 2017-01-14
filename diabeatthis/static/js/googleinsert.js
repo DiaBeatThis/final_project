@@ -40,6 +40,11 @@ var d_time_stamp
 var currentUser = $('#userId').val()
 var cal_id = $('#userCal').val()
 
+Date.prototype.addHours= function(h){
+    this.setHours(this.getHours()+h);
+    return this;
+}
+
 // google INSERT EVENT
 function loadCalendarApi() {
   gapi.client.load('calendar', 'v3');
@@ -47,11 +52,13 @@ function loadCalendarApi() {
 
 //makes new calendar
 function insertCalendar(){
+    console.log(cal_id)
     if(cal_id == 'None'){
     	 var request = gapi.client.calendar.calendars.insert({
        	     'summary': 'diabeatthis'});
              request.execute(function(resp){
     		 cal_id = resp.id
+             console.log(cal_id)
     		    saveId()
                 bInsertReminders()
         	 	lInsertReminders()
@@ -59,6 +66,7 @@ function insertCalendar(){
                 })
         }
         else{
+            console.log(cal_id)
             var request = gapi.client.calendar.calendars.get({
           	    'calendarId': cal_id});
                 request.execute(function(resp){
@@ -71,6 +79,7 @@ function insertCalendar(){
 
 
 function saveId(){
+    console.log(cal_id)
 	 $.ajax({
 		 url:'/api/profile/' + currentUser + '/',
 		 data:{'calendar_id':cal_id},
@@ -86,11 +95,11 @@ function bInsertReminders(){
   'description': b_description,
   'start': {
     'dateTime': b_time_stamp,
-    'timeZone': 'America/Los_Angeles'
+    'timeZone': 'Australia/Sydney'
   },
   'end': {
     'dateTime': b_time_stamp,
-    'timeZone': 'America/Los_Angeles'
+    'timeZone': 'Australia/Sydney'
   },
   'recurrence': [
     'RRULE:FREQ=DAILY;COUNT=2'
@@ -111,11 +120,11 @@ function lInsertReminders(){
   'description': l_description,
   'start': {
     'dateTime': l_time_stamp,
-    'timeZone': 'America/Los_Angeles'
+    'timeZone': 'Australia/Sydney'
   },
   'end': {
     'dateTime': l_time_stamp,
-    'timeZone': 'America/Los_Angeles'
+    'timeZone': 'Australia/Sydney'
   },
   'recurrence': [
     'RRULE:FREQ=DAILY;COUNT=2'
@@ -131,6 +140,7 @@ function lInsertReminders(){
 }
 
 function dInsertReminders(){
+    console.log(d_time_stamp)
 	event = {
   'summary': d_summary,
   'description': d_description,
@@ -194,13 +204,13 @@ $(document).on('opening', '[data-remodal-id=modalReminders]', function () {
 $(document).on('confirmation', '[data-remodal-id=modalReminders]', function () {
     b_summary = $("#breakfastSummary").val()
     b_description = $("#breakfastDescription").val()
-	b_time_stamp = new Date($("#breakfastReminder").val()).toISOString()
+	b_time_stamp = new Date($("#breakfastReminder").val()).addHours(5).toISOString()
 	l_summary = $("#lunchSummary").val()
     l_description = $("#lunchDesc  ription").val()
-	l_time_stamp = new Date($("#lunchReminder").val()).toISOString()
+	l_time_stamp = new Date($("#lunchReminder").val()).addHours(5).toISOString()
 	d_summary = $("#dinnerSummary").val()
     d_description = $("#dinnerDescription").val()
-	d_time_stamp = new Date($("#dinnerReminder").val()).toISOString()
+	d_time_stamp = new Date($("#dinnerReminder").val()).addHours(5).toISOString()
 	loadCalendarApi()
 	insertCalendar()
 });

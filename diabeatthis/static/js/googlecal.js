@@ -9,7 +9,6 @@ var signoutButton = document.getElementById('signout-button');
 
 $(document).on('opening', '[data-remodal-id=modalReminders]', function () {
   console.log('Modal is opening');
-  handleAuthClick(event)
 });
 
 /**
