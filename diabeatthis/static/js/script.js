@@ -74,6 +74,9 @@ getSteps()
 getInsulin()
 
 function screenSize(){
+    if($('#userCal').val() == 'None'){
+        $(".remindersInfo").hide();
+    }
     var x = screen.width
     if (x > 767){
         screenSize = '140%'
