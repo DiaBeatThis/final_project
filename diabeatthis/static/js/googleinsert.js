@@ -28,6 +28,7 @@ $.ajaxSetup({
     }
 });
 
+showHideCalendar()
 
 var b_summary
 var b_description
@@ -41,9 +42,15 @@ var d_time_stamp
 var currentUser = $('#userId').val()
 var cal_id = $('#userCal').val()
 
+function showHideCalendar() {
+    if($('#userCal').val() == 'None'){
+        $(".remindersInfo").hide();
+    }
+}
+
 Date.prototype.addHours= function(h){
-   this.setHours(this.getHours()+h);
-   return this;
+    this.setHours(this.getHours()+h);
+    return this;
 }
 
 // google INSERT EVENT
@@ -58,8 +65,7 @@ function insertCalendar(){
        	     'summary': 'diabeatthis',
 		 });
              request.execute(function(resp){
-				 console.log(resp)
-    		 cal_id = resp.id
+    		    cal_id = resp.id
     		    saveId()
                 bInsertReminders()
         	 	lInsertReminders()
@@ -189,10 +195,6 @@ function setDinnerReminder(){
 	request.execute(function(event) {
 	});
 }
-
-$(document).on('opening', '[data-remodal-id=modalReminders]', function () {
-  console.log('Modal is opening');
-});
 
 $(document).on('confirmation', '[data-remodal-id=modalReminders]', function () {
     b_summary = $("#breakfastSummary").val()

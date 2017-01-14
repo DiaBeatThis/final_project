@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'diabeatthis.apps.DiabeatthisConfig',
     'rest_framework',
 	'fitapp',
-    # 'storages',
+    'storages',
 ]
 
 REST_FRAMEWORK = {
@@ -117,6 +117,7 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'diabeatthis/static/')
 
 FITAPP_CONSUMER_KEY = '22878M'
 FITAPP_CONSUMER_SECRET = '78b76ef60444570d55e8758098c8dc8b'
+
 
 # AWS_STORAGE_BUCKET_NAME = 'diabeatthis'
 # AWS_ACCESS_KEY_ID = 'AKIAIPOIN3WOFWNZ45IQ'

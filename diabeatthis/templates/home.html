@@ -81,7 +81,7 @@
       <div class="remindersInfo">
         <div class="remindersData">
           <h5>Reminders</h5>
-		  <iframe src="https://calendar.google.com/calendar/embed?showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=200&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src={{user.profile.calendar_id}}%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0" width="200" height="200" frameborder="0" scrolling="no"></iframe>
+          <iframe src="https://calendar.google.com/calendar/embed?showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=200&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src={{user.profile.calendar_id}}%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0" width="200" height="200" frameborder="0" scrolling="no"></iframe>
         </div>
         <a href="../profile/#thirdParty">Edit Reminders</a>
       </div>
@@ -112,7 +112,7 @@
       <div class="remodal-bg">
         <div class="remodal" data-remodal-id="modalInsulin">
           <h3>How much Insulin did you take?</h3>
-          <form>
+          <!-- <form> -->
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="insulinLevel">units</label>
@@ -133,10 +133,10 @@
       <!-- water modal -->
       <div class="remodal-bg">
         <div class="remodal" data-remodal-id="waterIntake">
-          <h3>How water have you had to drink?</h3>
+          <h3>How much water have you had to drink?</h3>
           <p>Daily Goal: {{ user.profile.water_goal }} cups</p>
           <br>
-          <form>
+          <!-- <form> -->
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="waterIntake">cups</label>
@@ -170,7 +170,7 @@
           <h3>How many steps have you taken today?</h3>
           <p>Daily Goal: {{ user.profile.steps_goal }} steps</p>
           <br>
-          <form>
+          <!-- <form> -->
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="stepsTaken">Total Steps</label>
@@ -223,7 +223,6 @@
       </div>
       <div id="stepsChart" style="height:300px;"></div>
     </div>
-    </div>
   </div>
 
 </section>
@@ -232,7 +231,7 @@
 <input type="hidden" id="waterGoal" value='{{user.profile.water_goal}}'>
 <input type="hidden" id="userId" value='{{user.profile.id}}'>
 <input type="hidden" id="currentDate" value="{% now 'Y-m-d' %}">
-
+<input type="hidden" id="userCal" value='{{ user.profile.calendar_id }}'>
 <!-- footer nav -->
   <section>
   <div id="footer"></div>
