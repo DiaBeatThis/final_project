@@ -52,13 +52,12 @@ function loadCalendarApi() {
 
 //makes new calendar
 function insertCalendar(){
-    console.log(cal_id)
     if(cal_id == 'None'){
     	 var request = gapi.client.calendar.calendars.insert({
-       	     'summary': 'diabeatthis'});
+       	     'summary': 'diabeatthis',
+		 });
              request.execute(function(resp){
-    		 cal_id = resp.id
-             console.log(cal_id)
+    		    cal_id = resp.id
     		    saveId()
                 bInsertReminders()
         	 	lInsertReminders()
@@ -66,7 +65,6 @@ function insertCalendar(){
                 })
         }
         else{
-            console.log(cal_id)
             var request = gapi.client.calendar.calendars.get({
           	    'calendarId': cal_id});
                 request.execute(function(resp){
@@ -79,7 +77,6 @@ function insertCalendar(){
 
 
 function saveId(){
-    console.log(cal_id)
 	 $.ajax({
 		 url:'/api/profile/' + currentUser + '/',
 		 data:{'calendar_id':cal_id},
@@ -95,14 +92,14 @@ function bInsertReminders(){
   'description': b_description,
   'start': {
     'dateTime': b_time_stamp,
-    'timeZone': 'Australia/Sydney'
+	'timeZone': 'America/New_York'
   },
   'end': {
     'dateTime': b_time_stamp,
-    'timeZone': 'Australia/Sydney'
+	'timeZone': 'America/New_York'
   },
   'recurrence': [
-    'RRULE:FREQ=DAILY;COUNT=2'
+    'RRULE:FREQ=DAILY;COUNT=1'
   ],
   'reminders': {
     'useDefault': false,
@@ -120,14 +117,14 @@ function lInsertReminders(){
   'description': l_description,
   'start': {
     'dateTime': l_time_stamp,
-    'timeZone': 'Australia/Sydney'
+    'timeZone': 'America/New_York'
   },
   'end': {
     'dateTime': l_time_stamp,
-    'timeZone': 'Australia/Sydney'
+    'timeZone': 'America/New_York'
   },
   'recurrence': [
-    'RRULE:FREQ=DAILY;COUNT=2'
+    'RRULE:FREQ=DAILY;COUNT=1'
   ],
   'reminders': {
     'useDefault': false,
@@ -140,20 +137,19 @@ function lInsertReminders(){
 }
 
 function dInsertReminders(){
-    console.log(d_time_stamp)
 	event = {
   'summary': d_summary,
   'description': d_description,
   'start': {
     'dateTime': d_time_stamp,
-    'timeZone': 'America/Los_Angeles'
+    'timeZone': 'America/New_York'
   },
   'end': {
     'dateTime': d_time_stamp,
-    'timeZone': 'America/Los_Angeles'
+    'timeZone': 'America/New_York'
   },
   'recurrence': [
-    'RRULE:FREQ=DAILY;COUNT=2'
+    'RRULE:FREQ=DAILY;COUNT=1'
   ],
   'reminders': {
     'useDefault': false,
@@ -171,8 +167,6 @@ function setBreakfastReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
-
-	  console.log("breakfast reminder");
 	});
 }
 
@@ -182,7 +176,6 @@ function setLunchReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
-	  console.log("lunch reminder");
 	});
 }
 
@@ -192,14 +185,8 @@ function setDinnerReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
-	  console.log("dinner reminder");
 	});
 }
-
-$(document).on('opening', '[data-remodal-id=modalReminders]', function () {
-  console.log('Modal is opening');
-  handleAuthClick(event)
-});
 
 $(document).on('confirmation', '[data-remodal-id=modalReminders]', function () {
     b_summary = $("#breakfastSummary").val()
