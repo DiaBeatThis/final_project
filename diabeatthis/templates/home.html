@@ -55,8 +55,8 @@
     <ul class="lognav">
 		<li><img src="{% static 'images/glucoselog_icon.svg' %}" alt="Log Glucose">&nbsp;<a href="#modalGlucose">Log Glucose</a></li>
         <li><img src="{% static 'images/insulinlog_icon.svg' %}" alt="Log Insulin">&nbsp;<a href="#modalInsulin">Log Insulin</a></li>
-        <li><img src="{% static 'images/waterlog_icon.svg' %}" alt="Log Water">&nbsp;<a href="#modalWaterIntake">Log Water</a></li>
-        <li><img src="{% static 'images/stepslog_icon.svg' %}" alt="Log Steps">&nbsp;<a href="#modalStepsTaken">Log Steps</a></li>
+        <li><img src="{% static 'images/waterlog_icon.svg' %}" alt="Log Water">&nbsp;<a href="#waterIntake">Log Water</a></li>
+        <li><img src="{% static 'images/stepslog_icon.svg' %}" alt="Log Steps">&nbsp;<a href="#stepsTaken">Log Steps</a></li>
     </ul>
   </div>
 
@@ -100,7 +100,7 @@
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="glucoseDateTime">Date/Time (e.g. 01/01/2017, 08:00 AM)</label>
-                <input class="u-full-width" value="{% now 'Y-m-d\Th:i' %}" type="datetime-local" id="glucoseDateTime" name="glucoseDateTime">
+                <input class="u-full-width" value="{% now 'Y-m-d\TH:i' %}" type="datetime-local" id="glucoseDateTime" name="glucoseDateTime">
               </div>
             </div>
           <br>
@@ -122,7 +122,7 @@
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="insulinDateTime">Date/Time (e.g. 01/01/2017, 08:00 AM)</label>
-                <input class="u-full-width" value="{% now 'Y-m-d\Th:i' %}"  type="datetime-local" id="insulinDateTime" name="insulinDateTime">
+                <input class="u-full-width" value="{% now 'Y-m-d\TH:i' %}"  type="datetime-local" id="insulinDateTime" name="insulinDateTime">
               </div>
             </div>
           <br>
@@ -156,7 +156,7 @@
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="waterDateTime">Date/Time (e.g. 01/01/2017, 08:00 AM)</label>
-                <input class="u-full-width" value="{% now 'Y-m-d\Th:i' %}" type="datetime-local" id="waterDateTime" name="waterDateTime">
+                <input class="u-full-width" value="{% now 'Y-m-d\TH:i' %}" type="datetime-local" id="waterDateTime" name="waterDateTime">
               </div>
             </div>
           <br>
