@@ -429,6 +429,7 @@ $(document).on('confirmation', '[data-remodal-id=modalGlucose]', function () {
     var glucose = $("#glucoseLevel").val()
     var time_stamp = $("#glucoseDateTime").val()
     var postdata = {'mg_dL':glucose, 'time_stamp':time_stamp, 'profile_id':currentUser}
+    console.log(postdata)
     $.ajax({url:'/api/blood_sugar/', data:postdata, type:'POST'}).done(function(){
         location = location
         getGlucose()
