@@ -1,12 +1,12 @@
 @import "variables.scss";
 @import "mixins.scss";
-@import "home.scss";
 @import "header.scss";
 @import "footer.scss";
-@import "profile.scss";
-@import "faq.scss";
 @import "register.scss";
 @import "login.scss";
+@import "home.scss";
+@import "profile.scss";
+@import "faq.scss";
 
 body{
   font-family: 'hevetica neue', helvetica, sans-serif;
@@ -19,6 +19,44 @@ p{
 
 h6{
   font-size: 1.8rem;
+}
+
+.hero1{
+  background: url(../images/indexHero1.png) no-repeat top center;
+  background-size: cover;
+  height: 700px;
+  .herotext1{
+    text-align: center;
+    color: $navy;
+    @include verticalcenter;
+  }
+}
+
+.indexMiddle{
+  padding: 3% 7%;
+  background-color: white;
+  .indexMobile{
+    height: 650px;
+  }
+  .indexMiddleText{
+    height: 650px;
+    h4{
+      font-family: Times, serif;
+    }
+  }
+}
+
+.hero2{
+  background: url(../images/indexHero2.png) no-repeat top center;
+  background-size: cover;
+  height: 100vh;
+  .herotext2{
+    text-align: center;
+    color: $navy;
+    background: $graytrans;
+    padding: 1%;
+    margin-top: 20%;
+  }
 }
 
 

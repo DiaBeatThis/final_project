@@ -65,7 +65,10 @@ function insertCalendar(){
        	     'summary': 'diabeatthis',
 		 });
              request.execute(function(resp){
+				 console.log(resp)
     		    cal_id = resp.id
+				console.log(resp.id)
+				console.log(cal_id)
     		    saveId()
                 bInsertReminders()
         	 	lInsertReminders()
@@ -80,7 +83,6 @@ function insertCalendar(){
            	 	lInsertReminders()
            	 	dInsertReminders()
         })}
-
  }
 
 
@@ -90,6 +92,7 @@ function saveId(){
 		 data:{'calendar_id':cal_id.slice(0, 26)},
 		 type:'PATCH'}).done(function(){
 		 location = location
+		console.log(cal_id)
 	 })
  }
 
@@ -176,6 +179,7 @@ function setBreakfastReminder(){
 	});
 	request.execute(function(event) {
 	});
+	console.log(cal_id)
 }
 
 function setLunchReminder(){

@@ -28,6 +28,7 @@
     img{
       height: 43px;
       vertical-align: middle;
+      padding-right: 1.75%;
       }
     a{
       text-decoration: none;
@@ -109,4 +110,26 @@
 
 .highcharts-yaxis-labels, .highcharts-axis-labels{
   font-size: 14px;
+}
+
+.mobileNav{
+  display: none;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: $grayblue;
+  .lognavMobile{
+    list-style: none;
+    margin-bottom: 0px;
+    padding-top: 10px;
+    text-align: center;
+    li{
+      display: inline;
+      padding: 10px;
+      img{
+        height: 70px;
+      }
+    }
+  }
 }
