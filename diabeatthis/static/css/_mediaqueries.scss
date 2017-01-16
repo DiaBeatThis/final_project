@@ -47,6 +47,7 @@
   }
   .menuimg{
     display: inline-block;
+    padding-top: 35px;
     width: 100px;
   }
 // footer
@@ -58,11 +59,11 @@
         display: none;
       }
     }
-    .middle{
-      text-align: left;
+    .left{
+      text-align: center;
     }
     .right{
-      text-align: left;
+      text-align: center;
     }
   }
 // index
@@ -115,6 +116,7 @@
 // moblile dashboard nav
   .mobileNav{
     display: block;
+    z-index: 100;
   }
 // profile
   .headerButtons{

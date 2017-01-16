@@ -3,7 +3,9 @@ from django.contrib import admin
 from diabeatthis import views
 from rest_framework import routers
 from django.contrib.auth import views as auth_views
+from django.views.generic import RedirectView
 from django.views.generic import TemplateView
+
 
 router = routers.DefaultRouter()
 router.register(r'profile', views.ProfileViewSet)
