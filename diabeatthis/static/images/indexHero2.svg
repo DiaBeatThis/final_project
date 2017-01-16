@@ -5,61 +5,61 @@
 <style type="text/css">
 	.st0{opacity:0.4;}
 	.st1{fill:none;stroke:#091019;stroke-width:1.9234;}
-	.st2{fill:none;enable-background:new    ;}
+	.st2{fill:none;}
 	.st3{fill:none;stroke:#091019;stroke-width:2;}
 	.st4{fill:none;stroke:#091019;stroke-width:2.0008;}
 	.st5{fill:none;stroke:#091019;stroke-width:2.0634;}
-	.st6{fill:none;stroke:#091019;stroke-width:1.9585;}
+	.st6{fill:none;stroke:#091019;stroke-width:1.7627;}
 </style>
 <g id="Artboard_2">
 	<g class="st0">
 		<g>
 			
-				<image style="overflow:visible;" width="1582" height="839" xlink:href="181942A16B7352C2.png"  transform="matrix(1 0 0 1 38 74)">
+				<image style="overflow:visible;enable-background:new    ;" width="1582" height="839" xlink:href="181942A16B7352C2.png"  transform="matrix(1 0 0 1 38 74)">
 			</image>
 			<rect x="38" y="73.8" class="st1" width="1582.1" height="839.2"/>
 		</g>
 		<g>
 			
-				<image style="overflow:visible;" width="700" height="482" xlink:href="181942A16B7352C6.png"  transform="matrix(1 0 0 1 1365 94)">
+				<image style="overflow:visible;enable-background:new    ;" width="700" height="482" xlink:href="181942A16B7352C6.png"  transform="matrix(1 0 0 1 1365 94)">
 			</image>
-			<path class="st2" d="z"/>
+			<path class="st2" d="M0,0"/>
 			<rect x="1364" y="94" class="st3" width="702" height="482"/>
 		</g>
 		<g>
 			
-				<image style="overflow:visible;" width="745" height="638" xlink:href="181942A16B7352C1.png"  transform="matrix(1.0611 0 0 1.0098 2024 73.7778)">
+				<image style="overflow:visible;enable-background:new    ;" width="745" height="638" xlink:href="181942A16B7352C1.png"  transform="matrix(1.0611 0 0 1.0098 2024 73.7778)">
 			</image>
-			<path class="st2" d="z"/>
+			<path class="st2" d="M0,0"/>
 			<rect x="2024" y="74" class="st3" width="792" height="642"/>
 		</g>
 		<g>
 			
-				<image style="overflow:visible;" width="678" height="353" xlink:href="181942A16B7352C3.png"  transform="matrix(1 0 0 1 1734 653)">
+				<image style="overflow:visible;enable-background:new    ;" width="678" height="353" xlink:href="181942A16B7352C3.png"  transform="matrix(1 0 0 1 1734 653)">
 			</image>
-			<path class="st2" d="z"/>
+			<path class="st2" d="M0,0"/>
 			<rect x="1732" y="653" class="st3" width="680" height="353"/>
 		</g>
 		<g>
 			
-				<image style="overflow:visible;" width="1438" height="770" xlink:href="181942A16B7352C0.png"  transform="matrix(0.995 0 0 0.9882 1381.2222 999)">
+				<image style="overflow:visible;enable-background:new    ;" width="1438" height="770" xlink:href="181942A16B7352C0.png"  transform="matrix(0.995 0 0 0.9882 1381.2222 999)">
 			</image>
-			<path class="st2" d="z"/>
+			<path class="st2" d="M0,0"/>
 			<rect x="1381.9" y="999" class="st4" width="1430.1" height="765"/>
 		</g>
 		<g>
 			
-				<image style="overflow:visible;" width="1133" height="702" xlink:href="181942A16B7352CE.png"  transform="matrix(0.942 0 0 0.95 33.325 1099.55)">
+				<image style="overflow:visible;enable-background:new    ;" width="1127" height="705" xlink:href="181942A16B7352CE.png"  transform="matrix(0.9445 0 0 0.9525 34.7502 1097.2413)">
 			</image>
-			<path class="st2" d="z"/>
+			<path class="st2" d="M0,0"/>
 			<rect x="38" y="1099" class="st5" width="1065.4" height="665"/>
 		</g>
 		<g>
 			
-				<image style="overflow:visible;" width="864" height="463" xlink:href="181942A16B7352C5.png"  transform="matrix(1 0 0 1 756 873)">
+				<image style="overflow:visible;enable-background:new    ;" width="864" height="463" xlink:href="181942A16B7352C5.png"  transform="matrix(0.9 0 0 0.9 781.45 943.5)">
 			</image>
-			<path class="st2" d="z"/>
-			<rect x="755" y="873.8" class="st6" width="866" height="462.2"/>
+			<path class="st2" d="M101.1,157.8"/>
+			<rect x="780.5" y="944.2" class="st6" width="779.4" height="416"/>
 		</g>
 	</g>
 </g>

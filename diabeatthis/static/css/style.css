@@ -117,7 +117,7 @@
   .lognav li {
     list-style: none; }
     .lognav li img {
-      height: 43px;
+      height: 38px;
       vertical-align: middle;
       padding-right: 1.75%; }
     .lognav li a {
@@ -373,6 +373,7 @@ h6 {
 
   .menuimg {
     display: inline-block;
+    padding-top: 35px;
     width: 100px; }
 
   .footer {
@@ -380,10 +381,10 @@ h6 {
     font-size: 18px; }
     .footer .left span {
       display: none; }
-    .footer .middle {
-      text-align: left; }
+    .footer .left {
+      text-align: center; }
     .footer .right {
-      text-align: left; }
+      text-align: center; }
 
   .indexMiddle .indexMobile {
     height: 350px; }
@@ -424,7 +425,8 @@ h6 {
     display: inline; }
 
   .mobileNav {
-    display: block; }
+    display: block;
+    z-index: 100; }
 
   .headerButtons {
     float: none; }

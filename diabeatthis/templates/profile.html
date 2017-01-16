@@ -20,7 +20,10 @@
 
   <!-- remodal -->
   <link rel="stylesheet" href="{% static '/css/remodal.css' %}">
-  <link rel="stylesheet" href="{% static '/css/remodal-default-theme.css' %}">
+  <link rel="stylesheet" href="{% static 'css/remodal-default-theme.css' %}">
+
+  <!-- fontawesome -->
+  <script src="https://use.fontawesome.com/f0fffec6a9.js"></script>
 
   <!-- normal css -->
   <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
@@ -109,8 +112,8 @@
           <!-- date of birth -->
           <div class="four2 columns">
             <label for="birthday">Your birthday</label>
-            <p>{{ user.profile.dob|date:"Y-m-d" }}</p>
-            <input class="u-full-width hiddenField" value="{{ user.profile.dob|date:"Y-m-d" }}" type="date" placeholder="Age" id="birthday" name="dob">
+            <p class="profileData">{{ user.profile.dob|date:"Y-m-d" }}</p>
+            <input class="u-full-width profileForm" value="{{ user.profile.dob|date:"Y-m-d" }}" type="date" placeholder="Age" id="birthday" name="dob">
           </div>
           <!-- height -->
           <div class="four2 columns">
@@ -127,8 +130,8 @@
           <!-- sex -->
           <div class="four2 columns">
            <label for="sex">What your biological sex is</label>
-           <p>{{ user.profile.get_sex_display }}</p>
-           <select class="u-full-width hiddenField" id="sex" name="sex">
+           <p class="profileData">{{ user.profile.get_sex_display }}</p>
+           <select class="u-full-width profileForm" id="sex" name="sex">
              <option value="{{ user.profile.sex }}">{{ user.profile.get_sex_display }}</option>
              <option value="M">Male</option>
              <option value="F">Female</option>
@@ -138,8 +141,8 @@
          <!-- race -->
          <div class="four2 columns">
           <label for="race">What race you identify as</label>
-          <p>{{ user.profile.get_race_display }}</p>
-          <select name="race" class="u-full-width hiddenField" id="race" placeholder="Race" value="{{ user.profile.race }}">
+          <p class="profileData">{{ user.profile.get_race_display }}</p>
+          <select name="race" class="u-full-width profileForm" id="race" placeholder="Race" value="{{ user.profile.race }}">
             <option value="{{ user.profile.race }}">{{ user.profile.get_race_display }}</option>
             <option value="AA">African American</option>
             <option value="AI">American Indian</option>
