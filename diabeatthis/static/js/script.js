@@ -102,9 +102,6 @@ function getInsulin (){
             if(res[i]['profile_id'] == currentUser && insulinWeek === week){
                 insulin.push(parseFloat(res[i]['mcU_ml']))
                 insulinTimestamp.push(dayName + ', ' + time)
-                // day = (res[i]['time_stamp']).getDayName()
-                // console.log(day)
-                // insulinTimestamp.push(res[i]['time_stamp'].slice(11, 16))
             }
         }
         insulinCharts()
@@ -429,7 +426,6 @@ $(document).on('confirmation', '[data-remodal-id=modalGlucose]', function () {
     var glucose = $("#glucoseLevel").val()
     var time_stamp = $("#glucoseDateTime").val()
     var postdata = {'mg_dL':glucose, 'time_stamp':time_stamp, 'profile_id':currentUser}
-    console.log(postdata)
     $.ajax({url:'/api/blood_sugar/', data:postdata, type:'POST'}).done(function(){
         location = location
         getGlucose()
@@ -475,6 +471,3 @@ $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)
 $('#glucoseWeekSubmit').click(getGlucose)
 $('#insulinWeekSubmit').click(getInsulin)
-
-// fitbit API request
-// https://api.fitbit.com/1/user/5BZ85Q/activities/date/2016-08-08.json?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Qlo4NVEiLCJhdWQiOiIyMjg3NjMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNDgzNjgwMzY5LCJpYXQiOjE0ODM2NTE1Njl9.m6ZiS8uR-4rEGrAepgjQZ6ddlhErRNj1Jkdh1VH43EE

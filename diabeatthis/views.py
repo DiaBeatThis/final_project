@@ -76,7 +76,7 @@ def register(request):
                                     password=user_form.cleaned_data['password'],
                                     )
             login(request, user)
-            return HttpResponseRedirect("/home/")
+            return HttpResponseRedirect("/profile/")
         else:
             print(user_form.errors, profile_form.errors)
     else:

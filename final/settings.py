@@ -1,8 +1,8 @@
 import os
-from .secrets import SECRET_KEY, DATABASES
+# from .secrets import SECRET_KEY, DATABASES
 import dj_database_url
 
-# SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ['SECRET_KEY']
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -87,15 +87,15 @@ USE_L10N = True
 
 USE_TZ = True
 
-# DATABASES = {
-#     'default': {
-#     }
-# }
-#
-# db_from_env = dj_database_url.config(conn_max_age=500)
-#
-# DATABASES['default'].update(db_from_env)
-# DATABASES['default'] =  dj_database_url.config()
+DATABASES = {
+    'default': {
+    }
+}
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+
+DATABASES['default'].update(db_from_env)
+DATABASES['default'] =  dj_database_url.config()
 
 LOGIN_REDIRECT_URL = '/home/'
 
@@ -119,21 +119,3 @@ FITAPP_CONSUMER_KEY = '228763'
 FITAPP_CONSUMER_SECRET = 'f00eb347400334a52e42f03732aef6a5'
 FITAPP_LOGIN_REDIRECT = "/profile/"
 FITAPP_LOGIN_REDIRECT = "http://127.0.0.1:8000/profile/"
-
-# AWS_STORAGE_BUCKET_NAME = 'diabeatthis'
-# AWS_ACCESS_KEY_ID = 'AKIAIPOIN3WOFWNZ45IQ'
-# AWS_SECRET_ACCESS_KEY = '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'
-#
-#     # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
-#     # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
-#     # This controls how the `static` template tag from `staticfiles` gets expanded, if you're using it.
-#     # We also use it in the next setting.
-# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-#
-#     # This is used by the `static` template tag from `static`, if you're using that. Or if anything else
-#     # refers directly to STATIC_URL. So it's safest to always set it.
-# STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
-#
-#     # Tell the staticfiles app to use S3Boto storage when writing the collected static files (when
-#     # you run `collectstatic`).
-# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
