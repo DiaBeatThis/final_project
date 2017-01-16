@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'diabeatthis.apps.DiabeatthisConfig',
     'rest_framework',
 	'fitapp',
-    # 'storages',
+    'storages',
 ]
 
 REST_FRAMEWORK = {
@@ -115,8 +115,9 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'diabeatthis/static/')
 
-FITAPP_CONSUMER_KEY = '22878M'
-FITAPP_CONSUMER_SECRET = '78b76ef60444570d55e8758098c8dc8b'
+FITAPP_CONSUMER_KEY = '228763'
+FITAPP_CONSUMER_SECRET = 'f00eb347400334a52e42f03732aef6a5'
+FITAPP_LOGIN_REDIRECT = "/profile/"
 FITAPP_LOGIN_REDIRECT = "http://127.0.0.1:8000/profile/"
 
 # AWS_STORAGE_BUCKET_NAME = 'diabeatthis'

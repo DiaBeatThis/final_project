@@ -28,6 +28,7 @@ $.ajaxSetup({
     }
 });
 
+showHideCalendar()
 
 var b_summary
 var b_description
@@ -41,29 +42,30 @@ var d_time_stamp
 var currentUser = $('#userId').val()
 var cal_id = $('#userCal').val()
 
+function showHideCalendar() {
+    if($('#userCal').val() == 'None'){
+        $(".remindersInfo").hide();
+    }
+}
+
+Date.prototype.addHours= function(h){
+    this.setHours(this.getHours()+h);
+    return this;
+}
+
 // google INSERT EVENT
 function loadCalendarApi() {
   gapi.client.load('calendar', 'v3');
-}
-
-function insertCalendar(){
-  var request = gapi.client.calendar.insert({
-     'name': 'diabeatthis',
-     'summary': 'diabeatthis',
-     'timeZone': 'American/Cancun',
-  });
-  request.execute(function() {
-     appendPre('Event created: ' + event.htmlLink);
-  });
 }
 
 //makes new calendar
 function insertCalendar(){
     if(cal_id == 'None'){
     	 var request = gapi.client.calendar.calendars.insert({
-       	     'summary': 'diabeatthis'});
+       	     'summary': 'diabeatthis',
+		 });
              request.execute(function(resp){
-    		 cal_id = resp.id
+    		    cal_id = resp.id
     		    saveId()
                 bInsertReminders()
         	 	lInsertReminders()
@@ -85,7 +87,7 @@ function insertCalendar(){
 function saveId(){
 	 $.ajax({
 		 url:'/api/profile/' + currentUser + '/',
-		 data:{'calendar_id':cal_id},
+		 data:{'calendar_id':cal_id.slice(0, 26)},
 		 type:'PATCH'}).done(function(){
 		 location = location
 	 })
@@ -98,14 +100,14 @@ function bInsertReminders(){
   'description': b_description,
   'start': {
     'dateTime': b_time_stamp,
-    'timeZone': 'America/Los_Angeles'
+	'timeZone': 'America/New_York'
   },
   'end': {
     'dateTime': b_time_stamp,
-    'timeZone': 'America/Los_Angeles'
+	'timeZone': 'America/New_York'
   },
   'recurrence': [
-    'RRULE:FREQ=DAILY;COUNT=2'
+    'RRULE:FREQ=DAILY;COUNT=1'
   ],
   'reminders': {
     'useDefault': false,
@@ -123,14 +125,14 @@ function lInsertReminders(){
   'description': l_description,
   'start': {
     'dateTime': l_time_stamp,
-    'timeZone': 'America/Los_Angeles'
+    'timeZone': 'America/New_York'
   },
   'end': {
     'dateTime': l_time_stamp,
-    'timeZone': 'America/Los_Angeles'
+    'timeZone': 'America/New_York'
   },
   'recurrence': [
-    'RRULE:FREQ=DAILY;COUNT=2'
+    'RRULE:FREQ=DAILY;COUNT=1'
   ],
   'reminders': {
     'useDefault': false,
@@ -148,14 +150,14 @@ function dInsertReminders(){
   'description': d_description,
   'start': {
     'dateTime': d_time_stamp,
-    'timeZone': 'America/Los_Angeles'
+    'timeZone': 'America/New_York'
   },
   'end': {
     'dateTime': d_time_stamp,
-    'timeZone': 'America/Los_Angeles'
+    'timeZone': 'America/New_York'
   },
   'recurrence': [
-    'RRULE:FREQ=DAILY;COUNT=2'
+    'RRULE:FREQ=DAILY;COUNT=1'
   ],
   'reminders': {
     'useDefault': false,
@@ -173,8 +175,6 @@ function setBreakfastReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
-
-	  console.log("breakfast reminder");
 	});
 }
 
@@ -184,7 +184,6 @@ function setLunchReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
-	  console.log("lunch reminder");
 	});
 }
 
@@ -194,24 +193,19 @@ function setDinnerReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
-	  console.log("dinner reminder");
 	});
 }
-
-$(document).on('opening', '[data-remodal-id=modalReminders]', function () {
-  console.log('Modal is opening');
-});
 
 $(document).on('confirmation', '[data-remodal-id=modalReminders]', function () {
     b_summary = $("#breakfastSummary").val()
     b_description = $("#breakfastDescription").val()
-	b_time_stamp = new Date($("#breakfastReminder").val()).toISOString()
+	b_time_stamp = new Date($("#breakfastReminder").val()).addHours(5).toISOString()
 	l_summary = $("#lunchSummary").val()
     l_description = $("#lunchDesc  ription").val()
-	l_time_stamp = new Date($("#lunchReminder").val()).toISOString()
+	l_time_stamp = new Date($("#lunchReminder").val()).addHours(5).toISOString()
 	d_summary = $("#dinnerSummary").val()
     d_description = $("#dinnerDescription").val()
-	d_time_stamp = new Date($("#dinnerReminder").val()).toISOString()
+	d_time_stamp = new Date($("#dinnerReminder").val()).addHours(5).toISOString()
 	loadCalendarApi()
 	insertCalendar()
 });
