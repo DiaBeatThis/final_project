@@ -6,19 +6,19 @@ from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
-router.register(r'api/profile', views.ProfileViewSet)
-router.register(r'api/nutrition', views.NutritionViewSet)
-router.register(r'api/meals', views.MealsViewSet)
-router.register(r'api/physical_activity', views.PhysicalActivityViewSet)
-router.register(r'api/insulin', views.InsulinViewSet)
-router.register(r'api/blood_sugar', views.BloodSugarViewSet)
-router.register(r'api/water', views.WaterViewSet)
+router.register(r'profile', views.ProfileViewSet)
+router.register(r'nutrition', views.NutritionViewSet)
+router.register(r'meals', views.MealsViewSet)
+router.register(r'physical_activity', views.PhysicalActivityViewSet)
+router.register(r'insulin', views.InsulinViewSet)
+router.register(r'blood_sugar', views.BloodSugarViewSet)
+router.register(r'water', views.WaterViewSet)
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    url(r'^', views.index, name='index'),
+    url(r'^api/', include(router.urls)),
 	url(r'^fitbit/', include('fitapp.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^index/$', views.index, name='index'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^login/$', views.user_login, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/index'}, name='logout'),
