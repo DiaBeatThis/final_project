@@ -65,35 +65,19 @@
       text-align: left;
     }
   }
-// profile
-  .headerButtons{
-    float: none;
+// index
+  .indexMiddle{
+    .indexMobile{
+      height: 350px;
+    }
+    .indexMiddleText{
+      height: 100%;
+    }
   }
-  .connectapi{
-    margin: 1%;
-    display: block;
-  }
-  .displayNone{
-    display: none;
-  }
-// dashboard
-  .dashboardReminders{
-    display: none;
-  }
-  #containerGlucose{
-    height: 100%;
-  }
-  #activityDay{
-    margin-top: 7px;;
-  }
-  #stepsChart{
-    width: 100%;
-  }
-  .glucoseLegend{
-    float: left;
-  }
-  .displayMedia{
-    display: inline;
+  .hero2{
+    .herotext2{
+      margin-top: 50%;
+    }
   }
 // logiin
   .login{
@@ -108,6 +92,40 @@
   }
   .offset-by-four.columns {
       margin-left: 5%;
+  }
+// dashboard
+  .dashboardReminders{
+    display: none;
+  }
+  #containerGlucose{
+    height: 90%;
+  }
+  #activityDay{
+    margin-top: 7px;;
+  }
+  #stepsChart{
+    width: 100%;
+  }
+  .glucoseLegend{
+    float: left;
+  }
+  .displayMedia{
+    display: inline;
+  }
+// moblile dashboard nav
+  .mobileNav{
+    display: block;
+  }
+// profile
+  .headerButtons{
+    float: none;
+  }
+  .connectapi{
+    margin: 1%;
+    display: block;
+  }
+  .displayNone{
+    display: none;
   }
 // multi-screen (dashboard, profile, register)
   .avatarDiv{

@@ -15,23 +15,11 @@
   }
   .right{
     text-align: right;
-    .welcome{
-      p{
-        float: right;
-        max-width: 1000px;
-        padding: 0 .75%;
-        border: 1px solid $redtrans;
-        color: $navy;
-        font-size: 1.15em;
-        font-family: Times, sans-serif;
-        text-transform: lowercase;
-      }
-    }
     .siteNav{
       clear: both;
       ul{
         margin: 0px;
-        padding-bottom: 3px;
+        padding-top: 3%;
         li{
           display: inline;
           padding-left: 40px;

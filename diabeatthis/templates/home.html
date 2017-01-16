@@ -40,25 +40,24 @@
 
 <body>
 
-  <!-- header nav -->
+<!-- header nav -->
 <section>
   <div id="header"></div>
 </section>
 <!-- body content -->
 <section class="dashboard">
   <div class="row">
-
     <!-- profile photo -->
-    <div class="three columns">
-    <img src="{% static user.profile.avatar %}" class="profilephoto"></img>
-    <!-- log navigation -->
-    <ul class="lognav">
-		<li><img src="{% static 'images/glucoselog_icon.svg' %}" alt="Log Glucose">&nbsp;<a href="#modalGlucose">Log Glucose</a></li>
-        <li><img src="{% static 'images/insulinlog_icon.svg' %}" alt="Log Insulin">&nbsp;<a href="#modalInsulin">Log Insulin</a></li>
-        <li><img src="{% static 'images/waterlog_icon.svg' %}" alt="Log Water">&nbsp;<a href="#modalWaterIntake">Log Water</a></li>
-        <li><img src="{% static 'images/stepslog_icon.svg' %}" alt="Log Steps">&nbsp;<a href="#modalStepsTaken">Log Steps</a></li>
-    </ul>
-  </div>
+    <div class="three columns avatarDiv">
+      <img src="{% static user.profile.avatar %}" class="profilephoto"></img>
+      <!-- log navigation -->
+      <ul class="lognav">
+    		<li><a href="#modalGlucose"><img src="{% static 'images/glucoselog_icon.svg' %}" alt="Log Glucose">Log Glucose</a></li>
+        <li><a href="#modalInsulin"><img src="{% static 'images/insulinlog_icon.svg' %}" alt="Log Insulin">Log Insulin</a></li>
+        <li><a href="#waterIntake"><img src="{% static 'images/waterlog_icon.svg' %}" alt="Log Water">Log Water</a></li>
+        <li><a href="#stepsTaken"><img src="{% static 'images/stepslog_icon.svg' %}" alt="Log Steps">Log Steps</a></li>
+      </ul>
+    </div>
 
     <!-- glucose chart -->
     <div class="nine columns" id="glucoseChart">
@@ -70,18 +69,17 @@
         <div class="glucoseLegend">
           <p><i class="fa fa-square redSquare" aria-hidden="true"></i> Dangerously Low <i class="fa fa-square orangeSquare" aria-hidden="true"></i> Borderline Low<br class="displayMedia"> <i class="fa fa-square tealSquare" aria-hidden="true"></i> Safe Level <i class="fa fa-square redtransSquare" aria-hidden="true"></i> Too High</p>
         </div>
-        <div id="containerGlucose" style="min-width: 310px; height: 375px; margin: 0 auto"></div>
+        <div id="containerGlucose" style="min-width: 310px; margin: 0 auto"></div>
     </div>
   </div>
 
   <div class="row">
-
     <div class="three columns">
-
-      <div class="remindersInfo">
+<!-- reminders widget -->
+      <div class="remindersInfo dashboardReminders">
         <div class="remindersData">
           <h5>Reminders</h5>
-<iframe src="https://calendar.google.com/calendar/embed?src={{user.profile.calendar_id}}&ctz=America/New_York" style="border: 0" width="200" height="200" frameborder="0" scrolling="no"></iframe>
+          <iframe src="https://calendar.google.com/calendar/embed?src={{user.profile.calendar_id}}&ctz=America/New_York" style="border: 0" width="200" height="200" frameborder="0" scrolling="no"></iframe>
         </div>
         <a href="../profile/#thirdParty">Edit Reminders</a>
       </div>
@@ -133,7 +131,7 @@
       <!-- water modal -->
       <div class="remodal-bg">
         <div class="remodal" data-remodal-id="waterIntake">
-          <h3>How water have you had to drink?</h3>
+          <h3>How much Water have you had to drink?</h3>
           <p>Daily Goal: {{ user.profile.water_goal }} cups</p>
           <br>
           <form>
@@ -167,7 +165,7 @@
       <!-- steps modal -->
       <div class="remodal-bg">
         <div class="remodal" data-remodal-id="stepsTaken">
-          <h3>How many steps have you taken today?</h3>
+          <h3>How many Steps have you taken today?</h3>
           <p>Daily Goal: {{ user.profile.steps_goal }} steps</p>
           <br>
           <form>
@@ -199,8 +197,17 @@
 
   <div class="row">
 
-    <!-- empty column -->
+    <!-- mobile nav -->
     <div class="three columns"></div>
+
+    <div class="mobileNav">
+      <ul class="lognavMobile">
+        <li><a href="#modalGlucose"><img src="{% static 'images/glucoselog_icon.svg' %}" alt="Log Glucose"></a></li>
+        <li><a href="#modalInsulin"><img src="{% static 'images/insulinlog_icon.svg' %}" alt="Log Insulin"></a></li>
+        <li><a href="#waterIntake"><img src="{% static 'images/waterlog_icon.svg' %}" alt="Log Water"></a></li>
+        <li><a href="#stepsTaken"><img src="{% static 'images/stepslog_icon.svg' %}" alt="Log Steps"></a></li>
+      </ul>
+    </div>
 
     <!-- water chart -->
     <div class="nine columns">
@@ -235,7 +242,7 @@
 
 <!-- footer nav -->
   <section>
-  <div id="footer"></div>
+    <div id="footer"></div>
   </section>
 
   <!-- standard jQuery calls -->
@@ -248,6 +255,7 @@
   </script>
 
   <script src="{%  static '/js/script.js' %}"></script>
+  <script src="{%  static '/js/header.js' %}"></script>
   <script src="{% static '/js/googlecal.js' %}"></script>
   <script src="{% static '/js/googleinsert.js' %}"></script>
 
@@ -259,9 +267,9 @@
   <script>$(document).ready(function(){
      $('#header').load('../header_loggedin');
    });</script>
-   <script>$(document).ready(function(){
+  <script>$(document).ready(function(){
      $('#footer').load('../footer');
- });</script>
+   });</script>
 
 </body>
 
