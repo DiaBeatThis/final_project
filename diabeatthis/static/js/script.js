@@ -73,6 +73,7 @@ getWater()
 getSteps()
 getInsulin()
 
+
 function screenSize(){
     if($('#userCal').val() == 'None'){
         $(".remindersInfo").hide();
@@ -389,8 +390,8 @@ function stepsChart(){
             }
         };
 
-        // The speed gauge
-        var chartSpeed = Highcharts.chart('stepsChart', Highcharts.merge(gaugeOptions, {
+        // The steps gauge
+        var chartSteps = Highcharts.chart('stepsChart', Highcharts.merge(gaugeOptions, {
             yAxis: {
                 min: 0,
                 max: $('#stepsGoal').val(),

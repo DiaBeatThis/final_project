@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from .models import Profile, Nutrition, Meals

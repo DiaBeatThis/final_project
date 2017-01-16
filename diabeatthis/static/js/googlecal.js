@@ -1,4 +1,3 @@
-// console.log("google calendar auth")
 var cal_id
 
 var CLIENT_ID = '950183132798-6cnr1mbiq4on5bll0fsuubq6krv7i6p6.apps.googleusercontent.com';
