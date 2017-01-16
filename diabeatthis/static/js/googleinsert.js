@@ -87,7 +87,7 @@ function insertCalendar(){
 function saveId(){
 	 $.ajax({
 		 url:'/api/profile/' + currentUser + '/',
-		 data:{'calendar_id':cal_id.slice(0, 26)},
+		 data:{'calendar_id':cal_id},
 		 type:'PATCH'}).done(function(){
 		 location = location
 	 })

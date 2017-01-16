@@ -24,12 +24,12 @@ INSTALLED_APPS = [
     'diabeatthis.apps.DiabeatthisConfig',
     'rest_framework',
 	'fitapp',
-    'storages',
+    # 'storages',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
-    'PAGE_SIZE': 100
+    'PAGE_SIZE': 300
 }
 
 MIDDLEWARE = [
