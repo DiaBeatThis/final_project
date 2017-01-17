@@ -18,7 +18,7 @@ class Profile(models.Model):
         ('NH', 'Native Hawaiian'),
         ('W', 'White'),
     )
-    
+
     user = models.OneToOneField(User)
     height = models.IntegerField(default=0)
     weight = models.IntegerField(default=0)
