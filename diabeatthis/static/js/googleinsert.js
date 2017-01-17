@@ -65,10 +65,7 @@ function insertCalendar(){
        	     'summary': 'diabeatthis',
 		 });
              request.execute(function(resp){
-				 console.log(resp)
     		    cal_id = resp.id
-				console.log(resp.id)
-				console.log(cal_id)
     		    saveId()
                 bInsertReminders()
         	 	lInsertReminders()
@@ -179,7 +176,6 @@ function setBreakfastReminder(){
 	});
 	request.execute(function(event) {
 	});
-	console.log(cal_id)
 }
 
 function setLunchReminder(){
@@ -197,7 +193,7 @@ function setDinnerReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
-		window.location.reload()
+        window.location.reload()
 	});
 }
 
