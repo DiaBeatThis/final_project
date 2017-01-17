@@ -209,4 +209,5 @@ $(document).on('confirmation', '[data-remodal-id=modalReminders]', function () {
 	d_time_stamp = new Date($("#dinnerReminder").val()).addHours(5).toISOString()
 	loadCalendarApi()
 	insertCalendar()
+
 });

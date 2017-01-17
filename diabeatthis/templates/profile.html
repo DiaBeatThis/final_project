@@ -199,7 +199,7 @@
   <div class="row">
     <div class="three columns">
       <!-- calendar reminders -->
-	  <div class="remindersInfo">
+	  <div class="remindersInfo" id="remindersInfo">
         <div class="remindersData">
           <h5>Reminders</h5>
 		 <iframe src="https://calendar.google.com/calendar/embed?showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=200&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src={{user.profile.calendar_id|slice:"26"}}%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0" width="200" height="200" frameborder="0" scrolling="no"></iframe>
@@ -219,7 +219,7 @@
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="breakfastReminder">Breakfast Reminder Time:</label>
-                <input class="u-full-width" value="{% now 'Y-m-d\TH:i' %}" type="datetime-local" placeholder="0" id="breakfastReminder" name="breakfastReminder">
+                <input class="u-full-width" value="{% now 'Y-m-d' %}T09:00" type="datetime-local" placeholder="0" id="breakfastReminder" name="breakfastReminder">
               </div>
               <div class="five columns ">
                 <label for="breakfastDescription">Description</label>
@@ -236,7 +236,7 @@
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="lunchReminder">Lunch Reminder Time:</label>
-                <input class="u-full-width" value="{% now 'Y-m-d\TH:i' %}" type="datetime-local" placeholder="0" id="lunchReminder" name="lunchReminder">
+                <input class="u-full-width" value="{% now 'Y-m-d' %}T13:00" type="datetime-local" placeholder="0" id="lunchReminder" name="lunchReminder">
               </div>
               <div class="five columns ">
                 <label for="lunchDescription">Description</label>
@@ -253,7 +253,7 @@
             <div class="row">
               <div class="six columns offset-by-three columns">
                 <label for="dinnerReminder">Dinner Reminder Time:</label>
-                <input class="u-full-width" value="{% now 'Y-m-d' %}T09:00" type="datetime-local" placeholder="0" id="dinnerReminder" name="dinnerReminder">
+                <input class="u-full-width" value="{% now 'Y-m-d' %}T18:00" type="datetime-local" placeholder="0" id="dinnerReminder" name="dinnerReminder">
             </div>
             <div class="five columns ">
               <label for="dinnerDescription">Description</label>
@@ -271,9 +271,9 @@
       </div>
 
       <br><br class="displayNone">
-
-      <img src="{% static  '/images/Fitbit_logo_RGB.png' %}" alt="Fitbit" class="thirdpartylogo">
-      <button type="button" onclick="location.href='/fitbit/login';" class="connectapi">Connect Your Fitbit</button>
+<!-- feature coming soon -->
+      <!-- <img src="{% static  '/images/Fitbit_logo_RGB.png' %}" alt="Fitbit" class="thirdpartylogo">
+      <button type="button" onclick="location.href='/fitbit/login';" class="connectapi">Connect Your Fitbit</button> -->
     </div>
   </div>
 </section>

@@ -1,8 +1,8 @@
 import os
-from .secrets import SECRET_KEY, DATABASES
+# from .secrets import SECRET_KEY, DATABASES
 import dj_database_url
 
-# SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ['SECRET_KEY']
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -86,16 +86,16 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-# 
-# DATABASES = {
-#     'default': {
-#     }
-# }
 #
-# db_from_env = dj_database_url.config(conn_max_age=500)
-#
-# DATABASES['default'].update(db_from_env)
-# DATABASES['default'] =  dj_database_url.config()
+DATABASES = {
+    'default': {
+    }
+}
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+
+DATABASES['default'].update(db_from_env)
+DATABASES['default'] =  dj_database_url.config()
 
 LOGIN_REDIRECT_URL = '/home/'
 
@@ -115,7 +115,5 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'diabeatthis/static/')
 
-FITAPP_CONSUMER_KEY = '228763'
-FITAPP_CONSUMER_SECRET = 'f00eb347400334a52e42f03732aef6a5'
-FITAPP_LOGIN_REDIRECT = "/profile/"
-FITAPP_LOGIN_REDIRECT = "http://127.0.0.1:8000/profile/"
+FITAPP_CONSUMER_KEY = '2283P2'
+FITAPP_CONSUMER_SECRET = '440a8dbcfbc1ffe49d07db024d2f2283'

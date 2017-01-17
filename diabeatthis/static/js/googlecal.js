@@ -6,10 +6,6 @@ var SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
 var signoutButton = document.getElementById('signout-button');
 
-$(document).on('opening', '[data-remodal-id=modalReminders]', function () {
-  console.log('Modal is opening');
-});
-
 /**
 * Check if current user has authorized this application.
 */
@@ -18,7 +14,7 @@ function checkAuth() {
     {
       'client_id': CLIENT_ID,
       'scope': SCOPES.join(' '),
-      'immediate': true
+      'immediate': false
     }, handleAuthResult);
 }
 
@@ -100,6 +96,7 @@ function listCalendars()
 
      request.execute(function(resp){
              var calendars = resp.items;
+             console.log(calendars);
      });
 }
 
@@ -110,7 +107,7 @@ function listCalendars()
 * @param {string} message Text to be placed in pre element.
 */
 function appendPre(message) {
-     var pre = document.getElementById('output');
-     var textContent = document.createTextNode(message + '\n');
-     pre.appendChild(textContent);
+ var pre = document.getElementById('output');
+ var textContent = document.createTextNode(message + '\n');
+ pre.appendChild(textContent);
 }
