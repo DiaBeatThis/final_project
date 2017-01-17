@@ -35,7 +35,7 @@ $.ajaxSetup({
     };
 })();
 
-
+// <!-- getting a week number -->
 function getWeekNumber(d) {
     // Copy date so don't modify original
     d = new Date(+d);
@@ -52,18 +52,17 @@ function getWeekNumber(d) {
 }
 
 // <!-- global variables -->
-var insulin = []
-var bloodSugar = []
-var insulinTimestamp = []
-var steps = []
-var water = []
-var bloodSugarTimestamp = []
-var waterTimestamp = []
+var insulin
+var bloodSugar
+var insulinTimestamp
+var steps
+var water
+var bloodSugarTimestamp
+var waterTimestamp
 var currentUser = $('#userId').val()
-var currentDate = $('#currentDate').val()
 var insulinWeek = $('#insulinWeek').val()
 var glucoseWeek = $('#glucoseWeek').val()
-var currentDateName = new Date(currentDate).getDayName()
+var currentDateName = new Date($('#currentDate').val()).getDayName()
 var screenSize
 
 // <!-- functions called when page is loaded -->
@@ -73,7 +72,7 @@ getWater()
 getSteps()
 getInsulin()
 
-
+// <!-- function is checking a screen size and changing a steps chart  size-->
 function screenSize(){
     if($('#userCal').val() == 'None'){
         $(".remindersInfo").hide();
@@ -460,7 +459,7 @@ $(document).on('confirmation', '[data-remodal-id=waterIntake]', function () {
 // <!-- steps modal -->
 $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
     steps = $("#stepsTaken").val()
-    time_stamp = currentDate
+    time_stamp = $('#currentDate').val()
     var postdata = {'distance':steps, 'date':time_stamp, 'profile_id':currentUser}
     $.ajax({url:'/api/physical_activity/', data:postdata, type:'POST'}).done(function(){
         location = location
