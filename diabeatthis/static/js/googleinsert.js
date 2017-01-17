@@ -197,6 +197,7 @@ function setDinnerReminder(){
 	  'resource': event
 	});
 	request.execute(function(event) {
+		window.location.reload()
 	});
 }
 
@@ -212,4 +213,5 @@ $(document).on('confirmation', '[data-remodal-id=modalReminders]', function () {
 	d_time_stamp = new Date($("#dinnerReminder").val()).addHours(5).toISOString()
 	loadCalendarApi()
 	insertCalendar()
+
 });
