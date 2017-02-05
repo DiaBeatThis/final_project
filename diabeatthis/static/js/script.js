@@ -467,6 +467,32 @@ $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
     })
 });
 
+https://api.edamam.com/api/nutrition-data?app_id=50ec9c82&app_key=5a74672142eeb0cb34eb140e985abbce&ingr=rice
+// <!-- food modal -->
+$(document).on('confirmation', '[data-remodal-id=foodTaken]', function () {
+    app_id='50ec9c82'
+    app_key='5a74672142eeb0cb34eb140e985abbce'
+    food_name = $("#foodName").val()
+    food_portion = $('#foodAmount').val()
+    time_eaten = $('#currentDateTime').val()
+    $.ajax('https://api.edamam.com/api/nutrition-data?app_id=' + app_id + '&app_key=' + app_key + '&ingr=' + food_portion + 'g%20' + food_name).done(function (stuff){
+        console.log(stuff['calories'])
+        calories = parseFloat(stuff['calories']).toFixed(2)
+        carbs = parseFloat(stuff['ingredients'][0]['parsed'][0]['nutrients']['CHOCDF']['quantity']).toFixed(2)
+        console.log(stuff['ingredients'][0]['parsed'][0]['nutrients']['CHOCDF']['quantity'])
+        var postdata = {'calories':calories, 'carbs':carbs}
+        console.log(postdata)
+        $.ajax({url:'/api/nutrition/', data:postdata, type:'POST'}).done(function(item){
+            var postdata = {'food_name':food_name, 'time_eaten':time_eaten, 'nutritional_facts':item['id'].toString(), 'profile_id':currentUser}
+            console.log(postdata)
+            $.ajax({url:'/api/meals/', data:postdata, type:'POST'}).done(function(){
+            })
+        })
+    })
+});
+
+
+
 $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)
 $('#glucoseWeekSubmit').click(getGlucose)

@@ -36,12 +36,12 @@ class Profile(models.Model):
 
 
 class Nutrition(models.Model):
-    calories = models.DecimalField(max_digits=3, decimal_places=2)
-    carbs = models.DecimalField(max_digits=3, decimal_places=2)
-    fat = models.DecimalField(max_digits=3, decimal_places=2)
-    protein = models.DecimalField(max_digits=3, decimal_places=2)
-    sugar = models.DecimalField(max_digits=3, decimal_places=2)
-    sodium = models.DecimalField(max_digits=3, decimal_places=2)
+    calories = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    carbs = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    fat = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    protein = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    sugar = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    sodium = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
 
 class Meals(models.Model):
