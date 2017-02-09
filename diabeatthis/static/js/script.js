@@ -64,6 +64,11 @@ var insulinWeek = $('#insulinWeek').val()
 var glucoseWeek = $('#glucoseWeek').val()
 var currentDateName = new Date($('#currentDate').val()).getDayName()
 var screenSize
+var calories
+var carbs
+var fat
+var protein
+var sugar
 
 // <!-- functions called when page is loaded -->
 screenSize()
@@ -71,6 +76,7 @@ getGlucose()
 getWater()
 getSteps()
 getInsulin()
+getNutritions()
 
 // <!-- function is checking a screen size and changing a steps chart  size-->
 function screenSize(){
@@ -157,7 +163,39 @@ function getSteps (){
             }
         }
         steps = [sum]
-        stepsChart()
+        // stepsChart()
+    })
+}
+
+// <!-- getting water for selected date -->
+function getNutritions (){
+    date = $('#foodDay').val()
+    $.ajax('/api/meals/').done(function (stuff){
+        calories = 0
+        carbs = 0
+        fat = 0
+        protein = 0
+        sugar = 0
+        res = stuff.results
+        for (var i = 0; i < res.length; i++){
+            if(res[i]['profile_id'] == currentUser && date === res[i]['time_eaten'].slice(0, 10)){
+                var mealId = res[i]['nutritional_facts']
+                console.log(mealId)
+                $.ajax('/api/nutrition/' + mealId + '/').done(function (data){
+                    console.log(data)
+                    calories += parseFloat(data['calories'])
+                    carbs += parseFloat(data['carbs'])
+                    fat += parseFloat(data['fat'])
+                    protein += parseFloat(data['protein'])
+                    sugar += parseFloat(data['sugar'])
+                    console.log(calories)
+                    foodChart()
+                // sum += parseFloat(res[i]['ounces'])
+                })
+            }
+        }
+        // water = [sum]
+        // waterCharts()
     })
 }
 
@@ -331,95 +369,151 @@ function waterCharts(){
 }
 
 // <!-- building steps chart -->
-function stepsChart(){
-    $(function () {
-        var gaugeOptions = {
+// function stepsChart(){
+//     $(function () {
+//         var gaugeOptions = {
+//
+//             chart: {
+//                 type: 'solidgauge'
+//             },
+//
+//             title: 'Total Daily Steps',
+//
+//             pane: {
+//                 center: ['50%', '85%'],
+//                 size: screenSize,
+//                 startAngle: -90,
+//                 endAngle: 90,
+//                 background: {
+//                     backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+//                     innerRadius: '60%',
+//                     outerRadius: '100%',
+//                     shape: 'arc'
+//                 }
+//             },
+//
+//             tooltip: {
+//                 enabled: false
+//             },
+//
+//             // the value axis
+//             yAxis: {
+//                 stops: [
+//                     [0.1, '#FB1111'], // Red
+//                     [0.25, '#C53032'], // Violet
+//                     [0.5, '#904F54'], // Purple
+//                     [0.75, '#5A6D75'], // Blue
+//                     [0.9, '#248C96'] // Teal
+//                 ],
+//                 lineWidth: 0,
+//                 minorTickInterval: null,
+//                 tickAmount: 2,
+//                 title: {
+//                     y: -120
+//                 },
+//                 labels: {
+//                     y: 16
+//                 }
+//             },
+//
+//             plotOptions: {
+//                 solidgauge: {
+//                     dataLabels: {
+//                         y: 5,
+//                         borderWidth: 0,
+//                         useHTML: true
+//                     }
+//                 }
+//             }
+//         };
+//
+//         // The steps gauge
+//         var chartSteps = Highcharts.chart('stepsChart', Highcharts.merge(gaugeOptions, {
+//             yAxis: {
+//                 min: 0,
+//                 max: $('#stepsGoal').val(),
+//                 title: {
+//                     text: 'Total Daily Steps'
+//                 }
+//             },
+//
+//             credits: {
+//                 enabled: false
+//             },
+//
+//             series: [{
+//                 name: 'Steps',
+//                 data: steps,
+//                 dataLabels: {
+//                     format: '<div style="text-align:center"><span style="font-size:1.5em;color:' +
+//                         ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+//                            '<span style="font-size:14px;color:silver">steps</span></div>'
+//                 },
+//                 tooltip: {
+//                     valueSuffix: 'steps'
+//                 }
+//             }]
+//
+//         }));
+//
+//     });
+// }
 
-            chart: {
-                type: 'solidgauge'
-            },
-
-            title: 'Total Daily Steps',
-
-            pane: {
-                center: ['50%', '85%'],
-                size: screenSize,
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-
-            tooltip: {
-                enabled: false
-            },
-
-            // the value axis
-            yAxis: {
-                stops: [
-                    [0.1, '#FB1111'], // Red
-                    [0.25, '#C53032'], // Violet
-                    [0.5, '#904F54'], // Purple
-                    [0.75, '#5A6D75'], // Blue
-                    [0.9, '#248C96'] // Teal
-                ],
-                lineWidth: 0,
-                minorTickInterval: null,
-                tickAmount: 2,
-                title: {
-                    y: -120
-                },
-                labels: {
-                    y: 16
-                }
-            },
-
-            plotOptions: {
-                solidgauge: {
-                    dataLabels: {
-                        y: 5,
-                        borderWidth: 0,
-                        useHTML: true
+function foodChart(){
+    Highcharts.chart('foodChart', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Browser market shares January, 2015 to May, 2015'
+        },
+        tooltip: {
+            // pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    // format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                     }
                 }
             }
-        };
-
-        // The steps gauge
-        var chartSteps = Highcharts.chart('stepsChart', Highcharts.merge(gaugeOptions, {
-            yAxis: {
-                min: 0,
-                max: $('#stepsGoal').val(),
-                title: {
-                    text: 'Total Daily Steps'
-                }
-            },
-
-            credits: {
-                enabled: false
-            },
-
-            series: [{
-                name: 'Steps',
-                data: steps,
-                dataLabels: {
-                    format: '<div style="text-align:center"><span style="font-size:1.5em;color:' +
-                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                           '<span style="font-size:14px;color:silver">steps</span></div>'
-                },
-                tooltip: {
-                    valueSuffix: 'steps'
-                }
+        },
+        series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: [{
+                name: 'Sugar',
+                y: sugar
+            }, {
+                name: 'Carbs',
+                y: carbs,
+                sliced: true,
+                selected: true
+            }, {
+                name: 'Fat',
+                y: fat
+            }, {
+                name: 'Protein',
+                y: protein
+            }, {
+                name: 'Opera',
+                y: 0.91
+            }, {
+                name: 'Proprietary or Undetectable',
+                y: 0.2
             }]
-
-        }));
-
+        }]
     });
 }
+
 
 // <!-- glucose modal -->
 $(document).on('confirmation', '[data-remodal-id=modalGlucose]', function () {
@@ -467,7 +561,6 @@ $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
     })
 });
 
-https://api.edamam.com/api/nutrition-data?app_id=50ec9c82&app_key=5a74672142eeb0cb34eb140e985abbce&ingr=rice
 // <!-- food modal -->
 $(document).on('confirmation', '[data-remodal-id=foodTaken]', function () {
     app_id='50ec9c82'
@@ -476,11 +569,28 @@ $(document).on('confirmation', '[data-remodal-id=foodTaken]', function () {
     food_portion = $('#foodAmount').val()
     time_eaten = $('#currentDateTime').val()
     $.ajax('https://api.edamam.com/api/nutrition-data?app_id=' + app_id + '&app_key=' + app_key + '&ingr=' + food_portion + 'g%20' + food_name).done(function (stuff){
-        console.log(stuff['calories'])
         calories = parseFloat(stuff['calories']).toFixed(2)
-        carbs = parseFloat(stuff['ingredients'][0]['parsed'][0]['nutrients']['CHOCDF']['quantity']).toFixed(2)
-        console.log(stuff['ingredients'][0]['parsed'][0]['nutrients']['CHOCDF']['quantity'])
-        var postdata = {'calories':calories, 'carbs':carbs}
+        if (stuff['ingredients'][0]['parsed'][0]['nutrients']['CHOCDF'] === undefined){
+            carbs = ''
+        } else {
+            carbs = parseFloat(stuff['ingredients'][0]['parsed'][0]['nutrients']['CHOCDF']['quantity']).toFixed(2)
+        }
+        if (stuff['ingredients'][0]['parsed'][0]['nutrients']['FAT'] === undefined){
+            fat = ''
+        } else {
+            fat = parseFloat(stuff['ingredients'][0]['parsed'][0]['nutrients']['FAT']['quantity']).toFixed(2)
+        }
+        if (stuff['ingredients'][0]['parsed'][0]['nutrients']['PROCNT'] === undefined){
+            protein = ''
+        } else {
+            protein = parseFloat(stuff['ingredients'][0]['parsed'][0]['nutrients']['PROCNT']['quantity']).toFixed(2)
+        }
+        if (stuff['ingredients'][0]['parsed'][0]['nutrients']['SUGAR'] === undefined){
+            sugar = ''
+        } else {
+            sugar = parseFloat(stuff['ingredients'][0]['parsed'][0]['nutrients']['SUGAR']['quantity']).toFixed(2)
+        }
+        var postdata = {'calories':calories, 'carbs':carbs, 'fat':fat, 'protein':protein, 'sugar':sugar}
         console.log(postdata)
         $.ajax({url:'/api/nutrition/', data:postdata, type:'POST'}).done(function(item){
             var postdata = {'food_name':food_name, 'time_eaten':time_eaten, 'nutritional_facts':item['id'].toString(), 'profile_id':currentUser}
@@ -490,8 +600,6 @@ $(document).on('confirmation', '[data-remodal-id=foodTaken]', function () {
         })
     })
 });
-
-
 
 $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)
