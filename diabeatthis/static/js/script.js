@@ -465,6 +465,19 @@ function foodChart(){
     subtitle: {
         text: 'Total calories: ' + calories,
     },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {y:.1f} g',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
     series: [ {
         type: 'pie',
         name: 'Total consumption',
