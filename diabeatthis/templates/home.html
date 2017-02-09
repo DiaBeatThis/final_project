@@ -200,6 +200,12 @@
               <input class="u-full-width" type="number" placeholder="0" id="foodAmount" name="foodAmount">
             </div>
             </div>
+            <div class="row">
+              <div class="six columns offset-by-three columns">
+                <label for="foodDateTime">Date/Time (e.g. 01/01/2017, 08:00 AM)</label>
+                <input class="u-full-width" value="{% now 'Y-m-d\TH:i' %}" type="datetime-local" id="foodDateTime" name="foodDateTime">
+              </div>
+            </div>
           <br>
           <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
           <button data-remodal-action="confirm" class="remodal-confirm">Save</button>

@@ -180,22 +180,19 @@ function getNutritions (){
         for (var i = 0; i < res.length; i++){
             if(res[i]['profile_id'] == currentUser && date === res[i]['time_eaten'].slice(0, 10)){
                 var mealId = res[i]['nutritional_facts']
-                console.log(mealId)
                 $.ajax('/api/nutrition/' + mealId + '/').done(function (data){
-                    console.log(data)
                     calories += parseFloat(data['calories'])
                     carbs += parseFloat(data['carbs'])
                     fat += parseFloat(data['fat'])
                     protein += parseFloat(data['protein'])
                     sugar += parseFloat(data['sugar'])
-                    console.log(calories)
                     foodChart()
-                // sum += parseFloat(res[i]['ounces'])
                 })
             }
+            else{
+                foodChart()
+            }
         }
-        // water = [sum]
-        // waterCharts()
     })
 }
 
@@ -460,60 +457,37 @@ function waterCharts(){
 // }
 
 function foodChart(){
-    Highcharts.chart('foodChart', {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
-        },
-        title: {
-            text: 'Browser market shares January, 2015 to May, 2015'
-        },
-        tooltip: {
-            // pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    // format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            name: 'Brands',
-            colorByPoint: true,
-            data: [{
-                name: 'Sugar',
-                y: sugar
-            }, {
-                name: 'Carbs',
-                y: carbs,
-                sliced: true,
-                selected: true
-            }, {
-                name: 'Fat',
-                y: fat
-            }, {
-                name: 'Protein',
-                y: protein
-            }, {
-                name: 'Opera',
-                y: 0.91
-            }, {
-                name: 'Proprietary or Undetectable',
-                y: 0.2
-            }]
-        }]
-    });
-}
 
+    Highcharts.chart('foodChart', {
+    title: {
+        text: 'Combination chart'
+    },
+    subtitle: {
+        text: 'Total calories: ' + calories,
+    },
+    series: [ {
+        type: 'pie',
+        name: 'Total consumption',
+        data: [{
+            name: 'Carbs',
+            y: carbs,
+            color: Highcharts.getOptions().colors[0] // John's color
+        }, {
+            name: 'Fat',
+            y: fat,
+            color: Highcharts.getOptions().colors[1] // Joe's color
+        }, {
+            name: 'Protein',
+            y: protein,
+            color: Highcharts.getOptions().colors[2] // Joe's color
+        },{
+            name: 'Sugar',
+            y: sugar,
+            color: Highcharts.getOptions().colors[3] // Joe's color
+        }]
+    }]
+});
+}
 
 // <!-- glucose modal -->
 $(document).on('confirmation', '[data-remodal-id=modalGlucose]', function () {
@@ -567,35 +541,38 @@ $(document).on('confirmation', '[data-remodal-id=foodTaken]', function () {
     app_key='5a74672142eeb0cb34eb140e985abbce'
     food_name = $("#foodName").val()
     food_portion = $('#foodAmount').val()
-    time_eaten = $('#currentDateTime').val()
+    time_eaten = $("#foodDateTime").val()
     $.ajax('https://api.edamam.com/api/nutrition-data?app_id=' + app_id + '&app_key=' + app_key + '&ingr=' + food_portion + 'g%20' + food_name).done(function (stuff){
         calories = parseFloat(stuff['calories']).toFixed(2)
+        console.log(stuff)
         if (stuff['ingredients'][0]['parsed'][0]['nutrients']['CHOCDF'] === undefined){
-            carbs = ''
+            carbs = 0
         } else {
             carbs = parseFloat(stuff['ingredients'][0]['parsed'][0]['nutrients']['CHOCDF']['quantity']).toFixed(2)
         }
         if (stuff['ingredients'][0]['parsed'][0]['nutrients']['FAT'] === undefined){
-            fat = ''
+            fat = 0
         } else {
             fat = parseFloat(stuff['ingredients'][0]['parsed'][0]['nutrients']['FAT']['quantity']).toFixed(2)
         }
         if (stuff['ingredients'][0]['parsed'][0]['nutrients']['PROCNT'] === undefined){
-            protein = ''
+            protein = 0
         } else {
             protein = parseFloat(stuff['ingredients'][0]['parsed'][0]['nutrients']['PROCNT']['quantity']).toFixed(2)
         }
         if (stuff['ingredients'][0]['parsed'][0]['nutrients']['SUGAR'] === undefined){
-            sugar = ''
+            sugar = 0
         } else {
             sugar = parseFloat(stuff['ingredients'][0]['parsed'][0]['nutrients']['SUGAR']['quantity']).toFixed(2)
         }
         var postdata = {'calories':calories, 'carbs':carbs, 'fat':fat, 'protein':protein, 'sugar':sugar}
         console.log(postdata)
         $.ajax({url:'/api/nutrition/', data:postdata, type:'POST'}).done(function(item){
-            var postdata = {'food_name':food_name, 'time_eaten':time_eaten, 'nutritional_facts':item['id'].toString(), 'profile_id':currentUser}
+            var postdata = {'food_name':food_name, 'time_eaten':time_eaten, 'nutritional_facts':item['id'].toString(), 'food_portion': food_portion, 'profile_id':currentUser}
             console.log(postdata)
             $.ajax({url:'/api/meals/', data:postdata, type:'POST'}).done(function(){
+                location = location
+                getNutritions()
             })
         })
     })
@@ -605,3 +582,4 @@ $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)
 $('#glucoseWeekSubmit').click(getGlucose)
 $('#insulinWeekSubmit').click(getInsulin)
+$('#foodDateSubmit').click(getNutritions)
