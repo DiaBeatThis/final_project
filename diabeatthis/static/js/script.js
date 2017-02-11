@@ -74,7 +74,7 @@ var sugar
 screenSize()
 getGlucose()
 getWater()
-getSteps()
+// getSteps()
 getInsulin()
 getNutritions()
 
@@ -365,96 +365,96 @@ function waterCharts(){
     });
 }
 
-// <!-- building steps chart -->
-// function stepsChart(){
-//     $(function () {
-//         var gaugeOptions = {
-//
-//             chart: {
-//                 type: 'solidgauge'
-//             },
-//
-//             title: 'Total Daily Steps',
-//
-//             pane: {
-//                 center: ['50%', '85%'],
-//                 size: screenSize,
-//                 startAngle: -90,
-//                 endAngle: 90,
-//                 background: {
-//                     backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-//                     innerRadius: '60%',
-//                     outerRadius: '100%',
-//                     shape: 'arc'
-//                 }
-//             },
-//
-//             tooltip: {
-//                 enabled: false
-//             },
-//
-//             // the value axis
-//             yAxis: {
-//                 stops: [
-//                     [0.1, '#FB1111'], // Red
-//                     [0.25, '#C53032'], // Violet
-//                     [0.5, '#904F54'], // Purple
-//                     [0.75, '#5A6D75'], // Blue
-//                     [0.9, '#248C96'] // Teal
-//                 ],
-//                 lineWidth: 0,
-//                 minorTickInterval: null,
-//                 tickAmount: 2,
-//                 title: {
-//                     y: -120
-//                 },
-//                 labels: {
-//                     y: 16
-//                 }
-//             },
-//
-//             plotOptions: {
-//                 solidgauge: {
-//                     dataLabels: {
-//                         y: 5,
-//                         borderWidth: 0,
-//                         useHTML: true
-//                     }
-//                 }
-//             }
-//         };
-//
-//         // The steps gauge
-//         var chartSteps = Highcharts.chart('stepsChart', Highcharts.merge(gaugeOptions, {
-//             yAxis: {
-//                 min: 0,
-//                 max: $('#stepsGoal').val(),
-//                 title: {
-//                     text: 'Total Daily Steps'
-//                 }
-//             },
-//
-//             credits: {
-//                 enabled: false
-//             },
-//
-//             series: [{
-//                 name: 'Steps',
-//                 data: steps,
-//                 dataLabels: {
-//                     format: '<div style="text-align:center"><span style="font-size:1.5em;color:' +
-//                         ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-//                            '<span style="font-size:14px;color:silver">steps</span></div>'
-//                 },
-//                 tooltip: {
-//                     valueSuffix: 'steps'
-//                 }
-//             }]
-//
-//         }));
-//
-//     });
-// }
+<!-- building steps chart -->
+function stepsChart(){
+    $(function () {
+        var gaugeOptions = {
+
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: 'Total Daily Steps',
+
+            pane: {
+                center: ['50%', '85%'],
+                size: screenSize,
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.1, '#FB1111'], // Red
+                    [0.25, '#C53032'], // Violet
+                    [0.5, '#904F54'], // Purple
+                    [0.75, '#5A6D75'], // Blue
+                    [0.9, '#248C96'] // Teal
+                ],
+                lineWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -120
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The steps gauge
+        var chartSteps = Highcharts.chart('stepsChart', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: $('#stepsGoal').val(),
+                title: {
+                    text: 'Total Daily Steps'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Steps',
+                data: steps,
+                dataLabels: {
+                    format: '<div style="text-align:center"><span style="font-size:1.5em;color:' +
+                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                           '<span style="font-size:14px;color:silver">steps</span></div>'
+                },
+                tooltip: {
+                    valueSuffix: 'steps'
+                }
+            }]
+
+        }));
+
+    });
+}
 
 function foodChart(){
 
@@ -508,7 +508,6 @@ $(document).on('confirmation', '[data-remodal-id=modalGlucose]', function () {
     var time_stamp = $("#glucoseDateTime").val()
     var postdata = {'mg_dL':glucose, 'time_stamp':time_stamp, 'profile_id':currentUser}
     $.ajax({url:'/api/blood_sugar/', data:postdata, type:'POST'}).done(function(){
-        location = location
         getGlucose()
     })
 });
@@ -519,7 +518,6 @@ $(document).on('confirmation', '[data-remodal-id=modalInsulin]', function () {
   var time_stamp = $("#insulinDateTime").val()
   var postdata = {'mcU_ml':insulin, 'time_stamp':time_stamp, 'profile_id':currentUser}
   $.ajax({url:'/api/insulin/', data:postdata, type:'POST'}).done(function(){
-      location = location
       getInsulin()
   })
 });
@@ -532,7 +530,6 @@ $(document).on('confirmation', '[data-remodal-id=waterIntake]', function () {
     var time_stamp = $("#waterDateTime").val()
     var postdata = {'ounces':water, 'time_stamp':time_stamp, 'profile_id':currentUser}
     $.ajax({url:'/api/water/', data:postdata, type:'POST'}).done(function(){
-        location = location
         getWater()
     })
 });
@@ -543,7 +540,6 @@ $(document).on('confirmation', '[data-remodal-id=stepsTaken]', function () {
     time_stamp = $('#currentDate').val()
     var postdata = {'distance':steps, 'date':time_stamp, 'profile_id':currentUser}
     $.ajax({url:'/api/physical_activity/', data:postdata, type:'POST'}).done(function(){
-        location = location
         getSteps()
     })
 });
@@ -557,7 +553,6 @@ $(document).on('confirmation', '[data-remodal-id=foodTaken]', function () {
     time_eaten = $("#foodDateTime").val()
     $.ajax('https://api.edamam.com/api/nutrition-data?app_id=' + app_id + '&app_key=' + app_key + '&ingr=' + food_portion + 'g%20' + food_name).done(function (stuff){
         calories = parseFloat(stuff['calories']).toFixed(2)
-        console.log(stuff)
         if (stuff['ingredients'][0]['parsed'][0]['nutrients']['CHOCDF'] === undefined){
             carbs = 0
         } else {
@@ -579,17 +574,15 @@ $(document).on('confirmation', '[data-remodal-id=foodTaken]', function () {
             sugar = parseFloat(stuff['ingredients'][0]['parsed'][0]['nutrients']['SUGAR']['quantity']).toFixed(2)
         }
         var postdata = {'calories':calories, 'carbs':carbs, 'fat':fat, 'protein':protein, 'sugar':sugar}
-        console.log(postdata)
         $.ajax({url:'/api/nutrition/', data:postdata, type:'POST'}).done(function(item){
             var postdata = {'food_name':food_name, 'time_eaten':time_eaten, 'nutritional_facts':item['id'].toString(), 'food_portion': food_portion, 'profile_id':currentUser}
-            console.log(postdata)
             $.ajax({url:'/api/meals/', data:postdata, type:'POST'}).done(function(){
-                location = location
                 getNutritions()
             })
         })
     })
 });
+
 
 $('#waterDateSubmit').click(getWater)
 $('#activityDateSubmit').click(getSteps)

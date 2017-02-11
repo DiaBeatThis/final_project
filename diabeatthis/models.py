@@ -80,3 +80,8 @@ class Water(models.Model):
     ounces = models.IntegerField(default=0)
     time_stamp = models.DateTimeField(auto_now_add=False)
     profile_id = models.ForeignKey(Profile)
+
+
+class Food(models.Model):
+    name = models.CharField(max_length=200)
+    unit = models.CharField(max_length=20, blank=True, null=True)
